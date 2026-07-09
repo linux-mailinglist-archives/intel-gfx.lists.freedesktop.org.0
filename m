@@ -2,63 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ULV4BC+OT2pfjgIAu9opvQ
+	id Xm7DDsSKT2rijAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 14:03:59 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 13:49:24 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE4D4730CA1
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 14:03:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B1A7730968
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 13:49:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=jEs4aGKn;
+	dkim=pass header.d=intel.com header.s=Intel header.b=TseJUZSE;
 	dmarc=pass (policy=none) header.from=intel.com;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 312BE10F578;
-	Thu,  9 Jul 2026 12:03:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15D6D10F523;
+	Thu,  9 Jul 2026 11:49:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D7E610F576;
- Thu,  9 Jul 2026 12:03:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33BD810F522;
+ Thu,  9 Jul 2026 11:49:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783598637; x=1815134637;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wtQn+VqnEMhRlcpomBaqsvMFXWF4RxH74IKBpvsYwes=;
- b=jEs4aGKnhaWvv2oQGvqMbPHHKX6iSsyFcgSXDr/ToR1is2IiIpQGjetT
- yvq5J+nnnrZr9YEjlrxLrDQceMvX1MhtB2B0GvCym/KxMR/PINMhUT1rs
- JhPQje+ZGZGuHSCIY0YWePGsldG1OoTml6bLNp+3+8gyHDC/0RPZr4ta6
- ha46NGNmmGQwmIDRUSPRKSwKcdsuB6E7iSo6maN16cwngYt2OLtcUSsc+
- us8g6k9ujno9yyvWsZtZIpvkhatuWxj7dnDdfKtRwi8esu13QCsTgSkWg
- w9CyeurHwR8NHxp1mR2fsEZ6tX0AckI8dDFfw2Z5rpG2A8s6V+NHyeuEf A==;
-X-CSE-ConnectionGUID: Gax4KyA4R6iDL+iFK2Md8g==
-X-CSE-MsgGUID: s6mFoHTSTeukf0D2JsLRPw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84468980"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84468980"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2026 05:03:57 -0700
-X-CSE-ConnectionGUID: bBRwr98mQmqBaUxL7gQ/yQ==
-X-CSE-MsgGUID: UTQqF7F6QPahfUzhIGTWdA==
+ t=1783597761; x=1815133761;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=u9WyhBwJWwZWKBFfj/tzgZqVEyLcVYZZsKrHDL6kEMo=;
+ b=TseJUZSEtjSFyzKmvxBS1hkH80Lqq60Ug+GJPDh6WhJye/6vayrw2HHe
+ 0OBVXJQc6XyaMRVjrl2QQpXLSRYuGDzOqJMrIviw7DQGn6uYPOt2cLrBw
+ l+oKqc48yWwGPc5MGF80IaH0yxqGY21Dp5pEkoq6d7nA8yORQhicPNqj9
+ ERqkNctw+/uHHPum1W/qshgzYH8IfcjYh3psiyJLCSv5bTbBW3YtZi5t1
+ jmZTlgQtya24SvIbhJ2Eblua3J3llxNUjxEgnAyccNkBKb6e+GW4HzAye
+ 83ESObosvHSvGwNpDEObX3zaBqETmV4l6P4gyYpymmBpN14IexZgxSGK5 g==;
+X-CSE-ConnectionGUID: wWRy4RcMSzqZn0V2eKLQsQ==
+X-CSE-MsgGUID: 6q3nsBVIS5WT42dcs6Bcwg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="71795498"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="71795498"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2026 04:49:21 -0700
+X-CSE-ConnectionGUID: aes+foP4Sz6c7WdwoA6vYA==
+X-CSE-MsgGUID: F0RgrAboReG4T9CWPFB8zw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="254686979"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa007.jf.intel.com with ESMTP; 09 Jul 2026 05:03:55 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Subject: [PATCH 2/2] drm/i915/dp: set VSC_SDP MSA delegation only for capable
- sinks
-Date: Thu,  9 Jul 2026 17:09:51 +0530
-Message-Id: <20260709113951.3557968-3-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260709113951.3557968-1-chaitanya.kumar.borah@intel.com>
-References: <20260709113951.3557968-1-chaitanya.kumar.borah@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="250166295"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.244.49])
+ ([10.245.244.49])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2026 04:49:17 -0700
+Message-ID: <a7887776-c26c-4f6d-a662-2d8ef005ff4c@linux.intel.com>
+Date: Thu, 9 Jul 2026 13:49:59 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] drm: Guard DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE
+To: Robert Mader <robert.mader@collabora.com>,
+ "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ dri-devel@lists.freedesktop.org
+Cc: Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>, Daniel Stone
+ <daniels@collabora.com>, Uma Shankar <uma.shankar@intel.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>, Melissa Wen <mwen@igalia.com>,
+ Simon Ser <contact@emersion.fr>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Leandro Ribeiro <leandro.ribeiro@collabora.com>
+References: <20260703073230.19982-1-robert.mader@collabora.com>
+ <6d8806b8-fc71-4699-82c4-7189a0ea2284@intel.com>
+ <bb5918f5-a6da-4908-9332-18e0df39c005@linux.intel.com>
+ <7d58b289-eabe-4d68-9080-c7202b0f60a0@intel.com>
+ <d42d5750-f3c5-4e2b-baa3-514b87e59e86@linux.intel.com>
+ <361dfc91-94e8-4289-9b3e-5280803d9257@collabora.com>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <361dfc91-94e8-4289-9b3e-5280803d9257@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,106 +92,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chaitanya.kumar.borah@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,suse.de,gmail.com,ffwll.ch,vger.kernel.org,lists.freedesktop.org,amd.com,collabora.com,intel.com,bootlin.com,igalia.com,emersion.fr];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[maarten.lankhorst@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,intel.com:from_mime,intel.com:email,intel.com:mid,intel.com:dkim]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AE4D4730CA1
+X-Rspamd-Queue-Id: 7B1A7730968
 
-Per DP 1.4a section 2.2.4.3, the MSA MISC1 VSC_SDP bit signals that
-the sink should defer colorimetry to the VSC SDP. It should only be set
-when the sink advertises DP_VSC_SDP_EXT_FOR_COLORIMETRY_SUPPORTED and a
-VSC SDP with pixel encoding/colorimetry payload will actually be sent.
+Hey,
 
-Fold the colorimetry_support check into intel_dp_needs_vsc_colorimetry()
-so both intel_ddi_set_dp_msa() and intel_dp_compute_vsc_sdp() share a
-single consistent gate.
+On 7/9/26 13:14, Robert Mader wrote:
+> Hi,
+> 
+> On 09.07.26 12:02, Maarten Lankhorst wrote:
+>> Hey,
+>>
+>> On 7/9/26 08:44, Borah, Chaitanya Kumar wrote:
+>>>
+>>> On 7/7/2026 6:31 PM, Maarten Lankhorst wrote:
+>>>> Hey,
+>>>>
+>>>> On 7/7/26 10:03, Borah, Chaitanya Kumar wrote:
+>>>>> On 7/3/2026 1:02 PM, Robert Mader wrote:
+>>>>>> The client cap is currently advertised unconditionally, even for drivers
+>>>>>> that do not support plane color pipelines. If clients supporting the later,
+>>>>> s/later/latter
+>>>>>
+>>>>>> like Wayland compositors or tools like drm_info, enable the client cap on
+>>>>>> such drivers they will be left without both color pipeline and the legacy
+>>>>>> properties COLOR_ENCODING and COLOR_RANGE, effectively breaking YUV->RGB
+>>>>>> conversion support.
+>>>>>>
+>>>>>> Prevent that by only marking the cap supported if there are actually planes
+>>>>>> with color pipelines.
+>>>>>>
+>>>>>> Note: while the color pipeline replacement for the legacy properties is
+>>>>>> still under review (1), we can assume that it will work as a drop-in
+>>>>>> replacement.
+>>>>> This change will but a driver can also choose to export colorops like programmable CTM_3x4 to achieve the same.
+>>>>>
+>>>>> We should also perhaps document this somewhere that if a driver supports LEGACY properties, it is imperative to implement some version of it with the color pipeline line property.
+>>>> Would this be doable inside drm core? Implement the color pipeline properties, get the fixed pipeline for free?
+>>> Right now, the Bypass(default) pipeline is automatically created when we call drm_plane_create_color_pipeline_property(), we could come up with a similar helper that could also create a pipeline that replaces the legacy properties.
+>>>
+>>> But this can't replace the existing helper entirely because some HW (though unlikely) might not support YUV buffers.
+>> No need to do this for free, but a cheaper way for drivers to implement legacy
+>> properties by only implementing the pipeline would be nice, similar to how
+>> atomic also implements legacy modesetting and universal planes.
+> 
+> I really like this idea - should we take it to the corresponding series, https://lore.kernel.org/dri-devel/20260623164812.81110-1-harry.wentland@amd.com/ so the initial implementations for AMD and VKMS directly do so?
 
-Assisted-by: GitHub_Copilot:claude-sonnet-4.6
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c |  2 ++
- drivers/gpu/drm/i915/display/intel_dp.c  | 14 ++++++++++----
- 2 files changed, 12 insertions(+), 4 deletions(-)
+That would be great!
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index c764472bd69a..13010375e21b 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -469,6 +469,8 @@ void intel_ddi_set_dp_msa(const struct intel_crtc_state *crtc_state,
- 	 * of Color Encoding Format and Content Color Gamut] while sending
- 	 * YCBCR 420, HDR BT.2020 signals we should program MSA MISC1 fields
- 	 * which indicate VSC SDP for the Pixel Encoding/Colorimetry Format.
-+	 * Only set the delegation bit when the content needs it and
-+	 * the sink advertises support.
- 	 */
- 	if (intel_dp_needs_vsc_colorimetry(crtc_state, conn_state))
- 		temp |= DP_MSA_MISC_COLOR_VSC_SDP;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 93282694c29b..53688c5bef74 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3163,8 +3163,7 @@ static void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
- {
- 	struct drm_dp_vsc_sdp *vsc;
- 
--	if ((!intel_dp->colorimetry_support ||
--	     !intel_dp_needs_vsc_colorimetry(crtc_state, conn_state)) &&
-+	if (!intel_dp_needs_vsc_colorimetry(crtc_state, conn_state) &&
- 	    !crtc_state->has_psr)
- 		return;
- 
-@@ -3173,7 +3172,6 @@ static void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
- 	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_VSC);
- 	vsc->sdp_type = DP_SDP_VSC;
- 
--	/* Needs colorimetry */
- 	if (intel_dp_needs_vsc_colorimetry(crtc_state, conn_state)) {
- 		intel_dp_compute_vsc_colorimetry(crtc_state, conn_state,
- 						 vsc);
-@@ -5103,11 +5101,19 @@ bool
- intel_dp_needs_vsc_colorimetry(const struct intel_crtc_state *crtc_state,
- 			       const struct drm_connector_state *conn_state)
- {
-+	struct intel_dp *intel_dp =
-+		enc_to_intel_dp(to_intel_encoder(conn_state->best_encoder));
-+
- 	/*
- 	 * As per DP 1.4a spec section 2.2.4.3 [MSA Field for Indication
- 	 * of Color Encoding Format and Content Color Gamut], in order to
--	 * sending YCBCR 420 or HDR BT.2020 signals we should use DP VSC SDP.
-+	 * send YCBCR 420 or HDR BT.2020 signals we should use DP VSC SDP.
-+	 * Only signal this when the sink advertises VSC SDP colorimetry
-+	 * support.
- 	 */
-+	if (!intel_dp->colorimetry_support)
-+		return false;
-+
- 	if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420)
- 		return true;
- 
--- 
-2.25.1
-
+Kind regards,
+~Maarten Lankhorst
