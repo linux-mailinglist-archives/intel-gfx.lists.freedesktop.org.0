@@ -2,38 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qpaoEAO0T2oQnAIAu9opvQ
+	id avjCF3XTT2pTowIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 16:45:23 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 18:59:33 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9140B7326C8
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 16:45:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EC5D733A41
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 18:59:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
+	dkim=pass header.d=intel.com header.s=Intel header.b=UiRcwRqh;
+	dmarc=pass (policy=none) header.from=intel.com;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0678B10F607;
-	Thu,  9 Jul 2026 14:45:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25E0B10E4EF;
+	Thu,  9 Jul 2026 16:59:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3057F10F605;
- Thu,  9 Jul 2026 14:45:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8570749250936925859=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60C3610E0A8;
+ Thu,  9 Jul 2026 16:59:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783616369; x=1815152369;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WPmLVLsJMtrLtKKue8ZgUbrYZPna/puxy+Qmwwf4Nyo=;
+ b=UiRcwRqhBAN3MYfJbH36X8rV/aSn/Al3fXiJ+w8q5XbJ63t69Mgh5oh+
+ XesQOnGHfE3Lm90SjziK0mZH8nhpyf+xG6PPZv2I6lq/qVr2p3n8yi/v7
+ FtKqOsntKbApRdsKxXckTtxv5Eu/HqsUFqFzAtuTvEXzacswgMkclxsBi
+ bAElTF8ZC5yNNm5AFEyHolCViR3mFLy9OUhtGkHLm4Quk1/Jdgg60+reE
+ pz7nfhuked5zG7Gr+9d8KUR5JmRpVPaYE0+Jd7IeRZByRNsk1mcQIzffX
+ lA/mcR0QrKflYed6E5g9qdenTv+713VJNfwNX02BFWEETbKn+r7OiS5cr w==;
+X-CSE-ConnectionGUID: LVMf7lTTSySg64EzFlEZVg==
+X-CSE-MsgGUID: xwRrSe7tQ8mi37ALvxYkKQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84419333"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84419333"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2026 09:59:29 -0700
+X-CSE-ConnectionGUID: 6ZayB3rjTbW4+P7VMhxeLg==
+X-CSE-MsgGUID: Ogbka+SQSwWu/VtrPYZ11A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="279038911"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by fmviesa001.fm.intel.com with ESMTP; 09 Jul 2026 09:59:27 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, uma.shankar@intel.com,
+ kai.vehmanen@intel.com, ankit.k.nautiyal@intel.com,
+ chaitanya.kumar.borah@intel.com
+Subject: [PATCH v1] drm/i915/dp: Gate UHBR SST SDP splitting on sink capability
+Date: Thu,  9 Jul 2026 22:19:03 +0530
+Message-ID: <20260709164903.1949947-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_gpu/buddy=3A_bail_out_of_?=
- =?utf-8?q?try=5Fharder_when_alignment_cannot_be_honoured_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 09 Jul 2026 14:45:20 -0000
-Message-ID: <178360832019.171270.16592976180616634044@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260709131050.1022759-1-Arunpravin.PaneerSelvam@amd.com>
-In-Reply-To: <20260709131050.1022759-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,139 +69,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[mitulkumar.ajitkumar.golani@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,lists.freedesktop.org:replyto,patchwork.freedesktop.org:url,01.org:url,6beec6c84f66:mid]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:from_mime,intel.com:email,intel.com:mid,intel.com:dkim,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9140B7326C8
+X-Rspamd-Queue-Id: 9EC5D733A41
 
---===============8570749250936925859==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+SDP splitting for 128b/132b (UHBR) SST audio must only be enabled when
+the sink advertises support for it. Previously sdp_split_enable
+was set for every UHBR SST stream carrying audio, regardless of sink
+capability.
 
-== Series Details ==
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+---
+ .../drm/i915/display/intel_display_types.h    |  2 ++
+ drivers/gpu/drm/i915/display/intel_dp.c       | 22 ++++++++++++++++++-
+ 2 files changed, 23 insertions(+), 1 deletion(-)
 
-Series: gpu/buddy: bail out of try_harder when alignment cannot be honoured (rev4)
-URL   : https://patchwork.freedesktop.org/series/168786/
-State : success
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index c048da7d6fea..272b14289e38 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1938,6 +1938,8 @@ struct intel_dp {
+ 
+ 	bool colorimetry_support;
+ 
++	bool sst_split_sdp_supported;
++
+ 	struct {
+ 		enum transcoder transcoder;
+ 		struct mutex lock;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 0922d23b284c..77c348509a0e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3359,12 +3359,15 @@ intel_dp_audio_compute_config(struct intel_encoder *encoder,
+ 			      struct intel_crtc_state *pipe_config,
+ 			      struct drm_connector_state *conn_state)
+ {
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++
+ 	pipe_config->has_audio =
+ 		intel_dp_has_audio(encoder, conn_state) &&
+ 		intel_audio_compute_config(encoder, pipe_config, conn_state);
+ 
+ 	pipe_config->sdp_split_enable = pipe_config->has_audio &&
+-					intel_dp_is_uhbr(pipe_config);
++					intel_dp_is_uhbr(pipe_config) &&
++					intel_dp->sst_split_sdp_supported;
+ }
+ 
+ void
+@@ -4413,6 +4416,17 @@ static bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
+ 	return dprx & DP_VSC_SDP_EXT_FOR_COLORIMETRY_SUPPORTED;
+ }
+ 
++static bool intel_dp_get_sst_split_sdp_status(struct intel_dp *intel_dp)
++{
++	u8 dprx = 0;
++
++	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_DPRX_FEATURE_ENUMERATION_LIST,
++			      &dprx) != 1)
++		return false;
++	return dprx & DP_SST_SPLIT_SDP_CAP;
++}
++
++
+ static int intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
+ 				  u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
+ {
+@@ -4726,6 +4740,9 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
+ 	intel_dp->colorimetry_support =
+ 		intel_dp_get_colorimetry_status(intel_dp);
+ 
++	intel_dp->sst_split_sdp_supported =
++		intel_dp_get_sst_split_sdp_status(intel_dp);
++
+ 	/*
+ 	 * Read the eDP display control registers.
+ 	 *
+@@ -4823,6 +4840,9 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
+ 		intel_dp->colorimetry_support =
+ 			intel_dp_get_colorimetry_status(intel_dp);
+ 
++		intel_dp->sst_split_sdp_supported =
++			intel_dp_get_sst_split_sdp_status(intel_dp);
++
+ 		intel_dp_update_sink_caps(intel_dp);
+ 	}
+ 
+-- 
+2.48.1
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_18794 -> Patchwork_168786v4
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168786v4/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18794 -> Patchwork_168786v4
-
-  CI-20190529: 20190529
-  CI_DRM_18794: 52d0daa4cb160e383b84aa7d54fc06d4fa1607fc @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8995: 8995
-  Patchwork_168786v4: 52d0daa4cb160e383b84aa7d54fc06d4fa1607fc @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168786v4/index.html
-
---===============8570749250936925859==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>gpu/buddy: bail out of try_harder when alignment cannot be honoured (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168786/">https://patchwork.freedesktop.org/series/168786/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168786v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168786v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18794 -&gt; Patchwork_168786v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168786v4/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18794 -&gt; Patchwork_168786v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18794: 52d0daa4cb160e383b84aa7d54fc06d4fa1607fc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8995: 8995<br />
-  Patchwork_168786v4: 52d0daa4cb160e383b84aa7d54fc06d4fa1607fc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============8570749250936925859==--
