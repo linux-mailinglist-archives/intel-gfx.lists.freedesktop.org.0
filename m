@@ -2,78 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 49urHVloT2qngAIAu9opvQ
+	id nQEVHmFoT2q0gAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 11:22:33 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 11:22:41 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22BB972EDD3
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 11:22:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2511772EE08
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 11:22:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=x4RLZ1mo;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=d5aOST+A;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=x4RLZ1mo;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=d5aOST+A;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=xctLxFHE;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=YQRQpOQx;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=xctLxFHE;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=YQRQpOQx;
 	dmarc=pass (policy=none) header.from=suse.de;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C561F10E67B;
-	Thu,  9 Jul 2026 09:22:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70A3110F49D;
+	Thu,  9 Jul 2026 09:22:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 263F010E395
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 09:22:25 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E32410F498
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 09:22:38 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 9859676093;
- Thu,  9 Jul 2026 09:22:22 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 2DB7075DD9;
+ Thu,  9 Jul 2026 09:22:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1783588942; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1783588943; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=YifDnmK82gFn50n9gIPI//YYkdL4JukIrrg2Jw2g5D0=;
- b=x4RLZ1moKkZzWedgucWHIplFLmsxF0SVhh+Mzgb3YN1pgbSXhUhm2N/uMa7Sn5tHruqdUw
- s389FThUPCarFF5up8GgnvjwrL+ojOKf17TblFj0UKwTjJV22ll0CyacpzR+L9GTw5nZTU
- TAh+1p4YQSo8Yyhmok3cTY5EkcrKtek=
+ bh=MjZOLNTa/QCQzDdlDbCVM8vYETPmODla9FesFjm4Hec=;
+ b=xctLxFHEDquA16fp8mIX+NuUe6glM7pQo4gIP8EftzhzXRUOKL+pXTULWGUYFLzkgCwTKN
+ xtiknw3d9ItaQURC1MxLKUOdUHWTFVAirhCqmuUf+dlhw/rOUGlwh3XQjPx2oYEysZXqxL
+ +BGpCezXyZtwqSdPruwMUxIwFp4SH1c=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1783588942;
+ s=susede2_ed25519; t=1783588943;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=YifDnmK82gFn50n9gIPI//YYkdL4JukIrrg2Jw2g5D0=;
- b=d5aOST+A7803KAD75GLkgU6/Bi8ilwqkJtSkrfq0e/rUDZL6hrX+N4JE9EHSDVmPSJa4qa
- V23Hwt6hhV3H+fCg==
+ bh=MjZOLNTa/QCQzDdlDbCVM8vYETPmODla9FesFjm4Hec=;
+ b=YQRQpOQx/S1MfSXpAantbWYmo+W4B+OgTjv1izF6o8qmm/EfxrtLOMh7C/NlduKi8RE46Y
+ J+JRhTiYvmcVuXDA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1783588942; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1783588943; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=YifDnmK82gFn50n9gIPI//YYkdL4JukIrrg2Jw2g5D0=;
- b=x4RLZ1moKkZzWedgucWHIplFLmsxF0SVhh+Mzgb3YN1pgbSXhUhm2N/uMa7Sn5tHruqdUw
- s389FThUPCarFF5up8GgnvjwrL+ojOKf17TblFj0UKwTjJV22ll0CyacpzR+L9GTw5nZTU
- TAh+1p4YQSo8Yyhmok3cTY5EkcrKtek=
+ bh=MjZOLNTa/QCQzDdlDbCVM8vYETPmODla9FesFjm4Hec=;
+ b=xctLxFHEDquA16fp8mIX+NuUe6glM7pQo4gIP8EftzhzXRUOKL+pXTULWGUYFLzkgCwTKN
+ xtiknw3d9ItaQURC1MxLKUOdUHWTFVAirhCqmuUf+dlhw/rOUGlwh3XQjPx2oYEysZXqxL
+ +BGpCezXyZtwqSdPruwMUxIwFp4SH1c=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1783588942;
+ s=susede2_ed25519; t=1783588943;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=YifDnmK82gFn50n9gIPI//YYkdL4JukIrrg2Jw2g5D0=;
- b=d5aOST+A7803KAD75GLkgU6/Bi8ilwqkJtSkrfq0e/rUDZL6hrX+N4JE9EHSDVmPSJa4qa
- V23Hwt6hhV3H+fCg==
+ bh=MjZOLNTa/QCQzDdlDbCVM8vYETPmODla9FesFjm4Hec=;
+ b=YQRQpOQx/S1MfSXpAantbWYmo+W4B+OgTjv1izF6o8qmm/EfxrtLOMh7C/NlduKi8RE46Y
+ J+JRhTiYvmcVuXDA==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 09677779AD;
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 98A51779B4;
  Thu,  9 Jul 2026 09:22:22 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 4NoHAU5oT2q6OQAAD6G6ig
+ by imap1.dmz-prg2.suse.org with ESMTPSA id QIz7I05oT2q6OQAAD6G6ig
  (envelope-from <tzimmermann@suse.de>); Thu, 09 Jul 2026 09:22:22 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: lukas@wunner.de, jfalempe@redhat.com, alexander.deucher@amd.com,
@@ -86,18 +86,17 @@ Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  linux-fbdev@vger.kernel.org, sashiko-reviews@lists.linux.dev,
  Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 2/7] drm/client: Add acquire_outputs callback;
- implement for fbdev emulation
-Date: Thu,  9 Jul 2026 11:15:58 +0200
-Message-ID: <20260709092215.168172-3-tzimmermann@suse.de>
+Subject: [PATCH v2 3/7] vga_switcheroo: Add pre_switch callback to client ops
+Date: Thu,  9 Jul 2026 11:15:59 +0200
+Message-ID: <20260709092215.168172-4-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260709092215.168172-1-tzimmermann@suse.de>
 References: <20260709092215.168172-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Flag: NO
-X-Spam-Level: 
 X-Spam-Score: -2.80
+X-Spam-Level: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,145 +146,70 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:from_mime,suse.de:email,suse.de:mid,suse.de:dkim,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 22BB972EDD3
+X-Rspamd-Queue-Id: 2511772EE08
 
-Add the callback acquire_outputs to drm_client_funcs to inform an internal
-DRM client that vga-switcheroo is about to switch the physical outputs to
-the client's device. Allows the client to prepare its internal state for
-the upcoming switch.
+Add pre_switch to struct vga_switcheroo_client_ops to inform the
+switcheroo client about upcoming switches of the outputs.
 
-Wire up the DRM client helpers to invoke the helper for a device's
-clients.
+This callback is intended to replace the hard-coded call to fbdev's
+fb_switch_outputs(). With DRM supporting more clients than just fbdev
+emulation, something more flexible is required.
 
-Implement acquire_outputs for fbdev emulation. Invoke fb_switch_outputs(),
-which remaps framebuffers to virtual terminals in fbcon. Currently this
-is still being done by vga-switcheroo. With more DRM clients becoming
-available, vga-switcheroo needs to become client agonostic.
+v2:
+- remove non-sensical gpu_bound documentation (Sashiko)
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/clients/drm_fbdev_client.c | 23 +++++++++++++++-------
- drivers/gpu/drm/drm_client_event.c         | 18 +++++++++++++++++
- include/drm/drm_client.h                   | 14 +++++++++++++
- include/drm/drm_client_event.h             |  3 +++
- 4 files changed, 51 insertions(+), 7 deletions(-)
+ drivers/gpu/vga/vga_switcheroo.c |  4 +++-
+ include/linux/vga_switcheroo.h   | 11 ++++++++---
+ 2 files changed, 11 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/clients/drm_fbdev_client.c b/drivers/gpu/drm/clients/drm_fbdev_client.c
-index 91d196a397cf..827f32668714 100644
---- a/drivers/gpu/drm/clients/drm_fbdev_client.c
-+++ b/drivers/gpu/drm/clients/drm_fbdev_client.c
-@@ -47,6 +47,14 @@ static int drm_fbdev_client_restore(struct drm_client_dev *client, bool force)
- 	return 0;
- }
+diff --git a/drivers/gpu/vga/vga_switcheroo.c b/drivers/gpu/vga/vga_switcheroo.c
+index 22cf52b78b75..bdf1e56ae891 100644
+--- a/drivers/gpu/vga/vga_switcheroo.c
++++ b/drivers/gpu/vga/vga_switcheroo.c
+@@ -733,8 +733,10 @@ static int vga_switchto_stage2(struct vga_switcheroo_client *new_client)
+ 	if (!active->driver_power_control)
+ 		set_audio_state(active->id, VGA_SWITCHEROO_OFF);
  
-+static void drm_fbdev_client_acquire_outputs(struct drm_client_dev *client)
-+{
-+	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
-+
-+	if (fb_helper->info)
-+		fb_switch_outputs(fb_helper->info);
-+}
-+
- static int drm_fbdev_client_hotplug(struct drm_client_dev *client)
- {
- 	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
-@@ -95,13 +103,14 @@ static int drm_fbdev_client_resume(struct drm_client_dev *client)
- }
++	if (new_client->ops->pre_switch)
++		new_client->ops->pre_switch(new_client->pdev);
+ #if defined(CONFIG_FB)
+-	if (new_client->fb_info)
++	else if (new_client->fb_info)
+ 		fb_switch_outputs(new_client->fb_info);
+ #endif
  
- static const struct drm_client_funcs drm_fbdev_client_funcs = {
--	.owner		= THIS_MODULE,
--	.free		= drm_fbdev_client_free,
--	.unregister	= drm_fbdev_client_unregister,
--	.restore	= drm_fbdev_client_restore,
--	.hotplug	= drm_fbdev_client_hotplug,
--	.suspend	= drm_fbdev_client_suspend,
--	.resume		= drm_fbdev_client_resume,
-+	.owner		 = THIS_MODULE,
-+	.free		 = drm_fbdev_client_free,
-+	.unregister	 = drm_fbdev_client_unregister,
-+	.restore	 = drm_fbdev_client_restore,
-+	.acquire_outputs = drm_fbdev_client_acquire_outputs,
-+	.hotplug	 = drm_fbdev_client_hotplug,
-+	.suspend	 = drm_fbdev_client_suspend,
-+	.resume		 = drm_fbdev_client_resume,
+diff --git a/include/linux/vga_switcheroo.h b/include/linux/vga_switcheroo.h
+index 7e6ac0114d55..4422daca9ceb 100644
+--- a/include/linux/vga_switcheroo.h
++++ b/include/linux/vga_switcheroo.h
+@@ -133,17 +133,22 @@ struct vga_switcheroo_handler {
+  * @can_switch: check if the device is in a position to switch now.
+  * 	Mandatory. The client should return false if a user space process
+  * 	has one of its device files open
++ * @pre_switch: prepare switch
++ *	Optional. This gets called before switching the outputs to the
++ *	GPU. Allows drivers to prepare for the switch.
+  * @gpu_bound: notify the client id to audio client when the GPU is bound.
+  *
+  * Client callbacks. A client can be either a GPU or an audio device on a GPU.
+- * The @set_gpu_state and @can_switch methods are mandatory, @reprobe may be
+- * set to NULL. For audio clients, the @reprobe member is bogus.
+- * OTOH, @gpu_bound is only for audio clients, and not used for GPU clients.
++ * The @set_gpu_state and @can_switch methods are mandatory, @pre_switch and
++ * @reprobe may be set to NULL. For audio clients, the @pre_switch and
++ * @reprobe members are bogus. OTOH, @gpu_bound is only for audio clients,
++ * and not used for GPU clients.
+  */
+ struct vga_switcheroo_client_ops {
+ 	void (*set_gpu_state)(struct pci_dev *dev, enum vga_switcheroo_state);
+ 	void (*reprobe)(struct pci_dev *dev);
+ 	bool (*can_switch)(struct pci_dev *dev);
++	void (*pre_switch)(struct pci_dev *dev);
+ 	void (*gpu_bound)(struct pci_dev *dev, enum vga_switcheroo_client_id);
  };
  
- /**
-diff --git a/drivers/gpu/drm/drm_client_event.c b/drivers/gpu/drm/drm_client_event.c
-index 7b3e362f7926..f0af584da23c 100644
---- a/drivers/gpu/drm/drm_client_event.c
-+++ b/drivers/gpu/drm/drm_client_event.c
-@@ -123,6 +123,24 @@ void drm_client_dev_restore(struct drm_device *dev, bool force)
- 	mutex_unlock(&dev->clientlist_mutex);
- }
- 
-+void drm_client_dev_acquire_outputs(struct drm_device *dev)
-+{
-+	struct drm_client_dev *client;
-+
-+	if (!drm_core_check_feature(dev, DRIVER_MODESET))
-+		return;
-+
-+	mutex_lock(&dev->clientlist_mutex);
-+	list_for_each_entry(client, &dev->clientlist, list) {
-+		if (!client->funcs || !client->funcs->acquire_outputs)
-+			continue;
-+
-+		client->funcs->acquire_outputs(client);
-+	}
-+	mutex_unlock(&dev->clientlist_mutex);
-+}
-+EXPORT_SYMBOL(drm_client_dev_acquire_outputs);
-+
- static int drm_client_suspend(struct drm_client_dev *client)
- {
- 	struct drm_device *dev = client->dev;
-diff --git a/include/drm/drm_client.h b/include/drm/drm_client.h
-index 49a21f3dcb36..10a0cae3e48f 100644
---- a/include/drm/drm_client.h
-+++ b/include/drm/drm_client.h
-@@ -66,6 +66,20 @@ struct drm_client_funcs {
- 	 */
- 	int (*restore)(struct drm_client_dev *client, bool force);
- 
-+	/**
-+	 * @acquire_outputs:
-+	 *
-+	 * Called by vga-switcheroo. Informs the client that the outputs will
-+	 * be switched to its device. When @acquire_outputs runs, the outputs
-+	 * have not been switched yet. The client should only prepare the software
-+	 * state. After the switch happened, the client might get a hotplug
-+	 * event to update the hardware state.
-+	 *
-+	 * This callback exists for remapping framebuffers to virtual terminals
-+	 * in fbcon.
-+	 */
-+	void (*acquire_outputs)(struct drm_client_dev *client);
-+
- 	/**
- 	 * @hotplug:
- 	 *
-diff --git a/include/drm/drm_client_event.h b/include/drm/drm_client_event.h
-index 79369c755bc9..c93f404bae1d 100644
---- a/include/drm/drm_client_event.h
-+++ b/include/drm/drm_client_event.h
-@@ -11,6 +11,7 @@ struct drm_device;
- void drm_client_dev_unregister(struct drm_device *dev);
- void drm_client_dev_hotplug(struct drm_device *dev);
- void drm_client_dev_restore(struct drm_device *dev, bool force);
-+void drm_client_dev_acquire_outputs(struct drm_device *dev);
- void drm_client_dev_suspend(struct drm_device *dev);
- void drm_client_dev_resume(struct drm_device *dev);
- #else
-@@ -20,6 +21,8 @@ static inline void drm_client_dev_hotplug(struct drm_device *dev)
- { }
- static inline void drm_client_dev_restore(struct drm_device *dev, bool force)
- { }
-+static inline void drm_client_dev_acquire_outputs(struct drm_device *dev)
-+{ }
- static inline void drm_client_dev_suspend(struct drm_device *dev)
- { }
- static inline void drm_client_dev_resume(struct drm_device *dev)
 -- 
 2.54.0
 
