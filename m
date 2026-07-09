@@ -2,126 +2,174 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id E7c6MLBKT2qedgIAu9opvQ
+	id cUXJHF9LT2rcdgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 09:16:00 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 09:18:55 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F46972D825
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 09:16:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5DF372D89D
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 09:18:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=a2g1EdJV;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=XWdeelDi;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=a2g1EdJV;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=XWdeelDi;
-	dmarc=pass (policy=none) header.from=suse.de;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=intel.com header.s=Intel header.b=OJvtljFQ;
+	dmarc=pass (policy=none) header.from=intel.com;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
+	arc=reject ("signature check failed: fail, {[1] = sig:microsoft.com:reject}")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C9D310F3F3;
-	Thu,  9 Jul 2026 07:15:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5014A10F3DC;
+	Thu,  9 Jul 2026 07:18:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C51C310F3DA
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 07:15:55 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 5FC9575E4C;
- Thu,  9 Jul 2026 07:15:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1783581352; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=7M+Q2F1BfaMrkhlUr/CAyrR/jgf6rIwMYG4WU5QjML8=;
- b=a2g1EdJVVeYIMHFzrU1lJmf+cV/+QudRctQuuHuDoTkkZciM8INApFHMMrFdYO53qVPYG7
- mgG+sjgldV6ydywKl6c54amp5oRyVs31Ci6AtjdFpvPiuoQIOwg2Bhr8EEwUpZGuN4a69o
- jrgCSpjwef/3zrS4+zrPNmJ1GHIiKF8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1783581352;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=7M+Q2F1BfaMrkhlUr/CAyrR/jgf6rIwMYG4WU5QjML8=;
- b=XWdeelDi2f+EEMFJk1IUMFrcmcrCA6uOUG7J9E4qU/v114arNI9kXe2ZyvneWUDchzVpkl
- yuHB+D+eqo2q4CDA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1783581352; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=7M+Q2F1BfaMrkhlUr/CAyrR/jgf6rIwMYG4WU5QjML8=;
- b=a2g1EdJVVeYIMHFzrU1lJmf+cV/+QudRctQuuHuDoTkkZciM8INApFHMMrFdYO53qVPYG7
- mgG+sjgldV6ydywKl6c54amp5oRyVs31Ci6AtjdFpvPiuoQIOwg2Bhr8EEwUpZGuN4a69o
- jrgCSpjwef/3zrS4+zrPNmJ1GHIiKF8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1783581352;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=7M+Q2F1BfaMrkhlUr/CAyrR/jgf6rIwMYG4WU5QjML8=;
- b=XWdeelDi2f+EEMFJk1IUMFrcmcrCA6uOUG7J9E4qU/v114arNI9kXe2ZyvneWUDchzVpkl
- yuHB+D+eqo2q4CDA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 0E5FB779AA;
- Thu,  9 Jul 2026 07:15:52 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 2NOcAahKT2ooPQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 09 Jul 2026 07:15:52 +0000
-Message-ID: <ee0ea45c-8ed5-4fd0-953a-6c11cc2ad357@suse.de>
-Date: Thu, 9 Jul 2026 09:15:51 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5889410F3DC;
+ Thu,  9 Jul 2026 07:18:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783581532; x=1815117532;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=HZptqVi01QQrOem+exfb9g080dq1HAFrZ+PMyMGZ9kg=;
+ b=OJvtljFQmeq9yGlcfy7qdKLIkXl+vR8hvi/ZRFKxHiyM5Hnc9l1W54PF
+ oyGNC/VusRXt24VBJ/YSwE8CdcfgOaOgS5RUENrmPIyPskaCZUFJciqoR
+ Ot1svgXHx/hIIuo6RRQBWG4LNBoaNEoolWPbEyBuVGgEZqwckN7jpGK/I
+ Wg1OacsVIsCWBKZTm3O3LOM7kER8gTTvW81xuKzxDhcnG0VF7MGqiV8mr
+ A/5e7xNCs8jBXgteS9cVDPDkNHOMgTs85jGspIDD9/2fWT322NVrRm15S
+ L+CdR1/HClH76PxNPNQosn0dZvZGP3pFhZr6f3E4/Fp1LH/SulMsjVY0c w==;
+X-CSE-ConnectionGUID: RFrD+n7gRtma+mQlW9h0AA==
+X-CSE-MsgGUID: ma4BMQTlQ46MeiaIeZ+/vw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84227088"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84227088"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2026 00:18:52 -0700
+X-CSE-ConnectionGUID: STrpbZr2Rze9gfdOTTJABw==
+X-CSE-MsgGUID: g8pRH73fTF+iGxG0ZcGzTg==
+X-ExtLoop1: 1
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2026 00:18:51 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Thu, 9 Jul 2026 00:18:51 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Thu, 9 Jul 2026 00:18:51 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.30) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Thu, 9 Jul 2026 00:18:45 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NJhhRjx8KWK1MuJwY2b0ZwL+8XeEcLVlSeuHbTJoLRB6URcVaJTj39QOBfWYVyTLI4bXLGZ9Kv1EB2P15iY8Ru39I6P00K+kjZNQHC4rYhjXLP8SI7HGjdGRdMhcayE20zMVcSEon5KgMou2IEh6SqdQmjCw/tAMkLdxvygSJLViGvi3hLXEY8LqsyS2CCLCld75/D2k9M53h2QVnZhwOyxf1anhnxPP850RRi/6QZDrPl6+wBOOly8Z8NPVyDOkhkIbKePZ8jcrlxS2bBV+7YC4fXzqGa9mjMBPDuGSIHldSqgnykhAuZEZ3/8n2+YnEslEa1UMuGE1ksw2QZiKcg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BLNRo81DVT2XY/EgGjfAVeSNPe6vl9j4O8SQ9KJjrCg=;
+ b=usLiMwZ1c/NCdb1hX61jz3Tw/nBLKPZQP5r7qbgjZ/ZK2gQFQSxKGtUlpEJRVxPaTPIyVJpI9MDnc6mwN1P82HG0xmO1hITaFju/69lKNRcLe/v1B9nICvXSApy5pRcGwDz3EtttI1jtIdZxgNsxVtJEp9jb4GEzwCFdUvtm52vG7NEicvRwuG2QcTnYrRDsuyJebcWYCMKlVTQk1GvgxyF9l9JMgpelLlCV2Ss8NH3GM5QlFxTac+hm8clb8AphI5AavQ6MDGxTOR9anfhXu7nt+x5f1bi0Vdl2YSTuUAqlQ9hkWpt5SiW3VK+mDt/GkXzocMl4UpyUYEx7qo+jcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from PH0PR11MB7424.namprd11.prod.outlook.com (2603:10b6:510:287::7)
+ by MW3PR11MB4522.namprd11.prod.outlook.com (2603:10b6:303:2d::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.16; Thu, 9 Jul
+ 2026 07:18:41 +0000
+Received: from PH0PR11MB7424.namprd11.prod.outlook.com
+ ([fe80::c448:1138:6981:52e2]) by PH0PR11MB7424.namprd11.prod.outlook.com
+ ([fe80::c448:1138:6981:52e2%5]) with mapi id 15.21.0181.008; Thu, 9 Jul 2026
+ 07:18:41 +0000
+Date: Thu, 9 Jul 2026 07:18:26 +0000
+From: Krzysztof Karas <krzysztof.karas@intel.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>, Robin Murphy <robin.murphy@arm.com>
+CC: <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <iommu@lists.linux.dev>, Andi Shyti <andi.shyti@linux.intel.com>, "Joerg
+ Roedel" <joro@8bytes.org>, =?utf-8?Q?Micha=C5=82?= Grzelak
+ <michal.grzelak@intel.com>, Janusz Krzysztofik
+ <janusz.krzysztofik@linux.intel.com>, Sebastian Brzezinka
+ <sebastian.brzezinka@intel.com>, Krzysztof Niemiec
+ <krzysztof.niemiec@intel.com>
+Subject: Re: [PATCH v2 3/3] drivers/iommu: Catch scatterlist length overflows
+Message-ID: <fgvf2f2dlj3hggjdfu7b6zulhdudm4e75yrxvveyo52erkpu2s@i54t3iqfdfoc>
+"Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316"
+References: <20260701104437.236979-1-krzysztof.karas@intel.com>
+ <20260701104437.236979-4-krzysztof.karas@intel.com>
+ <20260703162236.GX7525@ziepe.ca>
+ <90558ba3-44e6-4d5e-9c72-ed8817d372be@arm.com>
+ <20260703203502.GC1978949@ziepe.ca>
+ <a381d265-e7a4-4fe7-9421-3553706d41c1@arm.com>
+ <20260706144546.GE107792@ziepe.ca>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20260706144546.GE107792@ziepe.ca>
+X-ClientProxiedBy: TL2P290CA0014.ISRP290.PROD.OUTLOOK.COM
+ (2603:1096:950:2::17) To PH0PR11MB7424.namprd11.prod.outlook.com
+ (2603:10b6:510:287::7)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/display: Handle struct
- drm_plane_state.ignore_damage_clips
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@intel.com>
-Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, sashiko-reviews@lists.linux.dev,
- Javier Martinez Canillas <javierm@redhat.com>
-References: <20260701130929.234695-1-tzimmermann@suse.de>
- <13f94040-6f6d-4a8e-9581-be769a0e3abb@suse.de> <ak6u1iPEIDulYTnv@intel.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <ak6u1iPEIDulYTnv@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Flag: NO
-X-Spam-Score: -4.30
-X-Spam-Level: 
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH0PR11MB7424:EE_|MW3PR11MB4522:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0ec4fb09-aac6-4946-c4dc-08dedd8a4d2c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|23010399003|1800799024|366016|18002099003|22082099003|4143699003|56012099006|11063799006|6133799003;
+X-Microsoft-Antispam-Message-Info: /blDxkm6p6bYlh/LrfX67Ltx8ZXks78SJEyVcYR5XAOXc0mMQB077ho8Cgz8qAsUk4sPa+VB333Q+kNDa43IwUSxNgCC8OZK5aFOR29fkN9iHIBD2+E+3faSe2JyJNgDFoekYF2nl5w4+3PaL+NKyBu81YB76InnI/qsGUhAc4rbmd9QiwYSaAp4Xogh2iejri+5hTRxCf+cDqAaB88UGexecnXiohqgvIwI5txThbH7TWWYDJDj2Nl5NTUez3Um7p8UYaD/IKqQqIbRxTotVDRMkJI0xmTIvV70vV06Am7irEoos3bw4eJ72o4T/1YfjojYTi73JORF9E6b/QuKm31sBCe3Bn7u0Abxc90Kdh3G3MLD7cYXvfpTDxPFGbbSE/kAv/KqelRggM69vN6GbqbPy6CV/8NJnFw64D0sZ4ZdRb+cIXVxIAbaVsh2Xrlf0WIQwZ6ZCdU9glnnPurqTHj1o4WC2cB+MTMLfzBkBE002s5gzq4b2aB+L1QOgx0B8Ui1L26CtmofehQvC+vN3jLJ1Oh7jhfg2btpItk0exGfBG06NzMKyh9aQNgbOihQatAhcsrcF59Wmlnp4mNy5HRPLsoyfPuJqvpSOM4RAdL3DM64Z9TZylY4mK02DYurZCsVXCWgOr1pchZ7BuiNrXF973mI2HvC+MplgOQcnOg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH0PR11MB7424.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(18002099003)(22082099003)(4143699003)(56012099006)(11063799006)(6133799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cVFaWU5PZTlOZHF6UjYrQzdwZkZ2MWFLaklYeVRKb0ptM1VGbVhvbmlLUm0r?=
+ =?utf-8?B?VWNrZ01vWVJ1eWI5Z3JyWXhqRkpPRkhvNHFWQWYzVm8vYkNGS0JldHR4dzZT?=
+ =?utf-8?B?V0U5azhWMGQ2c0I1RVprUmtiZ2RaeGRFZDBwMzIwRkZ6cEpXS005Z3RBV0Vn?=
+ =?utf-8?B?ME1ONXF2eWhaakFFdDZxSXFYbEFoMjczMC81dEYxZW9vcTJHLzl5QXduWEo2?=
+ =?utf-8?B?VE9LS2NTMmZUMkRnZHU3c3J1dkh1WUJ2K3JFWmIvNStMdlp4MWlYYW1xT3pU?=
+ =?utf-8?B?WDJnZE5qYzI4T29pa0dYOFR4MnNidkVEbHRWZmdVR0I0V1ZZaWN4eDlVS2hv?=
+ =?utf-8?B?dVhYZGwxUW1YMlpTaERwbkNVK2VrMGttQXdYYXV0Tkpldy9DSm9QSy9sWnJT?=
+ =?utf-8?B?YzEvT1dJRlpJdkRIRW9ZSmthcWVlQnBrdk41RzV0dGMzMDJoR0hnbDJ1V2t6?=
+ =?utf-8?B?akt1NExUMkQ5Y1RvaFFKY3ltQlZabVNrbmhaelpxZFBhN3l4ZFZObWRRR214?=
+ =?utf-8?B?bGNIaXFGZWRXTmdtbFJaNmQreVhnMmpaSm9ld2RHeGpVVjhqYitTUlB1a3Nv?=
+ =?utf-8?B?dG1ZY2xaczNvS083cno5eEwwWTJMTDcxc0FCSXkvUVRORHVOMjEzM051WWho?=
+ =?utf-8?B?QS9IZzVxdXBEQmo3YkE0UXEyS3VJb0gxYUZVYko5SSt5MzF1RWplMEpmbmI1?=
+ =?utf-8?B?aTNIWWVEUlUrbHVvRFJhT2d0VUZSOXd0VWppOU5GNzlSRnlRYllEWFFqVGRn?=
+ =?utf-8?B?a0QzNjQwWk5aK2xjZWcyQ1lYLzd0cmJuOEx2Nm54cUVqOVZ4am1nSDd1Vi8w?=
+ =?utf-8?B?VVZpQ28wNmxpRGthU1ZzM3Z2MTlFKzc1OHhvdnJqWlJNNHVwU1dUV1pGNXM5?=
+ =?utf-8?B?ODYzZUdXamNzUFZMMDFXSGtuM1VuTE9CWlZVanpPaVZZdVVaRCtINTVRV1F1?=
+ =?utf-8?B?NmJIdXVrNUUvclpsUllnNkFKdjFQM0VYZlRZMkk5MlllamxrZlpWY3pxOTdE?=
+ =?utf-8?B?RnA2YzhSVGV2bVhUK1NrWU16ZXVLcE1heWRibjM4aWUxYnFxUmg3L1RxQVI1?=
+ =?utf-8?B?QTJWRmpDdXh3cVdCNDN3bGlZaURtV3Nnc2ZJRlpXcUtJbC9DbUE0YW1GWllu?=
+ =?utf-8?B?bUhNVVVENGs1VWZGakY4bldkUzFmdnpneUVmMHNvTEQ2U0FnY2owSlgxK1lv?=
+ =?utf-8?B?V1pKeHJ6Z2Jxd3R5cWlVeTY4aVJDZ2tZZ1A4TkE0dldyS0xJdFpNZ1ZoL3No?=
+ =?utf-8?B?b1QrOG1mbzBKWVJCdGJLYWZJejBEZlNFblVMR0pCMHlxOUlvVU42b1AxSnNP?=
+ =?utf-8?B?a0NPc3lpelB5NnRCLzRxbklCd0tQUXhyZE9mLy9nbHNDc1VvVFBlUk56MUtB?=
+ =?utf-8?B?d0pkR1hjeVlHMkFKU1dUYTZmcjZOMFR1QlI5UGFxbzVvY2lkNGpZWk1ZNUU2?=
+ =?utf-8?B?UHNTY2J2blNaeDBsci94SzZja0EvSGplazJvemNaeU8ycHVXSEFXY0YyRUov?=
+ =?utf-8?B?MUFPbVhzaHVPS3NraFJtNmlia3FzTWl2WS9tU2tad2orRk54bnd6T3hjOUph?=
+ =?utf-8?B?UThjeHlsWDdjcVFzZk1QaTlCcExlUXJFZlprUmphcGprN3ZCU0Q1OW5BU1Ry?=
+ =?utf-8?B?cUN0Tm9yaHlXMWdHZVE2dU1HTzEwNEN1K2lGRmdJVzZ4NWtWaE02d2xIMXhv?=
+ =?utf-8?B?czRJdGhKOTFVYi9kcTJ0Mlk5OUFtMVRmTEY2aVNrZGprK3U2cTByaXNxN01Y?=
+ =?utf-8?B?aU9FeitTLzZ4ZVl3c05YYUFKYjI1Um5DR3J5dWZzUlQ1QXJyc3VkcURqRm0v?=
+ =?utf-8?B?MkZXempXWFcxRzhDQm9ZbEJXaFRlZU5SdlpETnUxSzhVMnBpK2trajJ0SFVn?=
+ =?utf-8?B?aHJ5RjR6UVhVMVZTN2laak83NHdCM280NWxiZDhXbEc1QmoyRUU4QUF3WGpU?=
+ =?utf-8?B?aVFRM2toeWtHMGdwQzQwazJZZXNFMUdvWnVSSVFsaGNDQjc5bGVmNDhrOUp3?=
+ =?utf-8?B?dDlTWkdPbTNTSTFYWXowZUpuVkFrSTVxY0lTWFZMOUNBaWkyWGY3eWoxUW04?=
+ =?utf-8?B?T0hlTXRHZ3lXK0J4K1ZZbStnMzlDSU1tQVEyZlNwSEtXTFBkNm95Ylo5MWRv?=
+ =?utf-8?B?eGg3cVJSMStrRlFlNHhmeGZ5d3VSTEdqYVdDc2VBczJjalQ2VGl2eHQ4clBM?=
+ =?utf-8?B?RVlCditLbTAvOHMwWjJocEZnTDNCV0tXYzRXVFRrbGpNMElhSnd0SkdxOGlh?=
+ =?utf-8?B?QzdXSmhORlNzMEU4Z0VjU2hlYWVKZTFPbXpjZ1Z4Uk0wZlE2bHlmLy9Oc3Jo?=
+ =?utf-8?B?aUx5UzYrQ1dvVzkrWHZHaUdNZ2hhRGdDdmpBL2lFSk1XMFl3Rm94bnRWcnMv?=
+ =?utf-8?Q?+9VTrXms4IrOkG+A=3D?=
+X-Exchange-RoutingPolicyChecked: tFj3WVDkusrRomB/8ZoMcUtTtUoeJB0fo8r4nD36bqsefhw+05r4ZL46CIhrDoJ9rlA/yFVt+VTXUS05jjDKHFmmQVzh8GsiITvoAmJCRVJRiKSX8YjoWxbeQ9oyH/yP8zSTKJhv9p8kUqqd4fADJJ1q7tpILMrh3lOxGCfxz2ZRQbLVg9P2JPKvkTQwM9V98kfpnlt3ZxO9nhg6aKgtGE7W5f+rRN5tHTP1wWdWcBWxPGferxGzB7U/4AvrgMUSTCuBWAWM8o0uoU1YYqDZnAYpha66e9jsR1mFQJqUPznpRfVtUjC9KdwCpMyxogLjj2/Pn3SgVUGDf0LiPbX+3A==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ec4fb09-aac6-4946-c4dc-08dedd8a4d2c
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB7424.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 07:18:40.7001 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oDcSnA0PmINTzXacWlHZa9rJAbrlSe/DvTKFKqKESE1EKvjb9RfeHM4zK+I0MqQRAXdhBtIxw12MrqLHzTrZBYx/f4E8/RirsDcyWBxB3o0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4522
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,118 +185,201 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[linux.intel.com,ursulin.net,gmail.com,ffwll.ch,lists.freedesktop.org,lists.linux.dev,redhat.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:rodrigo.vivi@intel.com,m:ville.syrjala@intel.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:sashiko-reviews@lists.linux.dev,m:javierm@redhat.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[suse.de:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_SEVEN(0.00)[9];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[krzysztof.karas@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[]
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1F46972D825
+X-Rspamd-Queue-Id: C5DF372D89D
 
-Hi
+Hi,
 
-Am 08.07.26 um 22:11 schrieb Rodrigo Vivi:
-> On Wed, Jul 08, 2026 at 09:44:05AM +0200, Thomas Zimmermann wrote:
->> gentle reminder to review this patch
-> Ville, could you please take a look on this?
->
-> Thomas, have you seen shashiko for this?
-> https://sashiko.dev/#/patchset/20260701130929.234695-1-tzimmermann%40suse.de
+On 2026-07-06 at 11:45:46 -0300, Jason Gunthorpe wrote:
+> On Mon, Jul 06, 2026 at 02:08:14PM +0100, Robin Murphy wrote:
+> 
+> > modern use-cases anyway, and is being replaced, so limitations of a "legacy"
+> > API that don't have any meaningful impact to its existing users are hardly
+> > something to panic about. If DRM does want to be able to *reliably* map
+> > massive amounts of RAM then it can adopt the new IOMMU API, for this and all
+> > the other reasons that that new API was promised to be "better".
+> 
+> Yes the new API does solve these issues, and it avoids padding
+> destroying the iova contiguity.
+> 
+> > > So I wouldn't be quite so dismissive that this is not something a real
+> > > user can hit.
+> > 
+> > I'm not being dismissive - clearly it can be hit. My point is that anyone
+> > who *does* hit it can only expect it to fail (as indeed this particular IGT
+> > test seems to), because it has never worked.
+> 
+> Today you can allocate memory from hugetlbfs and map it through
+> RDMA. The user can set 1G hugetlbfs page size and allocate 16G of
+> memory, and RDMA map it. Databases and HPC, for example, love to do
+> work loads like this.
+> 
+> So there is an unlucky hugetlbfs FD that has an internal memory layout
+> that will build a scatterlist that cannot be mapped by the iommu.
+> 
+> The user's application that normally works will fail randomly and
+> infrequently for no fault of their own. This isn't "can only expect it
+> to fail".
+> 
+> > So yes, limiting any individual segment to <=2GB would end up avoiding both
+> > those conditions, but it would also impact plenty of cases that *do*
+> > currently work fine, e.g. 1GB+3GB+3GB. The limitation is really that you
+> > can't have two consecutive segments where the first starts exactly on a 4GB
+> > boundary and the sum of both their sizes >=4GB.
+> 
+> Yeah, but that's hard to express.
+> 
+> My feeling was supporting >2GB without a split is not really so
+> important. You are (righly) arguing these huge sizes are usually rare.
+> Places like RDMA where they are not rare people already added
+> re-assembly logic to join SGLs so HW optimizations for >= 4G mappings
+> can be used, so smaller splitting doesn't really matter.
+> 
+> > > API wise I expect any arbitary input to sg_alloc_table_from_pages() to
+> > > result in a scatterlist that iommu_dma_map_sg() will map. This
+> > > patch highlights there are cornere cases where that isn't true, it
+> > > should be fixed..
+> > 
+> > Technically sg_alloc_table_from_pages() carries no such assumption,
+> > only
+> 
+> There are lots of callers that just do sg_alloc_table_from_pages()
+> then dma_map_sg(). Callers can use this simplified API when they don't
+> need any segmentation logic in the DMA API.
+> 
+> > sg_alloc_table_from_pages_segment() (or __sg_alloc_table_from_pages()) with
+> > the correct dma_seg_boundary value for the given device. 
+> 
+> _segment is the segment size, not boundary. The sg_alloc_table
+> functions don't support the seg_boundary limitation.
+> 
 
-I've seen it and replied on dri-devel. The rational is that it is kind 
-of intentional.  I looked through i915's atomic_check to find a good 
-common spot for _check_plane_damage(), but neither place seemed to fit 
-well.  Hence as the call is only required for the damage iterator's 
-state,(*) I put it right before where the damage iterator is being 
-used.  But since you mentioned it, I'll take another look at the issue.
+I do not have any strong feelings for or against any of your
+suggestions. We could do one of them or both, as long as you and
+community are happy, I'm happy too.
+
+Current fix adjusted to Jason's suggestion:
+
+diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
+index 381b60d9e7ce..1a36fd9bf10b 100644
+--- a/drivers/iommu/dma-iommu.c
++++ b/drivers/iommu/dma-iommu.c
+@@ -1493,7 +1493,18 @@ int iommu_dma_map_sg(struct device *dev, struct scatterlist *sg, int nents,
+ 		 *   time through here (i.e. before it has a meaningful value).
+ 		 */
+ 		if (pad_len && pad_len < s_length - 1) {
+-			prev->length += pad_len;
++			unsigned int new_pad_len;
++			/*
++			 * For large mappings spanning multiple GBs we
++			 * may not be able to fit all needed padding into
++			 * sg->length.
++			 */
++			if (check_add_overflow(prev->length, pad_len, &new_pad_len)) {
++				ret = -EOVERFLOW;
++				goto out_restore_sg;
++			}
++
++			prev->length = new_pad_len;
+ 			iova_len += pad_len;
+ 		}
 
 
-Best regards
-Thomas
+My interpretation of what should be done according to Jason's
+point of view:
 
-(*) I later want to streamline damage handling as in 
-https://lore.kernel.org/dri-devel/20260610152505.260172-1-tzimmermann@suse.de/
+diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
+index 381b60d9e7ce..4d06010216bb 100644
+--- a/drivers/iommu/dma-iommu.c
++++ b/drivers/iommu/dma-iommu.c
+@@ -33,6 +33,7 @@
+ #include <linux/spinlock.h>
+ #include <linux/swiotlb.h>
+ #include <linux/vmalloc.h>
++#include <linux/scatterlist.h>
+ #include <trace/events/swiotlb.h>
+ 
+ #include "dma-iommu.h"
+@@ -1477,6 +1478,10 @@ int iommu_dma_map_sg(struct device *dev, struct scatterlist *sg, int nents,
+ 		sg_dma_len(s) = s_length;
+ 		s->offset -= s_iova_off;
+ 		s_length = iova_align(iovad, s_length + s_iova_off);
++
++		if (WARN_ON_ONCE(s_length > SG_MAX_LENGTH))
++			goto out_restore_sg;
++
+ 		s->length = s_length;
+ 
+ 		/*
+diff --git a/include/linux/scatterlist.h b/include/linux/scatterlist.h
+index 6de1a2434299..04be2fa10359 100644
+--- a/include/linux/scatterlist.h
++++ b/include/linux/scatterlist.h
+@@ -472,6 +472,12 @@ int sg_alloc_table_from_pages_segment(struct sg_table *sgt, struct page **pages,
+ 				      unsigned long size,
+ 				      unsigned int max_segment, gfp_t gfp_mask);
+ 
++
++/*
++ * Keep enough headroom for segment-merging in DMA/IOMMU paths.
++ */
++#define SG_MAX_LENGTH 			(UINT_MAX / 2U)
++
+ /**
+  * sg_alloc_table_from_pages - Allocate and initialize an sg table from
+  *			       an array of pages
+@@ -499,7 +505,7 @@ static inline int sg_alloc_table_from_pages(struct sg_table *sgt,
+ 					    unsigned long size, gfp_t gfp_mask)
+ {
+ 	return sg_alloc_table_from_pages_segment(sgt, pages, n_pages, offset,
+-						 size, UINT_MAX, gfp_mask);
++						 size, SG_MAX_LENGTH, gfp_mask);
+ }
+ 
+ #ifdef CONFIG_SGL_ALLOC
+diff --git a/lib/scatterlist.c b/lib/scatterlist.c
+index b7fe91ef35b8..a788345b93a1 100644
+--- a/lib/scatterlist.c
++++ b/lib/scatterlist.c
+@@ -468,6 +468,7 @@ int sg_alloc_append_table_from_pages(struct sg_append_table *sgt_append,
+ 	 * The algorithm below requires max_segment to be aligned to PAGE_SIZE
+ 	 * otherwise it can overshoot.
+ 	 */
++	max_segment = min(max_segment, SG_MAX_LENGTH);
+ 	max_segment = ALIGN_DOWN(max_segment, PAGE_SIZE);
+ 	if (WARN_ON(max_segment < PAGE_SIZE))
+ 		return -EINVAL;
 
 
->
->> Am 01.07.26 um 15:07 schrieb Thomas Zimmermann:
->>> Git commit 35ed38d58257 ("drm: Allow drivers to indicate the damage
->>> helpers to ignore damage clips") introduced ignore_damage_clips to
->>> selectively ignore damage clipping in certain framebuffer changes. The
->>> mode-setting pipeline can disabled damage clippings for an atomic commit
->>> by setting ignore_damage_clips in struct drm_plane_state. The atomic
->>> commit will then do a full display update.
->>>
->>> Although the i915 driver does not modify the flag, DRM's damage iterator
->>> will soon rely on it. Calling drm_atomic_helper_check_plane_damage() right
->>> before drm_atomic_helper_damage_merged() guarantees that it has the correct
->>> state. The i915 driver does not do this elsewhere so far.
->>>
->>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->>> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
->>> ---
->>> Taken with minor updates to the commit description from the series at
->>>
->>>     https://lore.kernel.org/dri-devel/20260610152505.260172-1-tzimmermann@suse.de/
->>> ---
->>>    drivers/gpu/drm/i915/display/intel_psr.c | 3 +++
->>>    1 file changed, 3 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
->>> index 92af21d823a3..5a155f60110f 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
->>> @@ -2949,6 +2949,9 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
->>>    		src = drm_plane_state_src(&new_plane_state->uapi);
->>>    		drm_rect_fp_to_int(&src, &src);
->>> +		/* Prepare plane-damage state before using it */
->>> +		drm_atomic_helper_check_plane_damage(&state->base, &new_plane_state->uapi);
->>> +
->>>    		if (!drm_atomic_helper_damage_merged(&old_plane_state->uapi,
->>>    						     &new_plane_state->uapi, &damaged_area))
->>>    			continue;
->> -- 
->> --
->> Thomas Zimmermann
->> Graphics Driver Developer
->> SUSE Software Solutions Germany GmbH
->> Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
->> GF: Jochen Jaser, Andrew McDonald, (HRB 36809, AG Nürnberg)
->>
->>
+@Robin @Jason I value your input and would like to reach an
+agreement on how to proceed.
+If scatterlists are going away soon-ish, then we could go with
+the quick-fix version as to not involve too many people.
 
 -- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, (HRB 36809, AG Nürnberg)
-
-
+Best Regards,
+Krzysztof
