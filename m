@@ -2,79 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id L1oMEWdoT2q9gAIAu9opvQ
+	id k+ZZJV1oT2qugAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 11:22:47 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 11:22:37 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E212772EE29
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 11:22:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4190E72EDEC
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 11:22:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=vMdq6UX5;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="gYK/tQ6n";
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=vMdq6UX5;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="gYK/tQ6n";
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=sE4+TLtW;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=QVjwdbBH;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=sE4+TLtW;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=QVjwdbBH;
 	dmarc=pass (policy=none) header.from=suse.de;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7169510F494;
-	Thu,  9 Jul 2026 09:22:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F7B810F3EE;
+	Thu,  9 Jul 2026 09:22:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 847F810F478
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 09:22:43 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90F8510F450
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 09:22:32 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
  [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id BC3F275DDE;
- Thu,  9 Jul 2026 09:22:23 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 561997609F;
+ Thu,  9 Jul 2026 09:22:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1783588943; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1783588944; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=61tqgj47tXno87n5CLTjPvjoV/e/gW/vZ/ttrviqTMc=;
- b=vMdq6UX51wZMrbUXKc3lP9eGNPL+dWXc4tg4oO+X8BPR14h8e6lAXKBvtSLlgBvKxcChLr
- gTy1JbRQHy7pHHBbfY7I4tChOjhOzqIUvy9aZsuhxvFeX04KckXOmTHN38+3107fJVYOdb
- X/yB1nDXF1GxzDvRlfDAx9ayGKG173M=
+ bh=uhNPr//6EXgm9VrVu7+PlKBN0iXdbwRNj3HZA+yCD6k=;
+ b=sE4+TLtWhuoD7VCwCWsNgBRU6aBwFp4k6WJ4Q6JOVQsGZZJT4CiZ1Xb7eVGsGFLaeoE5jP
+ l1UanYsmKcQE8UotaWq7CQ8L8boYgJrTuaYFmXbTHT6Sww6nRXG1kBcVVmEw8fljzp4cC3
+ pFgP5Iod/lFc8I2cwIOflZcqBX95C5g=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1783588943;
+ s=susede2_ed25519; t=1783588944;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=61tqgj47tXno87n5CLTjPvjoV/e/gW/vZ/ttrviqTMc=;
- b=gYK/tQ6nEWhgYsoJwN2wawEg4/VsMDL63ux0FFkcOd9+aqq6Jsy37LGn4tsuOZl2UEOXA0
- aq+r8N6HFi0XBiDw==
+ bh=uhNPr//6EXgm9VrVu7+PlKBN0iXdbwRNj3HZA+yCD6k=;
+ b=QVjwdbBHfVDABlSTgp4BqNyqG41yEMlg3tQGSWDPnluviby9THlU97sMCljpwr40v4H87t
+ 6uLTpyPPv+pv72BA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1783588943; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1783588944; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=61tqgj47tXno87n5CLTjPvjoV/e/gW/vZ/ttrviqTMc=;
- b=vMdq6UX51wZMrbUXKc3lP9eGNPL+dWXc4tg4oO+X8BPR14h8e6lAXKBvtSLlgBvKxcChLr
- gTy1JbRQHy7pHHBbfY7I4tChOjhOzqIUvy9aZsuhxvFeX04KckXOmTHN38+3107fJVYOdb
- X/yB1nDXF1GxzDvRlfDAx9ayGKG173M=
+ bh=uhNPr//6EXgm9VrVu7+PlKBN0iXdbwRNj3HZA+yCD6k=;
+ b=sE4+TLtWhuoD7VCwCWsNgBRU6aBwFp4k6WJ4Q6JOVQsGZZJT4CiZ1Xb7eVGsGFLaeoE5jP
+ l1UanYsmKcQE8UotaWq7CQ8L8boYgJrTuaYFmXbTHT6Sww6nRXG1kBcVVmEw8fljzp4cC3
+ pFgP5Iod/lFc8I2cwIOflZcqBX95C5g=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1783588943;
+ s=susede2_ed25519; t=1783588944;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=61tqgj47tXno87n5CLTjPvjoV/e/gW/vZ/ttrviqTMc=;
- b=gYK/tQ6nEWhgYsoJwN2wawEg4/VsMDL63ux0FFkcOd9+aqq6Jsy37LGn4tsuOZl2UEOXA0
- aq+r8N6HFi0XBiDw==
+ bh=uhNPr//6EXgm9VrVu7+PlKBN0iXdbwRNj3HZA+yCD6k=;
+ b=QVjwdbBHfVDABlSTgp4BqNyqG41yEMlg3tQGSWDPnluviby9THlU97sMCljpwr40v4H87t
+ 6uLTpyPPv+pv72BA==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 334AC779AA;
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C3BC8779AC;
  Thu,  9 Jul 2026 09:22:23 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id ILk+C09oT2q6OQAAD6G6ig
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 6ERtLk9oT2q6OQAAD6G6ig
  (envelope-from <tzimmermann@suse.de>); Thu, 09 Jul 2026 09:22:23 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: lukas@wunner.de, jfalempe@redhat.com, alexander.deucher@amd.com,
@@ -87,17 +87,18 @@ Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  linux-fbdev@vger.kernel.org, sashiko-reviews@lists.linux.dev,
  Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 4/7] vga_switcheroo: Add post_switch callback to client ops
-Date: Thu,  9 Jul 2026 11:16:00 +0200
-Message-ID: <20260709092215.168172-5-tzimmermann@suse.de>
+Subject: [PATCH v2 5/7] drm: Implement struct
+ vga_switcheroo_client_ops.pre_switch
+Date: Thu,  9 Jul 2026 11:16:01 +0200
+Message-ID: <20260709092215.168172-6-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260709092215.168172-1-tzimmermann@suse.de>
 References: <20260709092215.168172-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Flag: NO
-X-Spam-Level: 
 X-Spam-Score: -3.01
+X-Spam-Level: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,74 +148,164 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:from_mime,suse.de:email,suse.de:mid,suse.de:dkim,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E212772EE29
+X-Rspamd-Queue-Id: 4190E72EDEC
 
-Add post_switch to struct vga_switcheroo_client_ops to inform the
-switcheroo client about a completed switch of the output.
+Call drm_client_dev_acquire_outputs() from vga_switcheroo's pre_switch
+callback. Pushes fbcon updates from vga_switcheroo into DRM's fbdev
+emulation. This affects amdgpu, i915, nouveau and radeon. No other
+drivers implement vga_switcheroo.
 
-This callback is intended to replace the reprobe client op. It is a
-rename of reprobe for consistency with pre_switch.
+Also remove the calls to vga_switcheroo_client_fb_set() from fbcon. It
+is called from the DRM client's hotplug and sets the fbcon's framebuffer
+at vga_switcheroo. Running pre_switch and hotplug concurrently could
+result in a deadlock between clientlist_mutex and vgasr_mutex. Hence
+clean up fbcon here as well.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Lyude Paul <lyude@redhat.com> # nouveau
 ---
- drivers/gpu/vga/vga_switcheroo.c |  4 +++-
- include/linux/vga_switcheroo.h   | 12 +++++++-----
- 2 files changed, 10 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  8 ++++++++
+ drivers/gpu/drm/i915/i915_switcheroo.c     | 10 ++++++++++
+ drivers/gpu/drm/nouveau/nouveau_vga.c      |  9 +++++++++
+ drivers/gpu/drm/radeon/radeon_device.c     |  8 ++++++++
+ drivers/video/fbdev/core/fbcon.c           |  8 --------
+ 5 files changed, 35 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/vga/vga_switcheroo.c b/drivers/gpu/vga/vga_switcheroo.c
-index bdf1e56ae891..7b0af4a8aa7d 100644
---- a/drivers/gpu/vga/vga_switcheroo.c
-+++ b/drivers/gpu/vga/vga_switcheroo.c
-@@ -746,7 +746,9 @@ static int vga_switchto_stage2(struct vga_switcheroo_client *new_client)
- 	if (ret)
- 		return ret;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 78c96c7102e4..87a59a79a019 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -1699,10 +1699,18 @@ static bool amdgpu_switcheroo_can_switch(struct pci_dev *pdev)
+ 	return atomic_read(&dev->open_count) == 0;
+ }
  
--	if (new_client->ops->reprobe)
-+	if (new_client->ops->post_switch)
-+		new_client->ops->post_switch(new_client->pdev);
-+	else if (new_client->ops->reprobe)
- 		new_client->ops->reprobe(new_client->pdev);
- 
- 	if (vga_switcheroo_pwr_state(active) == VGA_SWITCHEROO_ON)
-diff --git a/include/linux/vga_switcheroo.h b/include/linux/vga_switcheroo.h
-index 4422daca9ceb..51851831d4c1 100644
---- a/include/linux/vga_switcheroo.h
-+++ b/include/linux/vga_switcheroo.h
-@@ -127,21 +127,22 @@ struct vga_switcheroo_handler {
-  * @set_gpu_state: do the equivalent of suspend/resume for the card.
-  * 	Mandatory. This should not cut power to the discrete GPU,
-  * 	which is the job of the handler
-- * @reprobe: poll outputs.
-- * 	Optional. This gets called after waking the GPU and switching
-- * 	the outputs to it
-+ * @reprobe: deprecated
-  * @can_switch: check if the device is in a position to switch now.
-  * 	Mandatory. The client should return false if a user space process
-  * 	has one of its device files open
-  * @pre_switch: prepare switch
-  *	Optional. This gets called before switching the outputs to the
-  *	GPU. Allows drivers to prepare for the switch.
-+ * @post_switch: completes switch
-+ *	Optional. This gets called after waking the GPU and switching
-+ *	the outputs to it. Allows drivers to poll the switched outputs.
-  * @gpu_bound: notify the client id to audio client when the GPU is bound.
-  *
-  * Client callbacks. A client can be either a GPU or an audio device on a GPU.
-  * The @set_gpu_state and @can_switch methods are mandatory, @pre_switch and
-- * @reprobe may be set to NULL. For audio clients, the @pre_switch and
-- * @reprobe members are bogus. OTOH, @gpu_bound is only for audio clients,
-+ * @post_switch may be set to NULL. For audio clients, the @pre_switch and
-+ * @post_switch members are bogus. OTOH, @gpu_bound is only for audio clients,
-  * and not used for GPU clients.
-  */
- struct vga_switcheroo_client_ops {
-@@ -149,6 +150,7 @@ struct vga_switcheroo_client_ops {
- 	void (*reprobe)(struct pci_dev *dev);
- 	bool (*can_switch)(struct pci_dev *dev);
- 	void (*pre_switch)(struct pci_dev *dev);
-+	void (*post_switch)(struct pci_dev *dev);
- 	void (*gpu_bound)(struct pci_dev *dev, enum vga_switcheroo_client_id);
++static void amdgpu_switcheroo_pre_switch(struct pci_dev *pdev)
++{
++	struct drm_device *dev = pci_get_drvdata(pdev);
++
++	drm_client_dev_acquire_outputs(dev);
++}
++
+ static const struct vga_switcheroo_client_ops amdgpu_switcheroo_ops = {
+ 	.set_gpu_state = amdgpu_switcheroo_set_state,
+ 	.reprobe = NULL,
+ 	.can_switch = amdgpu_switcheroo_can_switch,
++	.pre_switch = amdgpu_switcheroo_pre_switch,
  };
+ 
+ /**
+diff --git a/drivers/gpu/drm/i915/i915_switcheroo.c b/drivers/gpu/drm/i915/i915_switcheroo.c
+index 7e0791024282..6b306ece0556 100644
+--- a/drivers/gpu/drm/i915/i915_switcheroo.c
++++ b/drivers/gpu/drm/i915/i915_switcheroo.c
+@@ -5,6 +5,7 @@
+ 
+ #include <linux/vga_switcheroo.h>
+ 
++#include <drm/drm_client_event.h>
+ #include <drm/drm_print.h>
+ 
+ #include "display/intel_display_device.h"
+@@ -58,10 +59,19 @@ static bool i915_switcheroo_can_switch(struct pci_dev *pdev)
+ 		atomic_read(&i915->drm.open_count) == 0;
+ }
+ 
++static void i915_switcheroo_pre_switch(struct pci_dev *pdev)
++{
++	struct drm_i915_private *i915 = pdev_to_i915(pdev);
++
++	if (i915 && intel_display_device_present(i915->display))
++		drm_client_dev_acquire_outputs(&i915->drm);
++}
++
+ static const struct vga_switcheroo_client_ops i915_switcheroo_ops = {
+ 	.set_gpu_state = i915_switcheroo_set_state,
+ 	.reprobe = NULL,
+ 	.can_switch = i915_switcheroo_can_switch,
++	.pre_switch = i915_switcheroo_pre_switch,
+ };
+ 
+ int i915_switcheroo_register(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouveau/nouveau_vga.c
+index a6c375a24154..2d2d08be8fbe 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_vga.c
++++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
+@@ -76,11 +76,20 @@ nouveau_switcheroo_can_switch(struct pci_dev *pdev)
+ 	return atomic_read(&drm->dev->open_count) == 0;
+ }
+ 
++static void
++nouveau_switcheroo_pre_switch(struct pci_dev *pdev)
++{
++	struct nouveau_drm *drm = pci_get_drvdata(pdev);
++
++	drm_client_dev_acquire_outputs(drm->dev);
++}
++
+ static const struct vga_switcheroo_client_ops
+ nouveau_switcheroo_ops = {
+ 	.set_gpu_state = nouveau_switcheroo_set_state,
+ 	.reprobe = nouveau_switcheroo_reprobe,
+ 	.can_switch = nouveau_switcheroo_can_switch,
++	.pre_switch = nouveau_switcheroo_pre_switch,
+ };
+ 
+ void
+diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
+index 705c012fcf9e..8697a9eb5d13 100644
+--- a/drivers/gpu/drm/radeon/radeon_device.c
++++ b/drivers/gpu/drm/radeon/radeon_device.c
+@@ -1258,10 +1258,18 @@ static bool radeon_switcheroo_can_switch(struct pci_dev *pdev)
+ 	return atomic_read(&dev->open_count) == 0;
+ }
+ 
++static void radeon_switcheroo_pre_switch(struct pci_dev *pdev)
++{
++	struct drm_device *dev = pci_get_drvdata(pdev);
++
++	drm_client_dev_acquire_outputs(dev);
++}
++
+ static const struct vga_switcheroo_client_ops radeon_switcheroo_ops = {
+ 	.set_gpu_state = radeon_switcheroo_set_state,
+ 	.reprobe = NULL,
+ 	.can_switch = radeon_switcheroo_can_switch,
++	.pre_switch = radeon_switcheroo_pre_switch,
+ };
+ 
+ /**
+diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
+index 9f5c4c101581..974c7dcf5251 100644
+--- a/drivers/video/fbdev/core/fbcon.c
++++ b/drivers/video/fbdev/core/fbcon.c
+@@ -78,7 +78,6 @@
+ #include <linux/interrupt.h>
+ #include <linux/crc32.h> /* For counting font checksums */
+ #include <linux/uaccess.h>
+-#include <linux/vga_switcheroo.h>
+ #include <asm/irq.h>
+ 
+ #include "fbcon.h"
+@@ -2851,9 +2850,6 @@ void fbcon_fb_unregistered(struct fb_info *info)
+ 
+ 	console_lock();
+ 
+-	if (info->device && dev_is_pci(info->device))
+-		vga_switcheroo_client_fb_set(to_pci_dev(info->device), NULL);
+-
+ 	fbcon_registered_fb[info->node] = NULL;
+ 	fbcon_num_registered_fb--;
+ 
+@@ -2987,10 +2983,6 @@ static int do_fb_registered(struct fb_info *info)
+ 		}
+ 	}
+ 
+-	/* Set the fb info for vga_switcheroo clients. Does nothing otherwise. */
+-	if (info->device && dev_is_pci(info->device))
+-		vga_switcheroo_client_fb_set(to_pci_dev(info->device), info);
+-
+ 	return ret;
+ }
  
 -- 
 2.54.0
