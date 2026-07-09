@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 5MpvNLx+T2qTiAIAu9opvQ
+	id 9QoFKrF/T2r4iAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 12:58:04 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 13:02:09 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50B6072FF62
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 12:58:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C01872FFFC
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 13:02:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linutronix.de header.s=2020 header.b=IHq9u1iL;
-	dkim=pass header.d=linutronix.de header.s=2020e header.b=qu64wuzF;
+	dkim=pass header.d=linutronix.de header.s=2020 header.b=4IaDf5B+;
+	dkim=pass header.d=linutronix.de header.s=2020e header.b=VdwdA1sN;
 	dmarc=pass (policy=none) header.from=linutronix.de;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE15110F4D5;
-	Thu,  9 Jul 2026 10:58:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21F6C10E090;
+	Thu,  9 Jul 2026 11:02:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E74410F4D5;
- Thu,  9 Jul 2026 10:58:01 +0000 (UTC)
-Date: Thu, 9 Jul 2026 12:57:54 +0200
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDDD510E090;
+ Thu,  9 Jul 2026 11:02:05 +0000 (UTC)
+Date: Thu, 9 Jul 2026 13:02:00 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1783594675;
+ s=2020; t=1783594921;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=26FJV7cjx48XgvbFrZjYdsbkT1r51opYw8MIa0Bm5Eg=;
- b=IHq9u1iLo6dtgZTwgJxWAJ50UGIh+m9ngRAPue+UJLkI6eVFKClgs15hjdPnr8CcZY9ypy
- SlzvRaQ1nMFfQwvs6gKAyFyQW0aIBu1hLsYgXW7uwdKSviC1blhbdpvQrJr1yLftxI4wLW
- C4HHd5nYzaFsLaSo6t/vXkhLK9NLDEB2ORKdLwvo1b0jCpvOun69FjgCR0dADa613dPPj0
- PO2vAcOlOSA8RtB49pSV2dbYLLRBfLD8y/PrSKl7+8X1pFL1oFE33QE5gAKWLPZBRwPwWR
- UixeSs4qHh6FaP+1Cy2s1YW3J6EzWgfLAEBy24lzog8VEvG10Uz3sd7rS8Ibrg==
+ bh=FySWx+2h8Y4gcqIJ96KDKfhGXlG+iSlkEpznsqFWM9o=;
+ b=4IaDf5B+2yQLEVXL/mW4/VrV+UM7wjmx29zfUuV9yrul2YS6RolI77m4kfmU/6QRlOhQpp
+ 0tCu5GAn0yZHOw+cCBmxZfJacr20uuV+73NFeKa8etwBms/Xz3Hir90RztOZLcCa3S2bp/
+ FhvBwz42yKR1Prfp8Bdrk6x8HKIvIgBZ30KRr0k1zvkrJu4E2YA0CHUpzGToT6PbbLs5I5
+ vTX/NTXiGSpOcSzpb0CEv/9w8323skv/tEYfnogDYbzPe7foh3X1/7uxGOGZ3AAXYKerZw
+ 8Lcgpgv+2F0XFbctrmiQrzOKG4HgDAONQhRfduQg2D2Gqi+z20kkXvdz9Qdt3A==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1783594675;
+ s=2020e; t=1783594921;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=26FJV7cjx48XgvbFrZjYdsbkT1r51opYw8MIa0Bm5Eg=;
- b=qu64wuzFzehc8lPi+dzEe7pETqZ/xP4P7maHHBZIsBbTRtPH6m+/Ui6wa2yHKevb8mvhww
- Rwvbqd3buZ1t3FAQ==
+ bh=FySWx+2h8Y4gcqIJ96KDKfhGXlG+iSlkEpznsqFWM9o=;
+ b=VdwdA1sNFb934bTDnq/D/xK5Azys6XiIfgwVDbKT+LIJiSu/GZcbnRgX+WyH0H2VZbE6K0
+ Vm2hxtxsllMfIcAw==
 From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 To: Maarten Lankhorst <dev@lankhorst.se>
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v4 7/7] drm/i915/gt: Use signalers_lock to prevent
- starvation of irq_work.
-Message-ID: <20260709105754.WJvT6s22@linutronix.de>
+Subject: Re: [PATCH v4 0/7] drm/i915: All fixes to make i915 work well with
+ PREEMPT_RT.
+Message-ID: <20260709110200.2_5Eg8xF@linutronix.de>
 References: <20260706114823.752313-1-dev@lankhorst.se>
- <20260706114823.752313-8-dev@lankhorst.se>
+ <20260706122026.IJAiyhhw@linutronix.de>
+ <c4222f81-72b2-4eea-a900-da327f0df928@lankhorst.se>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260706114823.752313-8-dev@lankhorst.se>
+In-Reply-To: <c4222f81-72b2-4eea-a900-da327f0df928@lankhorst.se>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,32 +94,30 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,linutronix.de:from_mime,linutronix.de:dkim,linutronix.de:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 50B6072FF62
+X-Rspamd-Queue-Id: 8C01872FFFC
 
-On 2026-07-06 13:48:23 [+0200], Maarten Lankhorst wrote:
-> From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+On 2026-07-09 11:53:52 [+0200], Maarten Lankhorst wrote:
+> Hello Sebastian,
+Hi Maarten,
+
+> The test results are available, mostly looks good except 1 spurious incomplete.
 > 
-> IRQ-Work (FIFO-1) will be preempted by the threaded-interrupt (FIFO-50)
-> and the interrupt will poll on signaler_active while the irq-work can't
-> make progress.
+> I tried reproducing it, but was unable to. It seems that pre-existing incompletes
+> on the specific IGT testcase already happened before the changes.
 > 
-> Solve this by adding a global spinlock to prevent starvation and force
-> completion.
-> 
-> The existing RCU handling gets in the way on PREEMPT_RT, and would likely
-> require conversion to raw spinlock to take them inside a
-> rcu_read_lock(), so remove RCU as well.
+> Do you want to review the patches you didn't author, so I can move forward?
+> Even if you are uncomfortable to review the signalers_lock changes, it should
+> be possible to have the rest reviewed and merged upstream.
 
-You require both locks and a try-lock since the ordering is wrong. And
-you replace the RCU-section with a lock. Understood.
+This looks good to me. The condition in 5/7 is the as in 3/7. Not sure
+if this should be merged into a helper or if it should be passed from
+the caller. But it seems the information of the calling context is lost.
 
-You probably want to make yourself as the author and make me
-Co-developed-by or something or nothing. This would fix the Sob order
-below.
+Please move forward ;)
 
-> Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> Kind regards,
+> ~Maarten Lankhorst
 
 Sebastian
