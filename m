@@ -2,59 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9QoFKrF/T2r4iAIAu9opvQ
+	id XABJNt5/T2oMiQIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 13:02:09 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 13:02:54 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C01872FFFC
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 13:02:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50A98730020
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 13:02:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linutronix.de header.s=2020 header.b=4IaDf5B+;
-	dkim=pass header.d=linutronix.de header.s=2020e header.b=VdwdA1sN;
-	dmarc=pass (policy=none) header.from=linutronix.de;
+	dkim=pass header.d=lankhorst.se header.s=default header.b=ESASVCNH;
+	dmarc=pass (policy=none) header.from=lankhorst.se;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21F6C10E090;
-	Thu,  9 Jul 2026 11:02:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBB3710F4E2;
+	Thu,  9 Jul 2026 11:02:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDDD510E090;
- Thu,  9 Jul 2026 11:02:05 +0000 (UTC)
-Date: Thu, 9 Jul 2026 13:02:00 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1783594921;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=FySWx+2h8Y4gcqIJ96KDKfhGXlG+iSlkEpznsqFWM9o=;
- b=4IaDf5B+2yQLEVXL/mW4/VrV+UM7wjmx29zfUuV9yrul2YS6RolI77m4kfmU/6QRlOhQpp
- 0tCu5GAn0yZHOw+cCBmxZfJacr20uuV+73NFeKa8etwBms/Xz3Hir90RztOZLcCa3S2bp/
- FhvBwz42yKR1Prfp8Bdrk6x8HKIvIgBZ30KRr0k1zvkrJu4E2YA0CHUpzGToT6PbbLs5I5
- vTX/NTXiGSpOcSzpb0CEv/9w8323skv/tEYfnogDYbzPe7foh3X1/7uxGOGZ3AAXYKerZw
- 8Lcgpgv+2F0XFbctrmiQrzOKG4HgDAONQhRfduQg2D2Gqi+z20kkXvdz9Qdt3A==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1783594921;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=FySWx+2h8Y4gcqIJ96KDKfhGXlG+iSlkEpznsqFWM9o=;
- b=VdwdA1sNFb934bTDnq/D/xK5Azys6XiIfgwVDbKT+LIJiSu/GZcbnRgX+WyH0H2VZbE6K0
- Vm2hxtxsllMfIcAw==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Maarten Lankhorst <dev@lankhorst.se>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v4 0/7] drm/i915: All fixes to make i915 work well with
- PREEMPT_RT.
-Message-ID: <20260709110200.2_5Eg8xF@linutronix.de>
-References: <20260706114823.752313-1-dev@lankhorst.se>
- <20260706122026.IJAiyhhw@linutronix.de>
- <c4222f81-72b2-4eea-a900-da327f0df928@lankhorst.se>
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BACB10E6AA;
+ Thu,  9 Jul 2026 11:02:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1783594965;
+ bh=Zz7/rasQV2uTEidthlwpJ9dCfB8OzVa/75a0tdy523c=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=ESASVCNHqliomNvNGTPUybU0wqXjQkrI607E+V1rMORsucYkKmF4+OtENgQHmt85N
+ owuZnBvoZw+p4Fb03OWG4/xDk4Y8JW9LUPaJZkqbiCbLATn6GdugFZPbD6m+edZY7O
+ 77ZMDR3KqbYsfQuLsShgZ3AojLkWtMFCoZoMTyCHi5cyzvW05lYuQ6S6JwL/rTzwfn
+ 6fX01vMUDXRDPPxf0rH8oE2oAdfN7N29ILQOvpD8P3NwwfMaeUbHrjg6Cl9LYAsFPJ
+ hOqXPlaoGlJm+B7WR0t5RuP4D+mqbxv0KAZdMq8k6qImrAhhTtKX2Guo8s913Ter0Q
+ wDFlDF7mgsMgg==
+Message-ID: <89f1eb47-44fb-41bf-bc4b-a3693125e0b2@lankhorst.se>
+Date: Thu, 9 Jul 2026 13:03:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <c4222f81-72b2-4eea-a900-da327f0df928@lankhorst.se>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/7] drm/i915/gt: Fix selftests on PREEMPT_RT
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20260706114823.752313-1-dev@lankhorst.se>
+ <20260706114823.752313-5-dev@lankhorst.se>
+ <20260709103650.VxAAiEnx@linutronix.de>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <20260709103650.VxAAiEnx@linutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,53 +62,72 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[linutronix.de,none];
+	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
+	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[linutronix.de:s=2020,linutronix.de:s=2020e];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[linutronix.de:+];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,lankhorst.se:from_mime,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:dkim];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[bigeasy@linutronix.de,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	MIME_TRACE(0.00)[0:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,linutronix.de:from_mime,linutronix.de:dkim,linutronix.de:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	RCVD_COUNT_TWO(0.00)[2];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[lankhorst.se:+]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8C01872FFFC
+X-Rspamd-Queue-Id: 50A98730020
 
-On 2026-07-09 11:53:52 [+0200], Maarten Lankhorst wrote:
-> Hello Sebastian,
-Hi Maarten,
+Hey,
 
-> The test results are available, mostly looks good except 1 spurious incomplete.
+Correct, this should be in the commit message, let me update it.
+
+On 7/9/26 12:36, Sebastian Andrzej Siewior wrote:
+> On 2026-07-06 13:48:20 [+0200], Maarten Lankhorst wrote:
+>> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+>> ---
+>>  drivers/gpu/drm/i915/gt/selftest_engine_pm.c | 8 ++++----
+>>  1 file changed, 4 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+>> index 10e556a7eac45..c1eff9edd8a5e 100644
+>> --- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+>> +++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+>> @@ -277,11 +277,11 @@ static int live_engine_busy_stats(void *arg)
+>>  		st_engine_heartbeat_disable(engine);
+>>  
+>>  		ENGINE_TRACE(engine, "measuring idle time\n");
+>> -		preempt_disable();
+>> +		migrate_disable();
+>>  		de = intel_engine_get_busy_time(engine, &t[0]);
 > 
-> I tried reproducing it, but was unable to. It seems that pre-existing incompletes
-> on the specific IGT testcase already happened before the changes.
+> this change has been made probably due to guc_engine_busyness(). Looking
+> at execlists_engine_busyness() then there is a seqcount_t and the writer
+> side does local_irq_disable() during the update so this should work.
+> The comment says the writer is serialized but I don't see how (maybe
+> there is just one). So…
 > 
-> Do you want to review the patches you didn't author, so I can move forward?
-> Even if you are uncomfortable to review the signalers_lock changes, it should
-> be possible to have the rest reviewed and merged upstream.
+> Sebastian
+Would the below look good?
 
-This looks good to me. The condition in 5/7 is the as in 3/7. Not sure
-if this should be merged into a helper or if it should be passed from
-the caller. But it seems the information of the calling context is lost.
+The engine->busyness() callbacks called from the selftests are on PREEMPT_RT
+not safe with preemption disabled, because all spinlocks are converted to
+rt-mutexes.
 
-Please move forward ;)
+This is also a problem for perf events, where we have to disable
+the busyness events on PREEMPT_RT.
 
-> Kind regards,
-> ~Maarten Lankhorst
+Previous attempts to fix this failed, so convert the selftest code to read
+engine->busyness()  with migrate_disable() instead of preempt_disable() to
+prevent selftest failures on PREEMPT_RT.
 
-Sebastian
