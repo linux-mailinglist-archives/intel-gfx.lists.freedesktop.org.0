@@ -2,60 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id avjCF3XTT2pTowIAu9opvQ
+	id LyLjN4vST2ovowIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 18:59:33 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 18:55:39 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EC5D733A41
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 18:59:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0E95733A0C
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 18:55:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=UiRcwRqh;
+	dkim=pass header.d=intel.com header.s=Intel header.b=GUPs0PcU;
 	dmarc=pass (policy=none) header.from=intel.com;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25E0B10E4EF;
-	Thu,  9 Jul 2026 16:59:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68F0D10E0D7;
+	Thu,  9 Jul 2026 16:55:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60C3610E0A8;
- Thu,  9 Jul 2026 16:59:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D50D410E07F;
+ Thu,  9 Jul 2026 16:55:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783616369; x=1815152369;
- h=from:to:cc:subject:date:message-id:mime-version:
+ t=1783616136; x=1815152136;
+ h=message-id:date:mime-version:from:to:cc:subject:
  content-transfer-encoding;
- bh=WPmLVLsJMtrLtKKue8ZgUbrYZPna/puxy+Qmwwf4Nyo=;
- b=UiRcwRqhBAN3MYfJbH36X8rV/aSn/Al3fXiJ+w8q5XbJ63t69Mgh5oh+
- XesQOnGHfE3Lm90SjziK0mZH8nhpyf+xG6PPZv2I6lq/qVr2p3n8yi/v7
- FtKqOsntKbApRdsKxXckTtxv5Eu/HqsUFqFzAtuTvEXzacswgMkclxsBi
- bAElTF8ZC5yNNm5AFEyHolCViR3mFLy9OUhtGkHLm4Quk1/Jdgg60+reE
- pz7nfhuked5zG7Gr+9d8KUR5JmRpVPaYE0+Jd7IeRZByRNsk1mcQIzffX
- lA/mcR0QrKflYed6E5g9qdenTv+713VJNfwNX02BFWEETbKn+r7OiS5cr w==;
-X-CSE-ConnectionGUID: LVMf7lTTSySg64EzFlEZVg==
-X-CSE-MsgGUID: xwRrSe7tQ8mi37ALvxYkKQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84419333"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84419333"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2026 09:59:29 -0700
-X-CSE-ConnectionGUID: 6ZayB3rjTbW4+P7VMhxeLg==
-X-CSE-MsgGUID: Ogbka+SQSwWu/VtrPYZ11A==
+ bh=JdomNHnZ2r2VpL9ywKCXkL9/2P/FOQ2vuzSsIEQi49A=;
+ b=GUPs0PcUFR1D75Ax6sn7ciTWgGPOowjODb+k04LP3qCJzhEeSDBx6rSN
+ shdn8nvGRwf2WGYDeVKTB7lZROcUW2+0CLoF/tF6Kx6d032URTTZG2+Lc
+ VkkWbqq94vs82Sgum1TasFbFxa3lT3qXMihyknBS/MPkkqKSgpe7DO6/y
+ EMsuckN3QnoumsiV0EfMJV4ZgnyoN39w0qDPizy+qPT0nK9TmL0c/Brdq
+ 9Fn3GMecUfJaoCdMrcXyYygxbPwUSa4BgZVcER7NoQNaMaX7oFCyu8Qo0
+ QmDOibNV8WkA0nq4blaeZWLSSC0T/Ksd3nWjfhFlKiza8pB94HvMAH67U g==;
+X-CSE-ConnectionGUID: F58AcTgqQt6LpqZ+74iMXg==
+X-CSE-MsgGUID: GSYLT29JRJaSWSQuS5P5fA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84325260"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84325260"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2026 09:55:36 -0700
+X-CSE-ConnectionGUID: uZV9zXs6TKu5F0JRNlL8xg==
+X-CSE-MsgGUID: NIPvginXTuWzoDVCtwnKCw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="279038911"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa001.fm.intel.com with ESMTP; 09 Jul 2026 09:59:27 -0700
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, uma.shankar@intel.com,
- kai.vehmanen@intel.com, ankit.k.nautiyal@intel.com,
- chaitanya.kumar.borah@intel.com
-Subject: [PATCH v1] drm/i915/dp: Gate UHBR SST SDP splitting on sink capability
-Date: Thu,  9 Jul 2026 22:19:03 +0530
-Message-ID: <20260709164903.1949947-1-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.48.1
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="258948499"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.89])
+ ([10.245.244.89])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2026 09:55:31 -0700
+Message-ID: <71e5b48b-307f-47f5-8fd5-b60ea43e4196@linux.intel.com>
+Date: Thu, 9 Jul 2026 18:55:20 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Oded Gabbay <ogabbay@kernel.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-fixes
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,117 +83,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[ffwll.ch,gmail.com];
 	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[mitulkumar.ajitkumar.golani@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[maarten.lankhorst@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:from_mime,intel.com:email,intel.com:mid,intel.com:dkim,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,gitlab.freedesktop.org:url,linux.intel.com:mid,linux.intel.com:from_mime,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9EC5D733A41
+X-Rspamd-Queue-Id: D0E95733A0C
 
-SDP splitting for 128b/132b (UHBR) SST audio must only be enabled when
-the sink advertises support for it. Previously sdp_split_enable
-was set for every UHBR SST stream carrying audio, regardless of sink
-capability.
+Hi Dave, Sima, 
 
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- .../drm/i915/display/intel_display_types.h    |  2 ++
- drivers/gpu/drm/i915/display/intel_dp.c       | 22 ++++++++++++++++++-
- 2 files changed, 23 insertions(+), 1 deletion(-)
+drm-misc-fixes for v7.2-rc3!
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index c048da7d6fea..272b14289e38 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1938,6 +1938,8 @@ struct intel_dp {
- 
- 	bool colorimetry_support;
- 
-+	bool sst_split_sdp_supported;
-+
- 	struct {
- 		enum transcoder transcoder;
- 		struct mutex lock;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 0922d23b284c..77c348509a0e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3359,12 +3359,15 @@ intel_dp_audio_compute_config(struct intel_encoder *encoder,
- 			      struct intel_crtc_state *pipe_config,
- 			      struct drm_connector_state *conn_state)
- {
-+	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-+
- 	pipe_config->has_audio =
- 		intel_dp_has_audio(encoder, conn_state) &&
- 		intel_audio_compute_config(encoder, pipe_config, conn_state);
- 
- 	pipe_config->sdp_split_enable = pipe_config->has_audio &&
--					intel_dp_is_uhbr(pipe_config);
-+					intel_dp_is_uhbr(pipe_config) &&
-+					intel_dp->sst_split_sdp_supported;
- }
- 
- void
-@@ -4413,6 +4416,17 @@ static bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
- 	return dprx & DP_VSC_SDP_EXT_FOR_COLORIMETRY_SUPPORTED;
- }
- 
-+static bool intel_dp_get_sst_split_sdp_status(struct intel_dp *intel_dp)
-+{
-+	u8 dprx = 0;
-+
-+	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_DPRX_FEATURE_ENUMERATION_LIST,
-+			      &dprx) != 1)
-+		return false;
-+	return dprx & DP_SST_SPLIT_SDP_CAP;
-+}
-+
-+
- static int intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
- 				  u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
- {
-@@ -4726,6 +4740,9 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
- 	intel_dp->colorimetry_support =
- 		intel_dp_get_colorimetry_status(intel_dp);
- 
-+	intel_dp->sst_split_sdp_supported =
-+		intel_dp_get_sst_split_sdp_status(intel_dp);
-+
- 	/*
- 	 * Read the eDP display control registers.
- 	 *
-@@ -4823,6 +4840,9 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
- 		intel_dp->colorimetry_support =
- 			intel_dp_get_colorimetry_status(intel_dp);
- 
-+		intel_dp->sst_split_sdp_supported =
-+			intel_dp_get_sst_split_sdp_status(intel_dp);
-+
- 		intel_dp_update_sink_caps(intel_dp);
- 	}
- 
--- 
-2.48.1
+Kind regards,
+~Maarten Lankhorst
 
+drm-misc-fixes-2026-07-09:
+drm-misc-fixes for v7.2-rc3:
+- Fix uaf in amdxdna mmap failure path.
+- A lot of deadlocks, access races and return value fixes in amdxdna.
+- Fix analogix_dp bitshifts during link training.
+- Use direct label in drm_exec.
+- Fix absent indirect bo handling in v3d.
+- Sync on first active crtc in fb_dirty, rather than first crtc.
+- Rework try_harder in the buddy allocator.
+- Make imagination function static to solve compiler warning.
+- Fix imagination error checking.
+The following changes since commit 8dc8f3f4c2382fb7d1b1986ba8f33a2466cd3d7a:
+
+  drm/imagination: Fix user array stride in pvr_set_uobj_array() (2026-07-02 11:16:18 +0100)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-07-09
+
+for you to fetch changes up to cf385cf6e713eba0720651174dac0b2d2f5bb8f8:
+
+  drm/imagination: fix error checking of pvr_vm_context_lookup() (2026-07-09 15:07:32 +0100)
+
+----------------------------------------------------------------
+drm-misc-fixes for v7.2-rc3:
+- Fix uaf in amdxdna mmap failure path.
+- A lot of deadlocks, access races and return value fixes in amdxdna.
+- Fix analogix_dp bitshifts during link training.
+- Use direct label in drm_exec.
+- Fix absent indirect bo handling in v3d.
+- Sync on first active crtc in fb_dirty, rather than first crtc.
+- Rework try_harder in the buddy allocator.
+- Make imagination function static to solve compiler warning.
+- Fix imagination error checking.
+
+----------------------------------------------------------------
+Arunpravin Paneer Selvam (1):
+      gpu/buddy: bail out of try_harder when alignment cannot be honoured
+
+Ben Dooks (1):
+      drm/imagination: make pvr_fw_trace_init_mask_ops static
+
+Christian König (1):
+      drm/drm_exec: avoid indirect goto
+
+Damon Ding (1):
+      drm/bridge: analogix_dp: Fix PE/VS value shift mismatch during link training
+
+Lizhi Hou (10):
+      accel/amdxdna: Prevent PM resume deadlock in hwctx_sync_debug_bo()
+      accel/amdxdna: Use unsigned long for nr_pages in amdxdna_hmm_register()
+      accel/amdxdna: Fix VMA access race
+      accel/amdxdna: Fix potential amdxdna_umap lifetime race
+      accel/amdxdna: fix open_ref leak and stale client pointer on dma map failure
+      accel/amdxdna: Fix deadlock on debug BO command timeout
+      accel/amdxdna: Fix hardware context race in amdxdna_update_heap()
+      accel/amdxdna: Check drmm_mutex_init() return value
+      accel/amdxdna: Check init_srcu_struct() return value
+      accel/amdxdna: Fix potential NULL pointer dereference of abo->client
+
+Luigi Santivetti (1):
+      drm/imagination: fix error checking of pvr_vm_context_lookup()
+
+Maíra Canal (1):
+      drm/v3d: Reject invalid indirect BO handle in indirect CSD setup
+
+Robert Mader (1):
+      drm: Guard DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE
+
+Thomas Zimmermann (1):
+      drm/fb-helper: Only consider active CRTCs for vblank sync
+
+Wentao Liang (1):
+      accel/amdxdna: Fix use-after-free in amdxdna_gem_dmabuf_mmap()
+
+ drivers/accel/amdxdna/aie2_ctx.c                   | 19 ++---
+ drivers/accel/amdxdna/aie2_message.c               |  4 +-
+ drivers/accel/amdxdna/amdxdna_ctx.c                | 56 ++++++++++---
+ drivers/accel/amdxdna/amdxdna_gem.c                | 50 ++++++++----
+ drivers/accel/amdxdna/amdxdna_gem.h                | 12 ++-
+ drivers/accel/amdxdna/amdxdna_pci_drv.c            | 21 ++++-
+ drivers/gpu/buddy.c                                | 67 +++++++++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c             |  2 +
+ drivers/gpu/drm/bridge/analogix/analogix_dp_core.c |  4 +
+ drivers/gpu/drm/drm_fb_helper.c                    | 92 +++++++++++++++++++++-
+ drivers/gpu/drm/drm_ioctl.c                        | 14 +++-
+ drivers/gpu/drm/imagination/pvr_context.c          |  4 +-
+ drivers/gpu/drm/imagination/pvr_fw_trace.c         |  2 +-
+ drivers/gpu/drm/tests/drm_exec_test.c              | 28 ++++---
+ drivers/gpu/drm/v3d/v3d_submit.c                   |  2 +
+ include/drm/drm_exec.h                             | 34 ++++----
+ 16 files changed, 311 insertions(+), 100 deletions(-)
