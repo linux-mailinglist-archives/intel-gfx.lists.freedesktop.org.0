@@ -2,38 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id h30+JuXtT2ocqgIAu9opvQ
+	id tSa/NzUSUGqGswIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 20:52:21 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 23:27:17 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4BB37348BE
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 20:52:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AED8D735CF0
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Jul 2026 23:27:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
+	dkim=pass header.d=intel.com header.s=Intel header.b=SN2i6SGB;
+	dmarc=pass (policy=none) header.from=intel.com;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B50D610E0C3;
-	Thu,  9 Jul 2026 18:52:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB44F10E0F5;
+	Thu,  9 Jul 2026 21:27:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7DA710E0C3;
- Thu,  9 Jul 2026 18:52:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8284130813846019260=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA28F10E0DF;
+ Thu,  9 Jul 2026 21:27:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783632433; x=1815168433;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=PIh1LgA76OeuLyM7Cm+K7ONHWY0KDCAc4ueIQT0kdss=;
+ b=SN2i6SGBXn02cP/0JDE0Prtyn10YkNh0GZYoYnEgAkEQSU6z/uksaK+G
+ CKpEMq8c6xiFA56Y7baIP1lXZQV4K/M0xAYH9+TrajY2oflyULPfyd6A8
+ 9CfLpzp8a12IxIfOWxqfND7qQteuzIvuuwkQmTIwiIfVRmphzQRRCh1AZ
+ 3DUEWDPR2E4kcY+vqYedD6SNwnjux6UfPkqCC2KKkKxmHhSwghiJpryYd
+ XBQ0Lba0vvDOlWuFWExhM54ptJTnxbWNLntDS8frZkK5VWKqXfcz5Gkvf
+ PgKjYpC1z2e1HYqor0fZYzikBv735sa6JeYDjxTkY+1PU5rQGRBSunt8D Q==;
+X-CSE-ConnectionGUID: 5fzRlejOR0iGUKSUsn1WGA==
+X-CSE-MsgGUID: 13xfqz9lT1qRn9wlj55XKA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="109877636"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="109877636"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2026 14:27:12 -0700
+X-CSE-ConnectionGUID: MTN/kHydQYCDj52Dxyfv3Q==
+X-CSE-MsgGUID: XyNVjPqsQWCTeekcc09HVw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="254217942"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO fedora)
+ ([10.245.244.93])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2026 14:27:08 -0700
+Date: Thu, 9 Jul 2026 23:26:57 +0200
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-xe-fixes
+Message-ID: <alASIbW318Rl-HTv@fedora>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Gate_UHBR_?=
- =?utf-8?q?SST_SDP_splitting_on_sink_capability?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 09 Jul 2026 18:52:16 -0000
-Message-ID: <178362313693.171959.5919145563571076876@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260709164903.1949947-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20260709164903.1949947-1-mitulkumar.ajitkumar.golani@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,139 +79,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.11 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,emeril.freedesktop.org:from_mime,patchwork.freedesktop.org:url,lists.freedesktop.org:from_smtp,lists.freedesktop.org:replyto]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:from_mime,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,fedora:mid,intel.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C4BB37348BE
+X-Rspamd-Queue-Id: AED8D735CF0
 
---===============8284130813846019260==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave, Simona
 
-== Series Details ==
+The drm-xe-fixes PR towards -rc3. This time a small number of various
+driver fixes only.
 
-Series: drm/i915/dp: Gate UHBR SST SDP splitting on sink capability
-URL   : https://patchwork.freedesktop.org/series/170144/
-State : success
+Thanks,
+Thomas
 
-== Summary ==
+drm-xe-fixes-2026-07-09:
+Driver Changes:
+- Fix PTE index in xe_vm_populate_pgtable for chunked binds (Matt Brost)
+- Wait on external BO kernel fences in exec IOCTL (Matt Brost)
+- Remove duplicate include (Anas Khan)
+- Free madvise VMA array on L2 flush failure (Guangshuo Li)
+- Stub notifier_lock helpers when DRM_GPUSVM=n (Shuicheng Lin)
+The following changes since commit 959b5016e4646b55fd2fd0438932e4c4e9ce171f:
 
-CI Bug Log - changes from CI_DRM_18797 -> Patchwork_170144v1
-====================================================
+  drm/xe/oa: Fix offset alignment for MERT WHITELIST_OA_MERT_MMIO_TRG (2026-07-02 12:29:44 +0200)
 
-Summary
--------
+are available in the Git repository at:
 
-  **SUCCESS**
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2026-07-09
 
-  No regressions found.
+for you to fetch changes up to f5ef65adf81da3dbce4e692e48c1754c0bb95da0:
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170144v1/index.html
+  drm/xe/userptr: Stub notifier_lock helpers when DRM_GPUSVM=n (2026-07-09 12:09:42 +0200)
 
-Participating hosts (42 -> 40)
-------------------------------
+----------------------------------------------------------------
+Driver Changes:
+- Fix PTE index in xe_vm_populate_pgtable for chunked binds (Matt Brost)
+- Wait on external BO kernel fences in exec IOCTL (Matt Brost)
+- Remove duplicate include (Anas Khan)
+- Free madvise VMA array on L2 flush failure (Guangshuo Li)
+- Stub notifier_lock helpers when DRM_GPUSVM=n (Shuicheng Lin)
 
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
+----------------------------------------------------------------
+Anas Khan (1):
+      drm/xe: remove duplicate <kunit/test-bug.h> include
 
+Guangshuo Li (1):
+      drm/xe: free madvise VMA array on L2 flush failure
 
-Changes
--------
+Matthew Brost (2):
+      drm/xe: Fix PTE index in xe_vm_populate_pgtable() for chunked binds
+      drm/xe: Wait on external BO kernel fences in exec IOCTL
 
-  No changes found
+Shuicheng Lin (1):
+      drm/xe/userptr: Stub notifier_lock helpers when DRM_GPUSVM=n
 
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18797 -> Patchwork_170144v1
-
-  CI-20190529: 20190529
-  CI_DRM_18797: e5af800f48075d6b249b979cc8bf210c051d86aa @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8996: 8996
-  Patchwork_170144v1: e5af800f48075d6b249b979cc8bf210c051d86aa @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170144v1/index.html
-
---===============8284130813846019260==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Gate UHBR SST SDP splitting on sink capability</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170144/">https://patchwork.freedesktop.org/series/170144/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170144v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170144v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18797 -&gt; Patchwork_170144v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170144v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18797 -&gt; Patchwork_170144v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18797: e5af800f48075d6b249b979cc8bf210c051d86aa @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8996: 8996<br />
-  Patchwork_170144v1: e5af800f48075d6b249b979cc8bf210c051d86aa @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============8284130813846019260==--
+ drivers/gpu/drm/xe/tests/xe_pci.c  |  1 -
+ drivers/gpu/drm/xe/xe_exec.c       | 22 ++++++++++++++++------
+ drivers/gpu/drm/xe/xe_pt.c         | 19 +++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vm_madvise.c |  2 +-
+ 4 files changed, 34 insertions(+), 10 deletions(-)
