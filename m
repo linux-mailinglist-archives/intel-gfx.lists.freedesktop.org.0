@@ -2,72 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id xzZrHAD6UGpX9QIAu9opvQ
+	id cxojI2n/UGoP9wIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 15:56:16 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 16:19:21 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 599D573B7A9
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 15:56:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BA5173BB16
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 16:19:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=de4Ouaaw;
+	dkim=pass header.d=intel.com header.s=Intel header.b=h0IPrYyR;
 	dmarc=pass (policy=none) header.from=intel.com;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D701410F900;
-	Fri, 10 Jul 2026 13:56:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5339588697;
+	Fri, 10 Jul 2026 14:19:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CFC010F8FD;
- Fri, 10 Jul 2026 13:56:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D45810E1A3;
+ Fri, 10 Jul 2026 14:19:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783691773; x=1815227773;
+ t=1783693156; x=1815229156;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=1zDQP5MqeICwEWXqZNgbmF3qVwqgkJvVmMymABthOZk=;
- b=de4OuaawLANIUPuzhUg/vhpI5ou+jBB1VPZlwXeLG/+DvjNMlVcz8PIh
- uyjdv/hUwFlEcEwEv2kz07gGZ35F2QbXhbFMs4NFouK1KPQVFVFLjOcc1
- 6oaGMeO57b7sqAbcIMaInXA7ouZv3l0YwpCIFmSf86mkyt45dh71ggoQA
- AqrEYookLj/r6Cx9Fn0hr5JxZPNQKZ43oxez9Z6b9OyVPlRlcw9zfuVq3
- TcwWa/Yg2MFRQshlhRPEeJxtbM+++BF2suDTcwOphVjDgW0hOWve61MvN
- 7irXoq2GgNwrG26toLy65ap0KpjjnCsArSpEJABbxiizCXs7lG4L/yLxN A==;
-X-CSE-ConnectionGUID: mshMHfIeSQKybOIHis232g==
-X-CSE-MsgGUID: fPGFcxKaSRSyT8I71fCRoA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="84170381"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="84170381"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 06:56:09 -0700
-X-CSE-ConnectionGUID: C6roA56YRmiSdgI3S9XyMg==
-X-CSE-MsgGUID: REZWLaOCQ+6LwLxRPCpnEQ==
+ bh=5xqZRoVs04553QBmifkFy6kQq1W0V6AgofrU2LzY4b4=;
+ b=h0IPrYyRj6ZtNK0z8XXJgn5IcRVuC4zv6wJw6uqLdyySSqtPY2BXnuE2
+ RCIBVaAKEW48qQ5qotMHMKAJHADCttIv6eNY2wW2aEpniEygjQhKSG3YD
+ /n19SFiE3xKxGE0iWqi0/qIiqoqMgVPpdH2xgtFo5zFySWyibMjI8r0D3
+ jMXcJWQ2o07AuhFHxZnZ/TLZ/iyKFhvgyHuBgQ+agE15EewpfJquzueWE
+ wf8khPHeaklkLK5Vp3ifG6DqeKgQxzxqZRnOja2jtHwi3qt5bNdQdHndP
+ PQe8scmjO6U6NCpJr7FkB79S1KOaImtMAr/Fwq3vwVDg+A54KihLIXNv6 g==;
+X-CSE-ConnectionGUID: rpDZlTWsTviJ1vezBcALKQ==
+X-CSE-MsgGUID: 8VooMGfkR4WobwifIGADug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="88221517"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="88221517"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2026 07:19:16 -0700
+X-CSE-ConnectionGUID: 39XakDziQVK2bUUHMr0pDQ==
+X-CSE-MsgGUID: rYgknKpmSgCro8CFVSEccw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="253157307"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="250909834"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.244.208])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 06:56:05 -0700
-Date: Fri, 10 Jul 2026 16:56:02 +0300
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2026 07:19:14 -0700
+Date: Fri, 10 Jul 2026 17:19:12 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "LIOU, Mei Fan" <mei.fan.liou@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Arun R Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCH] drm/i915: skip eDP hw probe when connector forced off
- via cmdline
-Message-ID: <alD58t0ihoGmzbj7@intel.com>
-References: <20260707085704.14519-1-mei.fan.liou@intel.com>
+To: Maarten Lankhorst <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 10/10] drm/i915/display: Do not take uncore lock in
+ i915_get_vblank_counter
+Message-ID: <alD_YJbOxdRUJTQZ@intel.com>
+References: <20260702072154.171324-1-dev@lankhorst.se>
+ <20260702072154.171324-11-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260707085704.14519-1-mei.fan.liou@intel.com>
+In-Reply-To: <20260702072154.171324-11-dev@lankhorst.se>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -86,89 +81,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.28 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
+X-Spamd-Result: default: False [-0.72 / 15.00];
 	R_MIXED_CHARSET(0.59)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:email,intel.com:mid,intel.com:dkim,linux.intel.com:from_mime]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 599D573B7A9
+X-Rspamd-Queue-Id: 7BA5173BB16
 
-On Tue, Jul 07, 2026 at 04:57:04PM +0800, LIOU, Mei Fan wrote:
-> When eDP connector is forced off (video=eDP-1:d),
-> intel_edp_init_connector() ignores the force flag and still probes
-> the AUX channel for DPCD and EDID.
+On Thu, Jul 02, 2026 at 09:21:53AM +0200, Maarten Lankhorst wrote:
+> This fixes a lockdep splat that occurs in the code that should be run
+> with interrupts disabled. The uncore and DMC locks should not be taken
+> and released repeatedly in a timing sensitive path.
 > 
-> video=eDP-1:d sets connector->force = DRM_FORCE_OFF via
-> drm_connector_get_cmdline_mode() inside drm_connector_init_with_ddc(),
-> which logs 'forcing eDP-1 connector off'. However,
-> intel_edp_init_connector() is called immediately after and ignores
-> the force flag, so AUX/PPS probing still occurs.
-> 
-> Fix this by checking connector->base.force == DRM_FORCE_OFF in
-> intel_edp_init_connector() after the intel_dp_is_edp() check, before
-> any AUX/DPCD probing is attempted. When the connector is forced off,
-> log an informational message and goto out_vdd_off to properly clean
-> up PPS state and skip all remaining hardware probing.
-> 
-> Suggested-by: Arun R Murthy <arun.r.murthy@intel.com>
-> Signed-off-by: LIOU, Mei Fan <mei.fan.liou@intel.com>
+> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_de.h       |  8 ++++++
+>  drivers/gpu/drm/i915/display/intel_vblank.c   |  4 +--
+>  drivers/gpu/drm/i915/intel_uncore.h           | 26 +++++++++++++------
+>  .../drm/xe/compat-i915-headers/intel_uncore.h |  7 +++++
+>  4 files changed, 35 insertions(+), 10 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 3569e61e7fee..fa61b299f83e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -7057,6 +7057,17 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+> diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
+> index 1029790194296..497a308322847 100644
+> --- a/drivers/gpu/drm/i915/display/intel_de.h
+> +++ b/drivers/gpu/drm/i915/display/intel_de.h
+> @@ -65,6 +65,14 @@ intel_de_read64_2x32(struct intel_display *display, intel_reg_t reg)
+>  	return (u64)upper << 32 | lower;
+>  }
 >  
->  	intel_alpm_init(intel_dp);
->  
-> +	/*
-> +	 * If the connector has been forced off via the kernel cmdline
-> +	 * (e.g. video=eDP-1:d), skip DPCD/AUX probing.
-> +	 */
-> +	if (connector->base.force == DRM_FORCE_OFF) {
-> +		drm_info(display->drm,
-> +			 "[ENCODER:%d:%s] eDP disabled via cmdline, skipping eDP init\n",
-> +			 encoder->base.base.id, encoder->base.name);
-> +		goto out_vdd_off;
-> +	}
-
-This doesn't looks sane if the eDP panel is actually there. We need to
-turn it off gracefully.
-
+> +static inline u64
+> +intel_de_read64_2x32_fw(struct intel_display *display,
+> +			i915_reg_t lower_reg, i915_reg_t upper_reg)
+> +{
+> +	return intel_uncore_read64_2x32_fw(__to_uncore(display),
+> +					   lower_reg, upper_reg);
+> +}
 > +
->  	/* Cache DPCD and EDID for edp. */
->  	has_dpcd = intel_edp_init_dpcd(intel_dp, connector);
+>  static inline void
+>  intel_de_posting_read(struct intel_display *display, intel_reg_t reg)
+>  {
+> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+> index c0cc0a4c25dbe..5ca22899055d7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+> @@ -109,8 +109,8 @@ u32 i915_get_vblank_counter(struct drm_crtc *crtc)
+>  	 * we get a low value that's stable across two reads of the high
+>  	 * register.
+>  	 */
+> -	frame = intel_de_read64_2x32_volatile(display, PIPEFRAMEPIXEL(display, pipe),
+> -					      PIPEFRAME(display, pipe));
+> +	frame = intel_de_read64_2x32_fw(display, PIPEFRAMEPIXEL(display, pipe),
+> +				        PIPEFRAME(display, pipe));
+
+This is the only user of intel_de_read64_2x32_volatile() and it
+doesn't need any locking/wakelocks/etc so we should just convert
+intel_de_read64_2x32_volatile() into intel_de_read64_2x32_volatile_fw().
+And we should just skip the uncore dependency (so that we'll have one 
+less thing to worry about later) so I'd just implement it directly in
+intel_de.[ch] in terms of intel_de_read_fw().
+
 >  
+>  	pixel = frame & PIPE_PIXEL_MASK;
+>  	frame = (frame >> PIPE_FRAME_LOW_SHIFT) & 0xffffff;
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
+> index fafc2ca9a2376..507398a562649 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.h
+> +++ b/drivers/gpu/drm/i915/intel_uncore.h
+> @@ -449,13 +449,28 @@ static inline void intel_uncore_rmw_fw(struct intel_uncore *uncore,
+>  		intel_uncore_write_fw(uncore, reg, val);
+>  }
+>  
+> +static inline u64
+> +intel_uncore_read64_2x32_fw(struct intel_uncore *uncore,
+> +			    i915_reg_t lower_reg, i915_reg_t upper_reg)
+> +{
+> +	u32 upper, lower, old_upper, loop = 0;
+> +	upper = intel_uncore_read_fw(uncore, upper_reg);
+> +	do {
+> +		old_upper = upper;
+> +		lower = intel_uncore_read_fw(uncore, lower_reg);
+> +		upper = intel_uncore_read_fw(uncore, upper_reg);
+> +	} while (upper != old_upper && loop++ < 2);
+> +
+> +	return (u64)upper << 32 | lower;
+> +}
+> +
+>  static inline u64
+>  intel_uncore_read64_2x32(struct intel_uncore *uncore,
+>  			 i915_reg_t lower_reg, i915_reg_t upper_reg)
+>  {
+> -	u32 upper, lower, old_upper, loop = 0;
+>  	enum forcewake_domains fw_domains;
+>  	unsigned long flags;
+> +	u64 ret;
+>  
+>  	fw_domains = intel_uncore_forcewake_for_reg(uncore, lower_reg,
+>  						    FW_REG_READ);
+> @@ -466,17 +481,12 @@ intel_uncore_read64_2x32(struct intel_uncore *uncore,
+>  	spin_lock_irqsave(&uncore->lock, flags);
+>  	intel_uncore_forcewake_get__locked(uncore, fw_domains);
+>  
+> -	upper = intel_uncore_read_fw(uncore, upper_reg);
+> -	do {
+> -		old_upper = upper;
+> -		lower = intel_uncore_read_fw(uncore, lower_reg);
+> -		upper = intel_uncore_read_fw(uncore, upper_reg);
+> -	} while (upper != old_upper && loop++ < 2);
+> +	ret = intel_uncore_read64_2x32_fw(uncore, lower_reg, upper_reg);
+>  
+>  	intel_uncore_forcewake_put__locked(uncore, fw_domains);
+>  	spin_unlock_irqrestore(&uncore->lock, flags);
+>  
+> -	return (u64)upper << 32 | lower;
+> +	return ret;
+>  }
+>  
+>  static inline int intel_uncore_write_and_verify(struct intel_uncore *uncore,
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+> index 08d7ab9336725..764bc94044537 100644
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+> +++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+> @@ -74,6 +74,13 @@ intel_uncore_read64_2x32(struct intel_uncore *uncore,
+>  	return (u64)upper << 32 | lower;
+>  }
+>  
+> +static inline u64
+> +intel_uncore_read64_2x32_fw(struct intel_uncore *uncore,
+> +			    i915_reg_t i915_lower_reg, i915_reg_t i915_upper_reg)
+> +{
+> +	return intel_uncore_read64_2x32(uncore, i915_lower_reg, i915_upper_reg);
+> +}
+> +
+>  static inline void intel_uncore_posting_read(struct intel_uncore *uncore,
+>  					     i915_reg_t i915_reg)
+>  {
 > -- 
-> 2.52.0
+> 2.53.0
 
 -- 
 Ville Syrjälä
