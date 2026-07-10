@@ -2,44 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id RK/FBjrUUGqN5gIAu9opvQ
+	id w14mKzrUUGqO5gIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 13:15:06 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB76273A090
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 13:15:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E95B73A093
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 13:15:06 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=HGZwEkWN;
+	dkim=pass header.d=lankhorst.se header.s=default header.b="ZbkrlV/h";
 	dmarc=pass (policy=none) header.from=lankhorst.se;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C527D10F883;
-	Fri, 10 Jul 2026 11:15:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACB6510F875;
+	Fri, 10 Jul 2026 11:15:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A008D10F879;
- Fri, 10 Jul 2026 11:15:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5359710F87B;
+ Fri, 10 Jul 2026 11:15:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1783682101;
- bh=FhWnln2x5ZsoqS5+DJezj3L6bEYUD7ALmsG56Z9yjwM=;
+ s=default; t=1783682102;
+ bh=q+3zmwocnbtU+hrSwY79ROUqACgOGGFEu709GCKpwCg=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=HGZwEkWNbebm+Wl72c7CS5DDSeAVv7Cnz8rrpoBpJUyblM2KeYFuVl9GRzQV2C2Me
- tz1kZc2XN3fgdg+TjsTRg9JJX2OJDcrgrWaAmj38Z0dk99gBHwFaHIUeqpQGLP/JHq
- WBK6WbGarhPLgpSClIyWA+R+iVJMEpWd+EI7c6S6tnSi2BipFL8tGi5rmtuSc26/RH
- h7sbc6sF0vEK82TMkGuZMEiNHZHQrSF1VYwnBhdQd1k24ac7Awi8jcoDjvZ2P3BqJw
- kbVYV/Nz4X13IFQzfsK+gRSL9CojaVeHJR8q0+IoANdUtVpv/w3puUnxEwVxjAtoFk
- RuLJKXvw5cL/w==
+ b=ZbkrlV/hecA94hCNo6qXPfUDdtrChLoTGdWGZrIjfgurodyUcOWgzctYp41yTh4hQ
+ NEU9kWqyo4cUybSkLgkMM8Udl3cLrlwg6Htqhrd2xrVn1Nu4ZYHan8DzmuC7/T7W1v
+ bxSbh2ilP68sJf+ipl+D9Z347I2LBgjE10HHTovjJ5OJSHbVoFj/fPxvoFK0QbQW7s
+ Z/h2ZCACNwayQjM1cFF2Q5jd5qnoW6ZcFMk/iqVs8xYNJCbMZ+HcZD1SXVn3pk19Tn
+ qfccR242ymCQ6R5XmTrK8TF8sJbx8ZrYYPJfzOuw8JL1SpVDTIF+bSLQJvQYFeeLeU
+ XXiRWxTJkwQWw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  Jani Nikula <jani.nikula@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 06/11] drm/xe: Print a debug message if we have no stolen
- for the initial FB
-Date: Fri, 10 Jul 2026 13:15:33 +0200
-Message-ID: <20260710111539.1274555-7-dev@lankhorst.se>
+Subject: [PATCH v2 07/11] drm/xe: Abstract the initial FB PTE checks a bit
+Date: Fri, 10 Jul 2026 13:15:34 +0200
+Message-ID: <20260710111539.1274555-8-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260710111539.1274555-1-dev@lankhorst.se>
 References: <20260710111539.1274555-1-dev@lankhorst.se>
@@ -86,48 +85,63 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	DKIM_TRACE(0.00)[lankhorst.se:+]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CB76273A090
+X-Rspamd-Queue-Id: 6E95B73A093
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Inform the poor sop reading the logs why the initial FB was rejected
-if there is no stolen memory.
-
-Technically this should perhaps be an error since the plane is known
-to be enabled at this point, and if there is no stolen then it clearly
-can't be scanning out from anywhere. But maybe there are some
-virtualization passthrough cases and whatnot where we might not be
-able to get access to stolen, so keep it as debug (same as i915).
+Add a few helpers that allow us to abstract the xe initial FB PTE
+check a bit. Still very ad-hoc compared to the nicely abstracted
+i915 counterpart, but whatever.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Link: https://patch.msgid.link/20260511214122.8468-9-ville.syrjala@linux.intel.com
+Link: https://patch.msgid.link/20260511214122.8468-10-ville.syrjala@linux.intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 17 ++++++++++++++---
+ 1 file changed, 14 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index feb979cca12af..a62e5394c3f7d 100644
+index a62e5394c3f7d..1e1962c955890 100644
 --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
 +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -68,10 +68,14 @@ initial_plane_bo(struct xe_device *xe,
- 			    "Using phys_base=%pa, based on initial plane programming\n",
- 			    &phys_base);
- 	} else {
--		struct ttm_resource_manager *stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
-+		struct ttm_resource_manager *stolen;
+@@ -19,8 +19,19 @@
+ #include "xe_fb_pin.h"
+ #include "xe_ggtt.h"
+ #include "xe_mmio.h"
++#include "xe_ttm_stolen_mgr.h"
+ #include "xe_vram_types.h"
  
--		if (!stolen)
-+		stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
-+		if (!stolen) {
-+			drm_dbg_kms(&xe->drm, "No stolen for initial FB\n");
- 			return NULL;
-+		}
++static bool is_pte_local(u64 pte)
++{
++	return pte & XE_GGTT_PTE_DM;
++}
 +
- 		phys_base = base;
- 		flags |= XE_BO_FLAG_STOLEN;
++static bool need_pte_local(struct xe_device *xe)
++{
++	return IS_DGFX(xe);
++}
++
+ static struct xe_bo *
+ initial_plane_bo(struct xe_device *xe,
+ 		 struct intel_initial_plane_config *plane_config)
+@@ -44,13 +55,13 @@ initial_plane_bo(struct xe_device *xe,
+ 	if (IS_DGFX(xe)) {
+ 		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
  
+-		if (!(pte & XE_GGTT_PTE_DM)) {
+-			drm_err(&xe->drm,
+-				"Initial plane programming missing DM bit\n");
++		if (is_pte_local(pte) != need_pte_local(xe)) {
++			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
+ 			return NULL;
+ 		}
+ 
+ 		phys_base = pte & ~(page_size - 1);
++
+ 		flags |= XE_BO_FLAG_VRAM0;
+ 
+ 		/*
 -- 
 2.53.0
 
