@@ -2,50 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Ide9Bj3UUGqT5gIAu9opvQ
+	id vdcoHOzgUGr76gIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 13:15:09 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 14:09:16 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9BBE73A09C
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 13:15:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDBD773A879
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 14:09:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=jekgGVCw;
-	dmarc=pass (policy=none) header.from=lankhorst.se;
+	dkim=none;
+	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 286A110F888;
-	Fri, 10 Jul 2026 11:15:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFBE710F88B;
+	Fri, 10 Jul 2026 12:09:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C62D10F879;
- Fri, 10 Jul 2026 11:15:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1783682105;
- bh=sUY6+wTS+iTpUp3gUnkIDFQjqphmwgx2JrX51Cpp61w=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=jekgGVCw/0uoyPbZeSCTsQWaRVgkDT9b14WcYSgkYY9IRzpLVc32+8zoxcWVTb9eq
- KhJcdfaHwPO6PEocimcZoCSzhL/jpBOeLLRYl9yzdWKMjEikL+MrQt7n9s8PyM+1qe
- hiPZswLxoMA/yArIE8rdVbFkzl+8SwpYWz1Yuub2efmXfy16hG9SVKLarCXZvXVX5j
- bw9KSeHKcU2LIvox5OOftS/IFPqTfmd8IldY104edr8nyzOJgeROk1wlcDwqI49xNC
- HfGJV1NbysIfBgczaXbZRuAzqfiuBkPnB4e+FDsACKc47E3TvVH7lWm+Fl0ez6LL3T
- 8H2oOSxLJ/E+Q==
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 11/11] drm/i915: Print the phys_base in addition to the
- dma_addr for the BIOS FB
-Date: Fri, 10 Jul 2026 13:15:38 +0200
-Message-ID: <20260710111539.1274555-12-dev@lankhorst.se>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260710111539.1274555-1-dev@lankhorst.se>
-References: <20260710111539.1274555-1-dev@lankhorst.se>
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8239210F88B;
+ Fri, 10 Jul 2026 12:09:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7175853916924021244=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2Cxe=7D=3A_so?=
+ =?utf-8?q?me_BIOS_FB_takeover_fixes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 10 Jul 2026 12:09:12 -0000
+Message-ID: <178368535252.174566.163006393030838936@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260710111539.1274555-1-dev@lankhorst.se>
+In-Reply-To: <20260710111539.1274555-1-dev@lankhorst.se>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,69 +46,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lankhorst.se:from_mime,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:dkim];
-	RCVD_COUNT_TWO(0.00)[2];
-	RCPT_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
-	DKIM_TRACE(0.00)[lankhorst.se:+]
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,lists.freedesktop.org:replyto,patchwork.freedesktop.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C9BBE73A09C
+X-Rspamd-Queue-Id: BDBD773A879
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============7175853916924021244==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Print the dma_addr, phys_base and memory region name for the BIOS FB.
-Should make it a bit easier to see whether everything looks correct or
-not.
+== Series Details ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Link: https://patch.msgid.link/20260511214122.8468-15-ville.syrjala@linux.intel.com
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/i915/i915_initial_plane.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Series: drm/{i915,xe}: some BIOS FB takeover fixes
+URL   : https://patchwork.freedesktop.org/series/170193/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c b/drivers/gpu/drm/i915/i915_initial_plane.c
-index 549fe1dc5b6eb..98858a78e46a3 100644
---- a/drivers/gpu/drm/i915/i915_initial_plane.c
-+++ b/drivers/gpu/drm/i915/i915_initial_plane.c
-@@ -69,12 +69,12 @@ initial_plane_phys(struct drm_i915_private *i915,
- 		return false;
- 	}
- 
--	drm_dbg_kms(&i915->drm, "Using dma_addr=%pa, based on initial plane programming\n",
--		    &dma_addr);
--
- 	*out_phys_base = dma_addr - mem->region.start;
- 	*out_mem = mem;
- 
-+	drm_dbg_kms(&i915->drm, "Initial plane dma_addr=%pa phys_base=%pa mem=%s\n",
-+		    &dma_addr, out_phys_base, mem->name);
-+
- 	return true;
- }
- 
--- 
-2.53.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_18800 -> Patchwork_170193v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170193v1/index.html
+
+Participating hosts (42 -> 39)
+------------------------------
+
+  Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18800 -> Patchwork_170193v1
+
+  CI-20190529: 20190529
+  CI_DRM_18800: b9fb5de18ad076d077d7b45a3722cfb468ead956 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8997: 8997
+  Patchwork_170193v1: b9fb5de18ad076d077d7b45a3722cfb468ead956 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170193v1/index.html
+
+--===============7175853916924021244==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/{i915,xe}: some BIOS FB takeover fixes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170193/">https://patchwork.freedesktop.org/series/170193/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170193v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170193v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18800 -&gt; Patchwork_170193v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170193v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 39)</h2>
+<p>Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18800 -&gt; Patchwork_170193v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18800: b9fb5de18ad076d077d7b45a3722cfb468ead956 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8997: 8997<br />
+  Patchwork_170193v1: b9fb5de18ad076d077d7b45a3722cfb468ead956 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============7175853916924021244==--
