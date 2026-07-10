@@ -2,71 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id zIUvHSpDUWr5BQMAu9opvQ
+	id b68ULihDUWr1BQMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 21:08:26 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 21:08:24 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DB0773D94E
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 21:08:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63EA573D93C
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 21:08:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=i+oSygXn;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Le8KTyLI;
 	dmarc=pass (policy=none) header.from=gmail.com;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB3010F972;
-	Fri, 10 Jul 2026 19:08:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7157810F96D;
+	Fri, 10 Jul 2026 19:08:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
- [209.85.128.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C58F10F962
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 19:08:07 +0000 (UTC)
-Received: by mail-wm1-f48.google.com with SMTP id
- 5b1f17b1804b1-493c5220cb7so9748375e9.3
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+ [209.85.128.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03ED410F964
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 19:08:08 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id
+ 5b1f17b1804b1-493c733f15aso12063365e9.0
  for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 12:08:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20251104; t=1783710486; x=1784315286; darn=lists.freedesktop.org;
  h=content-transfer-encoding:reply-to:content-type:mime-version
  :references:in-reply-to:message-id:date:subject:to:from:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=zbrYcqmMOcj7F4MQKjHREDeErg/FeYwN50JFqd0IkSY=;
- b=i+oSygXnGIF7RDeABxAQkP++3FoHIFTch2k4T5tASWfc/nrwxSF4WtVOm63zAxRiOR
- M6CfAPmJXFtOVnBmzwKw6ErQ8Y42mfTffwN3yptvyW3a7+dU9WU1/OWiSwekZk9BUy2N
- PCSXsG0HvSaHs04qwaUifTNgdfHXxLl8NKcDbc9RSc/ZwC2uSoQSguSfuQAYDhTZYgbQ
- IOd1KDr9x+d1PzmxmiFjcIEp1XrigVWTNFdNvAMxsh2i+dG6WpgONn84iJtd2jSG/Oea
- E0taIPUosuuvVpTP6dctRaxlZJZxREyJX8t+jw8U83KJWOOJ853Vq20kSpPVAps+1V2o
- Y4hw==
+ bh=IOmjbtLYRqKMFq3vRWGT3hOtZz67iXQHbJfJ46cKOMg=;
+ b=Le8KTyLIGLaA6v8sZadV65LV/7w46D5ggqmcWAgLzSW2OUnj8mjDM6Fc2t1goVxJ/E
+ 7IBCR0VO+upogSVpwBCkF4J5qvGP/uommSjsMKz55Qxsg2luoS/dlo5F5fMGVmebv1g4
+ LFiymyno3MZpYcGiOD6FAOLYwWIFiDqTsJSiy3L4HzGDCVxhE/wagJoZAJrL4J7fJcsc
+ JcTWPmNU/pdwvOeUbObxvhNj5Cg7Suv9EUadr53olIU3ASOI5TAWbk3jK+PnwptTzD5J
+ cMj6aoQ1eKKW2aUqQ/sJqDksdCXvyENC2uGLomZdLnnOB7n3TcOh9Fvm145wijPtaDLo
+ 1qhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20251104; t=1783710486; x=1784315286;
  h=content-transfer-encoding:reply-to:content-type:mime-version
  :references:in-reply-to:message-id:date:subject:to:from:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=zbrYcqmMOcj7F4MQKjHREDeErg/FeYwN50JFqd0IkSY=;
- b=Hfxyb2qIZqHO3zXZq1OdwvFu69Fj+8KiRX2XMeJl2sIP236I3uDil8rjkV+zrwv8xN
- JbpR9AiD07dTxiadVXj9QSLjPj6Fq55zH+XXCLjcG+DWorY8MJipNPTAm0WHn9Ajy07P
- 0v9eacQMgn8is89wq5pAKtleYoQ7NB7sSad8kwdQw+E/F0p11dwaiTdSIAQtuIW9QKO1
- BRcfGvMKhC8WiR9t2LJ4DMGZFh/tWvjyy5W0RhQ7fai2Z0iQG4G1C38Neh7zNmLvnUTv
- 8bk3tzMJmQ0o2bjzpvOWHD9U1FAuBTynbfF49kw+Rpkq8q+mGREiKANeiOonbErlrCX8
- FwrA==
+ bh=IOmjbtLYRqKMFq3vRWGT3hOtZz67iXQHbJfJ46cKOMg=;
+ b=KnHaHnTlNKqZoS4bKm8PQ4Zqk7Ve19c8BndAPy2Fzm6s0hOVmahFTx8I4hrQmsgnpq
+ fEmBJYf6uQ8R9yyb1lJ9uTuYh+p8iF/9kDjHi5hmXym225IAaEVPUhlCEyyzRJes65ID
+ QHWze3HuTm+bB08iD49YLBWGgVxBtqtBb36YoTuLU72qXLJqJ9I6Djzm5inAzz/ETqx0
+ knaA40LIj5gSHxnfCLjMuUEiyp3NMeNtTEelQ4Opz94hQHymNjub1qXCHxkxjJAscnd9
+ KnYKc7nWCjLymckemu2dcCjC4aE4N4OsBtyrcVV934nFOzAKi6F5Iz/x/Fmemr0g5gzA
+ LUow==
 X-Forwarded-Encrypted: i=1;
- AHgh+RpY3jfBNmmyxSpdxTOcONNrFxhZ0MCgj59EpP5VGgKLE3GaRYDTNKuE1aFyp90VlzuI8WNOhIPMl7M=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwTRgmn+NReikA+cJGtPKF4vRPCxwKAL9CyBMUNGUHTQE7yZqIg
- XjQaG8DhJOfWi7RCDpZbaOcYF6TTZoma04XySaboiVaUhNP0AQSqHxxl
-X-Gm-Gg: AfdE7cmoTTHWv+ttnInfJjs8fRTis7Wi9QuCg77ycCamNM56rqCEOw+T0uElClYvFvY
- oiV3/p9UbeoBcliz5WOKyVUm9GPDzfVsmbrMS033ExzLBIeYjDGaAr3CE3vAKIm2mfzrw6SR0mB
- FOHmE8iD4Ii2/LfgcI/N5Nzw+ikbE3gG3t/HlHVUyj+Bxh+831YzM9ijvNVk93x3Kcz7D+eRe6C
- ON8I0/HeNbcgImw0ZpU1TkZWXV+72i1E+jJM7TpAYp5kDeJ1W1vyK/MgYX6PW4rGpeAGcJtgbb2
- gezi7ZFvV6zuY+0xau9cfB5j4tadG+SVGqMJU+k7hmDGnb55cAqbYo11x1op3rP8IVyPffXlHii
- 6z6NGY/7UiXEjOlkg59scQeiy9+PXL8DB2faQxpLo1Uyo4TOVjGDdMRUk7uXKTgmM1QNhzHqQT+
- 0AZyMgaMQHWsu0c55ikCcvOQHB/hepSOvd6vcR
-X-Received: by 2002:a05:600c:4ece:b0:493:a613:56b2 with SMTP id
- 5b1f17b1804b1-493f87d8573mr1160215e9.8.1783710485433; 
- Fri, 10 Jul 2026 12:08:05 -0700 (PDT)
+ AHgh+RrXqNzbOSclML+fvFycBy2k3wJ5xiOnFNoShqPZSauYYKHy50CBVuFkaagI3Bp8QwLlFAnREEgYPoA=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzsprH2/yid4jXGxDPc2Cv9nE3h/MROukpLsMraBcIw+FNYStlJ
+ atTkRuRJKg0FvlDsYGexpVDZZ3GSh5f5dDdgE2zYi4l5ifrx6xuub85r
+X-Gm-Gg: AfdE7cnNS92cXLbLeHxA7+F+Kp81z9XQ7v5GXmLwz3WniGvp0eLc9wWpLaL0Qu+W25+
+ s2/6py5sliGenZE306/N1hbDTY0gskQo6SqITXH8/0ocncnKm4+JZTOY36HRJ0in2+oCpgZV77o
+ r9qhbzKAh8xMf9wjutU3CuxynNYITPOqCu1FrYn8cH+WW13vjj+qY4u3FvYGyXlfhqD9bBWLXJi
+ rrdXwKAQESWhnkOdZWTL3YebUGPwymje6xwS0hGi6Tq3SkgP63x96aT//stXFkJjiZoOlfGYFft
+ YtWDesJhYRrQXsc27s9Eg0UO/WxtGd0I/qvq9TH4qvb2wAiqmxFVfvS7UzcbJ/mxDTJqBWIVawv
+ I012JHoi2uEQHju9ne7/fXP4vqCkBf9Z8FwaGRpC1h6gAH/zkXS8tOwithbCHD2pr+blukQPVfd
+ Q2fG+pf5iCGB/GV0XOJNsdvAkyvA==
+X-Received: by 2002:a05:600c:5849:b0:493:b55f:bca2 with SMTP id
+ 5b1f17b1804b1-493f88389cemr678085e9.34.1783710486348; 
+ Fri, 10 Jul 2026 12:08:06 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:154f:ec00:aa08:de24:db33:4496])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-493f567eadfsm55000755e9.6.2026.07.10.12.08.04
+ 5b1f17b1804b1-493f567eadfsm55000755e9.6.2026.07.10.12.08.05
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Fri, 10 Jul 2026 12:08:05 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
@@ -77,9 +77,9 @@ To: thomas.hellstrom@linux.intel.com, dakr@kernel.org, ecourtney@nvidia.com,
  airlied@gmail.com, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH 11/12] drm/ttm: support using drm_exec during eviction v4
-Date: Fri, 10 Jul 2026 20:52:51 +0200
-Message-ID: <20260710190752.2355-12-christian.koenig@amd.com>
+Subject: [PATCH 12/12] drm/amdgpu: use drm_exec during BO validation
+Date: Fri, 10 Jul 2026 20:52:52 +0200
+Message-ID: <20260710190752.2355-13-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260710190752.2355-1-christian.koenig@amd.com>
 References: <20260710190752.2355-1-christian.koenig@amd.com>
@@ -138,84 +138,148 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:replyto,amd.com:mid,amd.com:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1DB0773D94E
+X-Rspamd-Queue-Id: 63EA573D93C
 
-Allow specifying a drm_exec object in TTMs operation context which is
-used to lock objects during eviction.
+This allows to detect deadlocks happening because of resource
+constraints.
 
-This allows to handle deadlocks much more gracefully and with that
-avoid returning -ENOMEM on heavily contended domains.
-
-v2: rebased on top of Thomas work
-v3: rebased again
-v4: adjust to dma_resv changes
+Especially submissions which want to use all of GDS doesn't result in
+sporadic -ENOMEM any more.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo_util.c | 12 ++++++++----
- include/drm/ttm/ttm_bo.h          |  5 +++++
- 2 files changed, 13 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 82 ++++++++++++++------------
+ 1 file changed, 44 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-index 1bdd69643c313..570640ae79d84 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -38,6 +38,7 @@
- #include <drm/ttm/ttm_tt.h>
- 
- #include <drm/drm_cache.h>
-+#include <drm/drm_exec.h>
- 
- struct ttm_transfer_obj {
- 	struct ttm_buffer_object base;
-@@ -839,7 +840,9 @@ static int ttm_lru_walk_ticketlock(struct ttm_bo_lru_cursor *curs,
- 	struct ttm_lru_walk_arg *arg = curs->arg;
- 	int ret;
- 
--	if (arg->ctx->interruptible)
-+	if (arg->ctx->exec)
-+		ret = drm_exec_lock_resv(arg->ctx->exec, resv);
-+	else if (arg->ctx->interruptible)
- 		ret = dma_resv_lock_interruptible(resv, arg->ticket);
- 	else
- 		ret = dma_resv_lock(resv, arg->ticket);
-@@ -853,7 +856,8 @@ static int ttm_lru_walk_ticketlock(struct ttm_bo_lru_cursor *curs,
- 		 * trylocking for this walk.
- 		 */
- 		arg->ticket = NULL;
--	} else if (ret == -EDEADLK) {
-+
-+	} else if (!arg->ctx->exec && ret == -EDEADLK) {
- 		/* Caller needs to exit the ww transaction. */
- 		ret = -ENOSPC;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+index c2e6495a28bc5..17223e295ff25 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+@@ -793,7 +793,7 @@ static int amdgpu_cs_bo_validate(void *param, struct amdgpu_bo *bo)
+ 	struct ttm_operation_ctx ctx = {
+ 		.interruptible = true,
+ 		.no_wait_gpu = false,
+-		.resv = bo->tbo.base.resv
++		.exec = &p->exec,
+ 	};
+ 	uint32_t domain;
+ 	int r;
+@@ -845,7 +845,10 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 				union drm_amdgpu_cs *cs)
+ {
+ 	struct amdgpu_fpriv *fpriv = p->filp->driver_priv;
+-	struct ttm_operation_ctx ctx = { true, false };
++	struct ttm_operation_ctx ctx = {
++		.interruptible =true,
++		.exec = &p->exec
++	};
+ 	struct amdgpu_vm *vm = &fpriv->vm;
+ 	struct amdgpu_bo_list_entry *e;
+ 	struct drm_gem_object *obj;
+@@ -899,6 +902,11 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 		e->user_invalidated = userpage_invalidated;
  	}
-@@ -993,8 +997,8 @@ __ttm_bo_lru_cursor_iter(struct ttm_bo_lru_cursor *curs, bool first)
- 		if (!ttm_lru_walk_trylock(curs, res->bo->base.resv)) {
- 			struct dma_resv *resv;
  
--			if (!arg->ticket || arg->ctx->no_wait_gpu ||
--			    arg->trylock_only) {
-+			if ((!arg->ticket || arg->ctx->no_wait_gpu ||
-+			     arg->trylock_only) && !arg->ctx->exec) {
- 				spin_unlock(lru_lock);
- 				continue;
- 			}
-diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-index e1221e3be7bda..0ffa84a5caa65 100644
---- a/include/drm/ttm/ttm_bo.h
-+++ b/include/drm/ttm/ttm_bo.h
-@@ -186,6 +186,11 @@ struct ttm_operation_ctx {
- 	 * @bytes_moved: Statistics on how many bytes have been moved.
- 	 */
- 	uint64_t bytes_moved;
-+	/*
-+	 * @exec: optional drm_exec object to use for locking and contention
-+	 * handling
-+	 */
-+	struct drm_exec *exec;
- };
++	amdgpu_cs_get_threshold_for_moves(p->adev, &p->bytes_moved_threshold,
++					  &p->bytes_moved_vis_threshold);
++	p->bytes_moved = 0;
++	p->bytes_moved_vis = 0;
++
+ 	drm_exec_until_all_locked(&p->exec) {
+ 		r = amdgpu_vm_lock_pd(&fpriv->vm, &p->exec, 1 + p->gang_size);
+ 		drm_exec_retry_on_contention(&p->exec);
+@@ -922,47 +930,48 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 			if (unlikely(r))
+ 				goto out_free_user_pages;
+ 		}
+-	}
  
- struct ttm_lru_walk;
+-	amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
+-		struct mm_struct *usermm;
++		amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
++			struct mm_struct *usermm;
+ 
+-		usermm = amdgpu_ttm_tt_get_usermm(e->bo->tbo.ttm);
+-		if (usermm && usermm != current->mm) {
+-			r = -EPERM;
+-			goto out_free_user_pages;
+-		}
+-
+-		if (amdgpu_ttm_tt_is_userptr(e->bo->tbo.ttm) &&
+-		    e->user_invalidated) {
+-			amdgpu_bo_placement_from_domain(e->bo,
+-							AMDGPU_GEM_DOMAIN_CPU);
+-			r = ttm_bo_validate(&e->bo->tbo, &e->bo->placement,
+-					    &ctx);
+-			if (r)
++			usermm = amdgpu_ttm_tt_get_usermm(e->bo->tbo.ttm);
++			if (usermm && usermm != current->mm) {
++				r = -EPERM;
+ 				goto out_free_user_pages;
++			}
+ 
+-			amdgpu_ttm_tt_set_user_pages(e->bo->tbo.ttm,
+-						     e->range);
++			if (amdgpu_ttm_tt_is_userptr(e->bo->tbo.ttm) &&
++			    e->user_invalidated) {
++				amdgpu_bo_placement_from_domain(e->bo,
++								AMDGPU_GEM_DOMAIN_CPU);
++				r = ttm_bo_validate(&e->bo->tbo, &e->bo->placement,
++						    &ctx);
++				drm_exec_retry_on_contention(&p->exec);
++				if (r)
++					goto out_free_user_pages;
++
++				amdgpu_ttm_tt_set_user_pages(e->bo->tbo.ttm,
++							     e->range);
++			}
+ 		}
+-	}
+ 
+-	amdgpu_cs_get_threshold_for_moves(p->adev, &p->bytes_moved_threshold,
+-					  &p->bytes_moved_vis_threshold);
+-	p->bytes_moved = 0;
+-	p->bytes_moved_vis = 0;
++		r = amdgpu_vm_validate(p->adev, &fpriv->vm, NULL,
++				       amdgpu_cs_bo_validate, p);
++		drm_exec_retry_on_contention(&p->exec);
++		if (r) {
++			drm_err(adev_to_drm(p->adev), "amdgpu_vm_validate() failed.\n");
++			goto out_free_user_pages;
++		}
+ 
+-	r = amdgpu_vm_validate(p->adev, &fpriv->vm, NULL,
+-			       amdgpu_cs_bo_validate, p);
+-	if (r) {
+-		drm_err(adev_to_drm(p->adev), "amdgpu_vm_validate() failed.\n");
+-		goto out_free_user_pages;
+-	}
++		drm_exec_for_each_locked_object(&p->exec, obj) {
++			r = amdgpu_cs_bo_validate(p, gem_to_amdgpu_bo(obj));
++			drm_exec_retry_on_contention(&p->exec);
++			if (unlikely(r))
++				goto out_free_user_pages;
+ 
+-	drm_exec_for_each_locked_object(&p->exec, obj) {
+-		r = amdgpu_cs_bo_validate(p, gem_to_amdgpu_bo(obj));
+-		if (unlikely(r))
+-			goto out_free_user_pages;
++			amdgpu_cs_report_moved_bytes(p->adev, p->bytes_moved,
++						     p->bytes_moved_vis);
++		}
+ 	}
+ 
+ 	if (p->uf_bo) {
+@@ -973,9 +982,6 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 		p->gang_leader->uf_addr += amdgpu_bo_gpu_offset(p->uf_bo);
+ 	}
+ 
+-	amdgpu_cs_report_moved_bytes(p->adev, p->bytes_moved,
+-				     p->bytes_moved_vis);
+-
+ 	for (i = 0; i < p->gang_size; ++i)
+ 		amdgpu_job_set_resources(p->jobs[i], p->bo_list->gds_obj,
+ 					 p->bo_list->gws_obj,
 -- 
 2.43.0
 
