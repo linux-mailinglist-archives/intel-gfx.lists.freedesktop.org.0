@@ -2,69 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SGtrNDEFUWo/+AIAu9opvQ
+	id 8IhtDBNDUWrPBQMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 16:44:01 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 21:08:03 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4066073BDB9
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 16:44:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F81473D8A9
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 21:08:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=cEq0r7Jx;
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Wl5mKIJW;
+	dmarc=pass (policy=none) header.from=gmail.com;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9DE310E5BF;
-	Fri, 10 Jul 2026 14:43:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5631D10E23B;
+	Fri, 10 Jul 2026 19:07:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B219410E271;
- Fri, 10 Jul 2026 14:43:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783694638; x=1815230638;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=P/xTpRQYMnd8u/4+Tw0FzTUYhWK0cV5/lwQ3OzgYZ1g=;
- b=cEq0r7JxSCbd0ZbubfrWG30YEqCu8R/qx14qHORITDHrNEBKh0qEcT6z
- QKbt4nCUXvOyh48DyrC5WRE6oXas7ugcSTOdd+b2C7WOzjGqNeYlPAahA
- nR4yWcqsMy0kbMrdCgYdAYZzIEgAvmGizOYDCVHgnIG/QK7optaYHY/DL
- h4EbnUzYY2RwLl0Cp3EQM+iNAC1a5UL24OtLFYxZNb9SsUrXismlu6gxp
- AQaSoJNLm/oBg0T/oHWCNKZp/OwIxMmjX9CfjI0IzU+Ly8c1T0Jw7Yfvn
- 6chBULH7eyfZHIW2BOteGCHh034XfHnA02cycHqfgsPVBY57hqMZzB0JI g==;
-X-CSE-ConnectionGUID: DOKH8/TaQcWF3I2E+rA1wg==
-X-CSE-MsgGUID: nWv8fLBtSneUMoE9R+tKdQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="95040123"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="95040123"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 07:43:58 -0700
-X-CSE-ConnectionGUID: UI+Pb0gwS0We7SIQUxPtew==
-X-CSE-MsgGUID: qQi3cn8RR02z1tltzmgnIA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="250915261"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.244.208])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 07:43:56 -0700
-Date: Fri, 10 Jul 2026 17:43:53 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 00/10] drm/intel/display: Changes required to make vblank
- evasion PREEMPT_RT safe.
-Message-ID: <alEFKfqD-69wOVxJ@intel.com>
-References: <20260702072154.171324-1-dev@lankhorst.se>
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+ [209.85.128.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4084210E22A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 19:07:57 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id
+ 5b1f17b1804b1-493ba701891so11288595e9.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 12:07:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1783710475; x=1784315275; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to:content-type;
+ bh=v2c8ve1eOpm9ZGAfxSFM+Y9p3YLh5Tuis6XJ274g65g=;
+ b=Wl5mKIJW+gypC41Qjfq43vp55ugRxhTI/puXySzvb/UBy6Wf0sZECZSiC7IpFaBlon
+ dajsrN0KwFoTRqJPqaURB+TTNIK4bN7W1eOGU8+cN/An0tuG0wSf0tNXeR0x3JiEFi2o
+ slHVuOs9ii291pEWAYcO5D9+TwntJYRI15kngmOoWgaQGgMyOMx5/GwihIu+i9cEBtx3
+ 8HXXDDWmB3uqcUNmlCrlLCP0RF6jSCLaXyK9SR3lovO7yRTxifZ79TkL2ZEuujv2C/aG
+ /TR+AMSfqiR3yWoA64BoVfdY3OGr+jjE9u4Pqar6WzLysjaFNDdL5JB5viGWzyWAzc8t
+ /8QQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1783710475; x=1784315275;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to:content-type;
+ bh=v2c8ve1eOpm9ZGAfxSFM+Y9p3YLh5Tuis6XJ274g65g=;
+ b=aOCtiW2iPgO4XdwFYF05HUTc1h03WDUFUxi/t8QE28yUGXpIU2d/6Pp5jem6RUspJY
+ NLYyo3QPtCFZKky02D4qMRcVJnW5wIotZeAXD2YEqOJji2p6phkwN5cx5fPH2YkfNKlD
+ epAJVGviQw3yw5fuf/KvBAcfyZ+n5O8RtNFn665WH5tFEeSkYzef1y7Xmq6TC1BQP2mS
+ Y3Xb5qW6PUQrlcshUsZ42uod/z+coroS1chTenZIN/OCTo6LI0DyysAz+yJ8i3y+lfdh
+ DYD2LSaScmXNkUDDJ2jtHSEKCOY656D7BHs4fGTPsSzwt7H9bN4ahZnemN4WC5+wnNYb
+ NUKg==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RrmDJyzYHQp0M3YjEIjl+HUK1qRBGO91w4Vi7y5AtUzNCO8GhAvPexctHHPaTQvFDpf61KBbvETNMk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzFbAxCxWCu+Dtzgygmm4skA3vm1rGEzhIy9eR/ahp7f1HrWb9O
+ AisUj+QMMzz2JqYkEzvTTW5MfALclI71Nl1yl6Abfg8jEQ6EAAyssZMs
+X-Gm-Gg: AfdE7cm7kAe2T29j5KOkdYAfi1X9DUvyTrFFICnnXPAlyGhWeaDx/fpOEVwWN4Sz9Fr
+ 0/cQKMUJGIolBHpYmYrjtKdHXtT1T/iRb/u6mdphcbdYW1nlDPu6P1A2t3WXd+50XsEnA1hrMFn
+ WAz5X7vJlCZocb7g2AcRzwDj9GV3UO0emBJi2XsIxfuuhquJ6EpTYqx8fCAcvcocV9FBnGc8vht
+ fxlGpXoRKT/qTENT7CQeLnYiUF0heVxegn6gU6Se6q9FgO/f1Dwhb8+qYZCHjI9e2aB5Ae3k0t4
+ gfHM3Qr2G/hOD/Sn2u6hsAcCVRCAfbrYTQ5+Pl9HSFY+N3ru49hY1Ms/OMbosZG3dDS5fm1nnK1
+ y/O37QQ7w5+gbLF9084lw7bU3XSqiCOvesGTuzejUnFkZg/xTBQpz7ZGGhiuzq9syb4rSMrIOEz
+ RDFyeyKLv4DZwsI83VeaqsWYt1Fg==
+X-Received: by 2002:a05:600c:5489:b0:493:e97c:216e with SMTP id
+ 5b1f17b1804b1-493f8851d4emr810365e9.39.1783710475270; 
+ Fri, 10 Jul 2026 12:07:55 -0700 (PDT)
+Received: from able.fritz.box ([2a00:e180:154f:ec00:aa08:de24:db33:4496])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-493f567eadfsm55000755e9.6.2026.07.10.12.07.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 10 Jul 2026 12:07:54 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: thomas.hellstrom@linux.intel.com, dakr@kernel.org, ecourtney@nvidia.com,
+ simona@ffwll.ch, matthew.brost@intel.com, nat@pixelcluster.dev,
+ airlied@gmail.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Subject: Refcounting dma_resv and using that for drm_exec support in TTM
+Date: Fri, 10 Jul 2026 20:52:40 +0200
+Message-ID: <20260710190752.2355-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260702072154.171324-1-dev@lankhorst.se>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,97 +96,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.75 / 15.00];
-	R_MIXED_CHARSET(0.56)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:thomas.hellstrom@linux.intel.com,m:dakr@kernel.org,m:ecourtney@nvidia.com,m:simona@ffwll.ch,m:matthew.brost@intel.com,m:nat@pixelcluster.dev,m:airlied@gmail.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:intel-xe@lists.freedesktop.org,m:amd-gfx@lists.freedesktop.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,nvidia.com,ffwll.ch,intel.com,pixelcluster.dev,gmail.com,lists.freedesktop.org,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[ckoenigleichtzumerken@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ckoenigleichtzumerken@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,lists.freedesktop.org:from_smtp,linux.intel.com:from_mime,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4066073BDB9
+X-Rspamd-Queue-Id: 7F81473D8A9
 
-On Thu, Jul 02, 2026 at 09:21:43AM +0200, Maarten Lankhorst wrote:
-> CONFIG_PREEMPT_RT requires code to be as deterministic as possible,
-> and codes with interrupts disabled cannot use spinlocks.
-> 
-> In order to handle this correctly, we ensure any locking requirements
-> are handled before disabling interrupts, and only start locking again
-> after interrupts are re-enabled and timing sensitive path completed.
-> 
-> This also has the benefit of making the vblank evasion code more
-> deterministic; without locking there's much less jitter.
-> 
-> Previously, we scheduled vblank work on completion.
-> This is now handled by scheduling the vblank in advance, only arming
-> it upon completion without locks.
+Hi everybody,
 
-Sashiko found a bunch of stuff that I was also thinking would be
-a problem. Don't think I'll need to repeat it here.
+The idea of ref-counting dma_resv or ww_mutex came up multiple times from
+different people, but so far at least I have abandoned that as to
+complicated to implement considering how widely used that object is.
 
-I'm still thinking the easy way out would be to just convert
-everything to raw spinlocks. The uncore lock I think should become
-easier to deal with once I manage to move all of it into the
-display code. I admit that the vblank locking is kinda annoying
-and potentially inefficient. I've been pondering about making the
-vblank locks to per-crtc to at least avoid some unnecessary contention,
-but the fact that a lot of the drivers poke at the vblank internals
-directly makes it a lot more work than it should be :/
+Thanks to AI I gave the task to refcount dma_resv to Claude Sonet 4 just
+to check how horrible it would look like.
 
-> 
-> Maarten Lankhorst (9):
->   drm/vblank_work: Add methods to schedule vblank_work in 2 stages
->   drm/vblank: Add a 2-stage version of drm_crtc_arm_vblank_event
->   drm/intel/display: Make intel_crtc_arm_vblank_event static
->   drm/intel/display: Convert vblank event handling to 2-stage arming
->   drm/i915/display: Move vblank put until after critical section
->   drm/i915/display: Remove locking from intel_vblank_evade critical
->     section
->   drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range
->     too
->   drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
->   drm/i915/display: Do not take uncore lock in i915_get_vblank_counter
-> 
-> Mike Galbraith (1):
->   drm/i915: Use preempt_disable/enable_rt() where recommended
-> 
->  drivers/gpu/drm/drm_vblank.c                  |  64 +++++++++-
->  drivers/gpu/drm/drm_vblank_work.c             | 110 +++++++++++++----
->  drivers/gpu/drm/i915/display/intel_crtc.c     |  86 ++++++-------
->  drivers/gpu/drm/i915/display/intel_crtc.h     |   1 -
->  drivers/gpu/drm/i915/display/intel_cursor.c   |   8 +-
->  drivers/gpu/drm/i915/display/intel_de.h       |   8 ++
->  drivers/gpu/drm/i915/display/intel_vblank.c   | 115 ++++++++++--------
->  drivers/gpu/drm/i915/display/intel_vblank.h   |   1 +
->  drivers/gpu/drm/i915/intel_uncore.h           |  26 ++--
->  .../drm/xe/compat-i915-headers/intel_uncore.h |   7 ++
->  include/drm/drm_vblank.h                      |  14 ++-
->  include/drm/drm_vblank_work.h                 |  12 ++
->  12 files changed, 324 insertions(+), 128 deletions(-)
-> 
-> -- 
-> 2.53.0
+Well turns out that this is actually a cleanup we should most likely aim
+for and I'm really wondering why we haven't done it like this in the
+first place.
 
--- 
-Ville Syrjälä
-Intel
+Not only resolves it a bunch of issues with dma_resv instances shared by
+multiple GEM objects (we just recently had a bunch of patches for that on
+the mailing list), but also allows TTM to implement it's delayed delete
+handling without any zombie resurrection or similar hacks.
+
+The patch set is totally work in progress and only survives a smoke test
+with amdgpu, but I still wanted to check if the idea is valuable and
+should be looked in further.
+
+Please comment and/or tear apart :)
+
+Cheers,
+Christian.
+
