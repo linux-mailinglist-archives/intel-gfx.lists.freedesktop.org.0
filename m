@@ -2,43 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id g9SIDTfUUGqK5gIAu9opvQ
+	id sRM8DDbUUGqJ5gIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 13:15:03 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 13:15:02 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFE1773A083
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 13:15:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF50273A080
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jul 2026 13:15:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=dDH4LNWI;
+	dkim=pass header.d=lankhorst.se header.s=default header.b=ivu0UtjB;
 	dmarc=pass (policy=none) header.from=lankhorst.se;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5812D10F865;
-	Fri, 10 Jul 2026 11:15:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A77510F86A;
+	Fri, 10 Jul 2026 11:15:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C115F10F87A;
- Fri, 10 Jul 2026 11:14:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D30310F86F;
+ Fri, 10 Jul 2026 11:14:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1783682096;
- bh=puNEFq/vgUL5AClDAG8HJvqijCJH00dnnk6QrChIzrw=;
+ s=default; t=1783682097;
+ bh=VKp7JmQs37vESgep6V4fNy1EmKEJw2SoLGZk9/klYr0=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=dDH4LNWI/DLSqOazCxCu+qO54jIzYRnd70Deq/FKbFZk/vZCQIk/yIR3xsws7zOny
- vzeaGYFBT5ZhaAZfXkV8Ww3j7UKYJ+ruEQ8SuJwN2tfsoIUDx8qITlLFzcm+8Q3D2f
- NSvPSgxc0smi5NQrsQZOV/8V0wdr7uZIOBsTirWR2OHgm5h9XTu6rVWXI0jVFVsE5Y
- hlEPQ4HQeITgxd4uQXvOrlAIBPj6GzjGnT6Cxtn4oFQQRemHHdT3vgpwNltWoP/tg5
- +O7oi10RjsvfWvgS+3jw/4087z8EpM5ytBbePaP/Pk/ydPq/CmcmVJsti+NbUFBvWg
- Jw6f8/VcmqFFg==
+ b=ivu0UtjBH9IB2TxJ72iNOoAGBRrGPMOFngB1wXnWFi51OSpv+4qQcXDFRNYvMRvRh
+ 1wRZcE/cwo9oe8PBzdn4WRV/pKQ91s1FsdK2SHCmdZs6FIZFhuE4zLo5pPaSp35ZVQ
+ JxdGQ8642+bXnuzX+5C++fkV8DG2DHS9VgJKZTPnWJwWUtGRZ3lFA1uo5k5ogRoHc5
+ DW82gB/tQlhzszp23IfO2SwAlSD//Sj7ybXuX2lQv0IvrtmpczmFu9WdzoIveK3yzG
+ w0WOvj2TdFfids11gjf4iZ9taBBHi7DYFpT+UnnT4otiEG+mW8po59NLnuBuN4nJio
+ vko/CLdLzVb9g==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  Jani Nikula <jani.nikula@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 02/11] drm/i915/fbdev: Extract bios_fb_ok()
-Date: Fri, 10 Jul 2026 13:15:29 +0200
-Message-ID: <20260710111539.1274555-3-dev@lankhorst.se>
+Subject: [PATCH v2 03/11] drm/i915: Throw away the BIOS fb if has the wrong
+ depth/bpp
+Date: Fri, 10 Jul 2026 13:15:30 +0200
+Message-ID: <20260710111539.1274555-4-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260710111539.1274555-1-dev@lankhorst.se>
 References: <20260710111539.1274555-1-dev@lankhorst.se>
@@ -85,65 +86,49 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	DKIM_TRACE(0.00)[lankhorst.se:+]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DFE1773A083
+X-Rspamd-Queue-Id: CF50273A080
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Pull the "is the BIOS FB OK?" checks to a helper function. We'll
-add other relevant checks there later.
+Respect the user's choice of depth/bpp for the fbdev framebuffer
+and throw out the fb we inherited from the BIOS if it doesn't
+match.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Link: https://patch.msgid.link/20260511214122.8468-3-ville.syrjala@linux.intel.com
+Link: https://patch.msgid.link/20260511214122.8468-4-ville.syrjala@linux.intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_fbdev.c | 26 +++++++++++++++-------
- 1 file changed, 18 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbdev.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index c8d4e3a5ce6b1..bc267776106e8 100644
+index bc267776106e8..db0e36dd8722f 100644
 --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
 +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -262,6 +262,23 @@ __intel_fbdev_fb_alloc(struct intel_display *display,
+@@ -268,6 +268,8 @@ static bool bios_fb_ok(const struct intel_framebuffer *fb,
+ 	struct intel_display *display = to_intel_display(fb->base.dev);
+ 	int width = fb->base.width;
+ 	int height = fb->base.height;
++	int depth = fb->base.format->depth;
++	int bpp = fb->base.format->cpp[0] * 8;
  
- }
+ 	if (sizes->fb_width > width || sizes->fb_height > height) {
+ 		drm_dbg_kms(display->drm,
+@@ -276,6 +278,13 @@ static bool bios_fb_ok(const struct intel_framebuffer *fb,
+ 		return false;
+ 	}
  
-+static bool bios_fb_ok(const struct intel_framebuffer *fb,
-+		       const struct drm_fb_helper_surface_size *sizes)
-+{
-+	struct intel_display *display = to_intel_display(fb->base.dev);
-+	int width = fb->base.width;
-+	int height = fb->base.height;
-+
-+	if (sizes->fb_width > width || sizes->fb_height > height) {
++	if (sizes->surface_depth != depth || sizes->surface_bpp != bpp) {
 +		drm_dbg_kms(display->drm,
-+			    "BIOS fb too small (%dx%d), we require (%dx%d), releasing it\n",
-+			    width, height, sizes->fb_width, sizes->fb_height);
++			    "BIOS fb using wrong depth/bpp (%d/%d), we require (%d/%d), releasing it\n",
++			    depth, bpp, sizes->surface_depth, sizes->surface_bpp);
 +		return false;
 +	}
 +
-+	return true;
-+}
-+
- int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 				   struct drm_fb_helper_surface_size *sizes)
- {
-@@ -279,14 +296,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+ 	return true;
+ }
  
- 	ifbdev->fb = NULL;
- 
--	if (fb &&
--	    (sizes->fb_width > fb->base.width ||
--	     sizes->fb_height > fb->base.height)) {
--		drm_dbg_kms(display->drm,
--			    "BIOS fb too small (%dx%d), we require (%dx%d),"
--			    " releasing it\n",
--			    fb->base.width, fb->base.height,
--			    sizes->fb_width, sizes->fb_height);
-+	if (fb && !bios_fb_ok(fb, sizes)) {
- 		drm_framebuffer_put(&fb->base);
- 		fb = NULL;
- 	}
 -- 
 2.53.0
 
