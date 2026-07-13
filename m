@@ -2,51 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id b0h0A+jEVGrgSgAAu9opvQ
+	id qdzKFpnFVGoNSwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2026 12:58:48 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2026 13:01:45 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D1C074A10C
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2026 12:58:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCDE374A16C
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2026 13:01:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=ioVvDgMa;
+	dkim=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=lankhorst.se
+	dmarc=none
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B360B10E108;
-	Mon, 13 Jul 2026 10:58:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D79F10E450;
+	Mon, 13 Jul 2026 11:01:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F096810E8FE;
- Mon, 13 Jul 2026 10:58:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1783940319;
- bh=CFvRifISqpjztbxD6ia6T3+vhSFdflja51r+XaALe0c=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=ioVvDgMaiSWyGtW7hYsVfUOn0brD7n9VtNk8/pOvLJ4alxmfgHA94De4CWKwul29x
- IxAlBx19KwqccKsE8KA6QZUeLqApdixn/AKBBLQ+EC0kjamjM0wrFKMNFqjjcUd4eW
- 8rBlPpS4tlUZq5t3BH85X+d9c2IRXzf+kGfWaTW1tY97g4mfHYiIPsD8IxEbUCV/3F
- 3Q7BInZkvnecja/JQ6RXasRNTNoZybnDvmw6e/DpslbJXZsSj/nKKyGs6wluRItYVL
- /kqsrtS4kzloIbR3HsyoTpJIbMZ+lKiToWOz35dzoHN6WFBTVsNZGa4Gq7l315jVUA
- rAAv+fcECzIcg==
-Message-ID: <41c1ec3b-e397-419b-bd92-4b923cee6ed0@lankhorst.se>
-Date: Mon, 13 Jul 2026 12:59:27 +0200
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66E7410E450;
+ Mon, 13 Jul 2026 11:01:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2697243611418536922=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/10] drm/intel/display: Changes required to make vblank
- evasion PREEMPT_RT safe.
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20260702072154.171324-1-dev@lankhorst.se>
- <alEFKfqD-69wOVxJ@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <alEFKfqD-69wOVxJ@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drivers=3A_Improve_memory?=
+ =?utf-8?q?_management_for_large_object_allocations_when_i915/shmem_is_used_?=
+ =?utf-8?q?with_iommu?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Krzysztof Karas" <krzysztof.karas@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 13 Jul 2026 11:01:41 -0000
+Message-ID: <178394050141.182780.807103454930150474@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260713095812.1014365-1-krzysztof.karas@intel.com>
+In-Reply-To: <20260713095812.1014365-1-krzysztof.karas@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,111 +47,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
-	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	RCVD_COUNT_TWO(0.00)[2];
-	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[lankhorst.se:+]
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[emeril.freedesktop.org:from_mime,patchwork.freedesktop.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9D1C074A10C
+X-Rspamd-Queue-Id: BCDE374A16C
 
-Hey,
+--===============2697243611418536922==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 7/10/26 16:43, Ville Syrjälä wrote:
-> On Thu, Jul 02, 2026 at 09:21:43AM +0200, Maarten Lankhorst wrote:
->> CONFIG_PREEMPT_RT requires code to be as deterministic as possible,
->> and codes with interrupts disabled cannot use spinlocks.
->>
->> In order to handle this correctly, we ensure any locking requirements
->> are handled before disabling interrupts, and only start locking again
->> after interrupts are re-enabled and timing sensitive path completed.
->>
->> This also has the benefit of making the vblank evasion code more
->> deterministic; without locking there's much less jitter.
->>
->> Previously, we scheduled vblank work on completion.
->> This is now handled by scheduling the vblank in advance, only arming
->> it upon completion without locks.
-> 
-> Sashiko found a bunch of stuff that I was also thinking would be
-> a problem. Don't think I'll need to repeat it here.
-> 
-> I'm still thinking the easy way out would be to just convert
-> everything to raw spinlocks. The uncore lock I think should become
-> easier to deal with once I manage to move all of it into the
-> display code. I admit that the vblank locking is kinda annoying
-> and potentially inefficient. I've been pondering about making the
-> vblank locks to per-crtc to at least avoid some unnecessary contention,
-> but the fact that a lot of the drivers poke at the vblank internals
-> directly makes it a lot more work than it should be :/
+== Series Details ==
 
-I'll do the full wmb instead of the smp wmb, should hopefully fix it.
+Series: drivers: Improve memory management for large object allocations when i915/shmem is used with iommu
+URL   : https://patchwork.freedesktop.org/series/170304/
+State : success
 
-In general, the approach I'm taking was ensuring that no raw spinlocks are
-ever needed. Every lock is taken before disabling interrupts, and then we
-run the time sensitive code only after checking there's enough time left.
+== Summary ==
 
-This means that even on PROVE_LOCKING, there is no contention of locks,
-and the VBLANK_EVASION_TIME_US could be set to 100 µs even with
-PROVE_LOCKING set. You can take the uncore lock in advance just like any
-other lock if required, but no contention should happen and it can be
-taken as normal not raw spinlock.
+CI Bug Log - changes from CI_DRM_18810 -> Patchwork_170304v1
+====================================================
 
-> 
->>
->> Maarten Lankhorst (9):
->>   drm/vblank_work: Add methods to schedule vblank_work in 2 stages
->>   drm/vblank: Add a 2-stage version of drm_crtc_arm_vblank_event
->>   drm/intel/display: Make intel_crtc_arm_vblank_event static
->>   drm/intel/display: Convert vblank event handling to 2-stage arming
->>   drm/i915/display: Move vblank put until after critical section
->>   drm/i915/display: Remove locking from intel_vblank_evade critical
->>     section
->>   drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range
->>     too
->>   drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
->>   drm/i915/display: Do not take uncore lock in i915_get_vblank_counter
->>
->> Mike Galbraith (1):
->>   drm/i915: Use preempt_disable/enable_rt() where recommended
->>
->>  drivers/gpu/drm/drm_vblank.c                  |  64 +++++++++-
->>  drivers/gpu/drm/drm_vblank_work.c             | 110 +++++++++++++----
->>  drivers/gpu/drm/i915/display/intel_crtc.c     |  86 ++++++-------
->>  drivers/gpu/drm/i915/display/intel_crtc.h     |   1 -
->>  drivers/gpu/drm/i915/display/intel_cursor.c   |   8 +-
->>  drivers/gpu/drm/i915/display/intel_de.h       |   8 ++
->>  drivers/gpu/drm/i915/display/intel_vblank.c   | 115 ++++++++++--------
->>  drivers/gpu/drm/i915/display/intel_vblank.h   |   1 +
->>  drivers/gpu/drm/i915/intel_uncore.h           |  26 ++--
->>  .../drm/xe/compat-i915-headers/intel_uncore.h |   7 ++
->>  include/drm/drm_vblank.h                      |  14 ++-
->>  include/drm/drm_vblank_work.h                 |  12 ++
->>  12 files changed, 324 insertions(+), 128 deletions(-)
->>
->> -- 
->> 2.53.0
-> 
-Kind regards,
-~Maarten
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170304v1/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18810 -> Patchwork_170304v1
+
+  CI-20190529: 20190529
+  CI_DRM_18810: 83d782d98f4ebb4a10b8ee107e3a389917e0b218 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_9003: 9003
+  Patchwork_170304v1: 83d782d98f4ebb4a10b8ee107e3a389917e0b218 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170304v1/index.html
+
+--===============2697243611418536922==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drivers: Improve memory management for large object allocations when i915/shmem is used with iommu</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170304/">https://patchwork.freedesktop.org/series/170304/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170304v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170304v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18810 -&gt; Patchwork_170304v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170304v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18810 -&gt; Patchwork_170304v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18810: 83d782d98f4ebb4a10b8ee107e3a389917e0b218 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_9003: 9003<br />
+  Patchwork_170304v1: 83d782d98f4ebb4a10b8ee107e3a389917e0b218 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============2697243611418536922==--
