@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LNQ5EunMVGoBfAAAu9opvQ
+	id MxJmHcTSVGpvfQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2026 13:32:57 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2026 13:57:56 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A498874A63F
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2026 13:32:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C036074AA08
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2026 13:57:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b="IGLzlfl/";
+	dkim=pass header.d=intel.com header.s=Intel header.b=hpiGrhQT;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CBA110E919;
-	Mon, 13 Jul 2026 11:32:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB41810E934;
+	Mon, 13 Jul 2026 11:57:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4331F10E911;
- Mon, 13 Jul 2026 11:32:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D46B10E92E;
+ Mon, 13 Jul 2026 11:57:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783942374; x=1815478374;
+ t=1783943873; x=1815479873;
  h=message-id:subject:from:to:date:in-reply-to:references:
  content-transfer-encoding:mime-version;
- bh=db9eSoCMqiyiPL1Dl/5RAF99+DSiTdsNrZQEK+Xtow4=;
- b=IGLzlfl/PyTO9DdmIbT7L6B3ut87KaSPabi+2qbQYa3T4EqHHI+//z3z
- mTo6KkU7ln2Q4atfc1c7FMfw90CyFBuCyMzpLEhzuKZLI26ClwS/YWF3Q
- RgL5/7yxg0GW8IeAxJkYRtVIGW5dHFaYUW8064y9uCtopQo2data0vPNg
- r4f/L6ppsjE3KDatOUvjTegirnjs2YMJlMH2AScGOFUDyTxSEwVnH/WbI
- IcksfCPAMTLmVLjO1i6VY4HteZm6Tm5we6Lvfr4P1DxUJkoPDv6a68Hgi
- BaFp1QTF3bZDGio/0bhLcU5bDumR/24b3wWBiV4dExNP0Hz67BWGffDjG w==;
-X-CSE-ConnectionGUID: 6yh5gdxGQ1amq2PyCvPvVw==
-X-CSE-MsgGUID: QOo+hmy2QNSqlRF9lVtMEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="94899550"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="94899550"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 04:32:54 -0700
-X-CSE-ConnectionGUID: iec/IZY9Tk20QDiTheYBsA==
-X-CSE-MsgGUID: 0BwvW1IXQdK1LgG/q/5QaA==
+ bh=cfUXpxVp+7cu4pl6gIthdexAErydheekjCls546oHYg=;
+ b=hpiGrhQTq54RFfEIxUaCBY6mYuQZSihVUU1sA0T3vCBEYtv9LTouy52z
+ 7uCxSKCturyAe7rZ8Ubd0Kl/jL2U06PGpvTwUT3Zwx5AgwnZsIv0v2OsI
+ 3tNB5Vw7VkXeiFgX2uciKBRaTau63i6C3YuBP8p5TLPjV2JmMo+eobrsb
+ BICAoWf33/xmigPzZ1b2Lj0YM5JKd/XP0SP++TL7SMVYHO8kUDUxsbrVU
+ InXpdOP1PEWXjxsdh37+NQoTCcBodQXLtovHPxPOoUcdYoyADhY/+Wp3I
+ 3Vlj6hJKFqOtljMz5m/hrGG1ejqDxW9U5OtiGtgNCcoYkOagV78sEKRgS A==;
+X-CSE-ConnectionGUID: rxDPvbwzS32al3ZLbT54xA==
+X-CSE-MsgGUID: sl4uMp1LQq+wodt1vX3CLQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="88454027"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="88454027"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2026 04:57:52 -0700
+X-CSE-ConnectionGUID: /ixp9IyJSH2NFzO+DeuKBg==
+X-CSE-MsgGUID: lloBdu5TQF6BU8rf5JZBUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="251105714"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="253796075"
 Received: from mkosciow-mobl1.ger.corp.intel.com (HELO [10.245.245.123])
  ([10.245.245.123])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 04:32:51 -0700
-Message-ID: <b1eb8f038e0cb094b9df35cdea400b7fd7cd2d54.camel@linux.intel.com>
-Subject: Re: Refcounting dma_resv and using that for drm_exec support in TTM
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2026 04:57:49 -0700
+Message-ID: <0cfc1913440ce8f19f715f5df7faa23dc1164755.camel@linux.intel.com>
+Subject: Re: [PATCH 10/12] drm/exec: add drm_exec_lock_resv function
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
- dakr@kernel.org, ecourtney@nvidia.com, simona@ffwll.ch,
- matthew.brost@intel.com, 	nat@pixelcluster.dev, airlied@gmail.com,
- dri-devel@lists.freedesktop.org, 	linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Date: Mon, 13 Jul 2026 13:32:48 +0200
-In-Reply-To: <20260710190752.2355-1-christian.koenig@amd.com>
+To: christian.koenig@amd.com, dakr@kernel.org, ecourtney@nvidia.com, 
+ simona@ffwll.ch, matthew.brost@intel.com, nat@pixelcluster.dev,
+ airlied@gmail.com, 	dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, 	intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, 	amd-gfx@lists.freedesktop.org
+Date: Mon, 13 Jul 2026 13:57:46 +0200
+In-Reply-To: <20260710190752.2355-11-christian.koenig@amd.com>
 References: <20260710190752.2355-1-christian.koenig@amd.com>
+ <20260710190752.2355-11-christian.koenig@amd.com>
 Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,97 +80,273 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[amd.com,kernel.org,nvidia.com,ffwll.ch,intel.com,pixelcluster.dev,gmail.com,lists.freedesktop.org,vger.kernel.org];
 	ARC_NA(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,nvidia.com,ffwll.ch,intel.com,pixelcluster.dev,lists.freedesktop.org,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TO_DN_NONE(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:from_mime,linux.intel.com:mid,lists.freedesktop.org:from_smtp,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,lists.freedesktop.org:from_smtp,linux.intel.com:from_mime,linux.intel.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A498874A63F
-
-Hi, Christian,
+X-Rspamd-Queue-Id: C036074AA08
 
 On Fri, 2026-07-10 at 20:52 +0200, Christian K=C3=B6nig wrote:
-> Hi everybody,
+> Restructure the drm_exec object to work with dma_resv references
+> instead
+> of GEM object references.
 >=20
-> The idea of ref-counting dma_resv or ww_mutex came up multiple times
-> from
-> different people, but so far at least I have abandoned that as to
-> complicated to implement considering how widely used that object is.
+> Add the new function dma_exec_lock_resv() to lock individual dma_resv
+> objects and so allow higher level implementations to handle
+> contention
+> purely on dma_resv objects.
 >=20
-> Thanks to AI I gave the task to refcount dma_resv to Claude Sonet 4
-> just
-> to check how horrible it would look like.
+> WIP! Don't commit like that!
 >=20
-> Well turns out that this is actually a cleanup we should most likely
-> aim
-> for and I'm really wondering why we haven't done it like this in the
-> first place.
->=20
-> Not only resolves it a bunch of issues with dma_resv instances shared
-> by
-> multiple GEM objects (we just recently had a bunch of patches for
-> that on
-> the mailing list), but also allows TTM to implement it's delayed
-> delete
-> handling without any zombie resurrection or similar hacks.
->=20
-> The patch set is totally work in progress and only survives a smoke
-> test
-> with amdgpu, but I still wanted to check if the idea is valuable and
-> should be looked in further.
->=20
-> Please comment and/or tear apart :)
+> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
 
-Before starting to look at this, in the spirit of trying to aligning on
-a "final" solution for ww transactions used in TTM, could we agree on
-how we are supposed to pass the importer's ww transaction context to
-the exporter's dma_map_attachment() operation to handle exporter
-evictions while mapping, because that decides what abstaction we should
-use for WW transations within TTM.
+Here, IMO we should move a dma-resv based implementation to dma-buf to
+facilitate passing it also through dma_buf_map(),
 
-drm_exec_init()
-xe_bo_validate() // IMporter
-dma_buf_map()    // importer;
-map_attachment() // callback in exporter
-xe_bo_validate() // exporter tries to move exportert bo to VRAM but
-runs out of memory.
-ttm_bo_evict()   // exporter's evict needs importer's drm_exec
-
-As mentioned a couple of times before, we can't pass a drm_exec to the
-exporter because that would make dma-buf depend on drm.
-
-So with this series it would be sufficient to move drm_exec to the dma-
-buf layer and rename it, but I still think we should have a plan.
+And if wanting to avoid rewriting all users of drm_exec, Make drm_exec
+a thin wrapper on top.
 
 Thanks,
 Thomas
 
 
 
-
+> ---
+> =C2=A0drivers/gpu/drm/drm_exec.c | 75 ++++++++++++++++++++++-------------=
+-
+> --
+> =C2=A0drivers/gpu/drm/drm_gem.c=C2=A0 |=C2=A0 2 +
+> =C2=A0include/drm/drm_exec.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 9 +++--
+> =C2=A03 files changed, 50 insertions(+), 36 deletions(-)
 >=20
-> Cheers,
-> Christian.
+> diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
+> index fa923852fae45..382bf7bcd5ff3 100644
+> --- a/drivers/gpu/drm/drm_exec.c
+> +++ b/drivers/gpu/drm/drm_exec.c
+> @@ -58,8 +58,11 @@ static void drm_exec_unlock_all(struct drm_exec
+> *exec)
+> =C2=A0		drm_gem_object_put(obj);
+> =C2=A0	}
+> =C2=A0
+> -	drm_gem_object_put(exec->prelocked);
+> -	exec->prelocked =3D NULL;
+> +	if (exec->prelocked) {
+> +		dma_resv_unlock(exec->prelocked);
+> +		dma_resv_put(exec->prelocked);
+> +		exec->prelocked =3D NULL;
+> +	}
+> =C2=A0}
+> =C2=A0
+> =C2=A0/**
+> @@ -101,7 +104,7 @@ void drm_exec_fini(struct drm_exec *exec)
+> =C2=A0	drm_exec_unlock_all(exec);
+> =C2=A0	kvfree(exec->objects);
+> =C2=A0	if (exec->contended !=3D DRM_EXEC_DUMMY) {
+> -		drm_gem_object_put(exec->contended);
+> +		dma_resv_put(exec->contended);
+> =C2=A0		ww_acquire_fini(&exec->ticket);
+> =C2=A0	}
+> =C2=A0}
+> @@ -158,50 +161,41 @@ static int drm_exec_obj_locked(struct drm_exec
+> *exec,
+> =C2=A0/* Make sure the contended object is locked first */
+> =C2=A0static int drm_exec_lock_contended(struct drm_exec *exec)
+> =C2=A0{
+> -	struct drm_gem_object *obj =3D exec->contended;
+> +	struct dma_resv *resv =3D exec->contended;
+> =C2=A0	int ret;
+> =C2=A0
+> -	if (likely(!obj))
+> +	if (likely(!resv))
+> =C2=A0		return 0;
+> =C2=A0
+> =C2=A0	/* Always cleanup the contention so that error handling can
+> kick in */
+> =C2=A0	exec->contended =3D NULL;
+> =C2=A0	if (exec->flags & DRM_EXEC_INTERRUPTIBLE_WAIT) {
+> -		ret =3D dma_resv_lock_slow_interruptible(obj->resv,
+> -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &exec-
+> >ticket);
+> +		ret =3D dma_resv_lock_slow_interruptible(resv, &exec-
+> >ticket);
+> =C2=A0		if (unlikely(ret))
+> =C2=A0			goto error_dropref;
+> =C2=A0	} else {
+> -		dma_resv_lock_slow(obj->resv, &exec->ticket);
+> +		dma_resv_lock_slow(resv, &exec->ticket);
+> =C2=A0	}
+> =C2=A0
+> -	ret =3D drm_exec_obj_locked(exec, obj);
+> -	if (unlikely(ret))
+> -		goto error_unlock;
+> -
+> -	exec->prelocked =3D obj;
+> +	exec->prelocked =3D resv;
+> =C2=A0	return 0;
+> =C2=A0
+> -error_unlock:
+> -	dma_resv_unlock(obj->resv);
+> -
+> =C2=A0error_dropref:
+> -	drm_gem_object_put(obj);
+> +	dma_resv_put(resv);
+> =C2=A0	return ret;
+> =C2=A0}
+> =C2=A0
+> =C2=A0/**
+> - * drm_exec_lock_obj - lock a GEM object for use
+> + * drm_exec_lock_resv - lock a dma_resv object
+> =C2=A0 * @exec: the drm_exec object with the state
+> - * @obj: the GEM object to lock
+> + * @resv: the dma_resv object to lock
+> =C2=A0 *
+> - * Lock a GEM object for use and grab a reference to it.
+> + * Lock a dma_resv object for use or grab a reference to it on
+> contention.
+> =C2=A0 *
+> =C2=A0 * Returns: -EDEADLK if a contention is detected, -EALREADY when
+> object is
+> - * already locked (can be suppressed by setting the
+> DRM_EXEC_IGNORE_DUPLICATES
+> - * flag), -ENOMEM when memory allocation failed and zero for
+> success.
+> + * already locked, -ENOMEM when memory allocation failed and zero
+> for success.
+> =C2=A0 */
+> -int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object
+> *obj)
+> +int drm_exec_lock_resv(struct drm_exec *exec, struct dma_resv *resv)
+> =C2=A0{
+> =C2=A0	int ret;
+> =C2=A0
+> @@ -209,22 +203,39 @@ int drm_exec_lock_obj(struct drm_exec *exec,
+> struct drm_gem_object *obj)
+> =C2=A0	if (unlikely(ret))
+> =C2=A0		return ret;
+> =C2=A0
+> -	if (exec->prelocked =3D=3D obj) {
+> -		drm_gem_object_put(exec->prelocked);
+> +	if (exec->prelocked =3D=3D resv) {
+> +		dma_resv_put(exec->prelocked);
+> =C2=A0		exec->prelocked =3D NULL;
+> =C2=A0		return 0;
+> =C2=A0	}
+> =C2=A0
+> =C2=A0	if (exec->flags & DRM_EXEC_INTERRUPTIBLE_WAIT)
+> -		ret =3D dma_resv_lock_interruptible(obj->resv, &exec-
+> >ticket);
+> +		ret =3D dma_resv_lock_interruptible(resv, &exec-
+> >ticket);
+> =C2=A0	else
+> -		ret =3D dma_resv_lock(obj->resv, &exec->ticket);
+> +		ret =3D dma_resv_lock(resv, &exec->ticket);
+> =C2=A0
+> -	if (unlikely(ret =3D=3D -EDEADLK)) {
+> -		drm_gem_object_get(obj);
+> -		exec->contended =3D obj;
+> -		return -EDEADLK;
+> -	}
+> +	if (unlikely(ret =3D=3D -EDEADLK))
+> +		exec->contended =3D dma_resv_get(resv);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(drm_exec_lock_resv);
+> +
+> +/**
+> + * drm_exec_lock_obj - lock a GEM object for use
+> + * @exec: the drm_exec object with the state
+> + * @obj: the GEM object to lock
+> + *
+> + * Lock a GEM object for use and grab a reference to it.
+> + *
+> + * Returns: -EDEADLK if a contention is detected, -EALREADY when
+> object is
+> + * already locked (can be suppressed by setting the
+> DRM_EXEC_IGNORE_DUPLICATES
+> + * flag), -ENOMEM when memory allocation failed and zero for
+> success.
+> + */
+> +int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object
+> *obj)
+> +{
+> +	int ret;
+> +
+> +	ret =3D drm_exec_lock_resv(exec, obj->resv);
+> =C2=A0
+> =C2=A0	if (unlikely(ret =3D=3D -EALREADY) &&
+> =C2=A0	=C2=A0=C2=A0=C2=A0 exec->flags & DRM_EXEC_IGNORE_DUPLICATES)
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index bbcbd25f014f0..f5cf9ad596a67 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -229,6 +229,8 @@ void drm_gem_private_object_init(struct
+> drm_device *dev,
+> =C2=A0	obj->size =3D size;
+> =C2=A0	mutex_init(&obj->gpuva.lock);
+> =C2=A0	dma_resv_init(&obj->_resv);
+> +
+> +	/* TODO: This needs to go away for drm_exec to work
+> correctly!!! */
+> =C2=A0	if (!obj->resv)
+> =C2=A0		obj->resv =3D dma_resv_get(&obj->_resv);
+> =C2=A0
+> diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+> index 8725ba92ff916..9daedb676d7b1 100644
+> --- a/include/drm/drm_exec.h
+> +++ b/include/drm/drm_exec.h
+> @@ -47,14 +47,14 @@ struct drm_exec {
+> =C2=A0	struct drm_gem_object	**objects;
+> =C2=A0
+> =C2=A0	/**
+> -	 * @contended: contended GEM object we backed off for
+> +	 * @contended: contended dma_resv object we backed off for
+> =C2=A0	 */
+> -	struct drm_gem_object	*contended;
+> +	struct dma_resv		*contended;
+> =C2=A0
+> =C2=A0	/**
+> -	 * @prelocked: already locked GEM object due to contention
+> +	 * @prelocked: already locked dma_resv object due to
+> contention
+> =C2=A0	 */
+> -	struct drm_gem_object *prelocked;
+> +	struct dma_resv		*prelocked;
+> =C2=A0};
+> =C2=A0
+> =C2=A0/**
+> @@ -175,6 +175,7 @@ static inline struct ww_acquire_ctx
+> *drm_exec_ticket(struct drm_exec *exec)
+> =C2=A0void drm_exec_init(struct drm_exec *exec, u32 flags, unsigned nr);
+> =C2=A0void drm_exec_fini(struct drm_exec *exec);
+> =C2=A0bool drm_exec_cleanup(struct drm_exec *exec);
+> +int drm_exec_lock_resv(struct drm_exec *exec, struct dma_resv
+> *resv);
+> =C2=A0int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object
+> *obj);
+> =C2=A0void drm_exec_unlock_obj(struct drm_exec *exec, struct
+> drm_gem_object *obj);
+> =C2=A0int drm_exec_prepare_obj(struct drm_exec *exec, struct
+> drm_gem_object *obj,
