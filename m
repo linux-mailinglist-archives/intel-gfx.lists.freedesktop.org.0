@@ -2,99 +2,145 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XleUJNU+VWr4lwAAu9opvQ
+	id z9qnDDJFVWo3mQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2026 21:39:01 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2026 22:06:10 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D105574EC7D
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2026 21:39:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B353074EF33
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2026 22:06:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=AG6+tLif;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=ecDW9i3s;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20260327:i=1")
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F23710E642;
-	Mon, 13 Jul 2026 19:38:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B139C10E661;
+	Mon, 13 Jul 2026 20:06:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com
- [209.85.160.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 561A810E642
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 19:38:57 +0000 (UTC)
-Received: by mail-qt1-f171.google.com with SMTP id
- d75a77b69052e-51c4436d02cso1326571cf.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 12:38:57 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1783971536; cv=none;
- d=google.com; s=arc-20260327;
- b=YVKNBjYPbMhmLHn2yQvyGpkZcr9vWnI4uc3iP0KvxufZ4QVhvZA9Xh+nasmAiXo38K
- GbCOfmW2zXexUsRoXPgGEnkJ1uh1O9twX00sk7x6yCWuiYt2WWyKr785obqLmK46LBM5
- B5GRLVnbseXbfcwhd0tHlkVbxm118MHzctXOJiRtR6bZXX4RHNeKTcyHgA0jpVW8VMec
- iacD/tq87XlPDbFpuHkQXsdV3EvIA7svzer0+1pkhy+E7Hfc4zYpYqwGOvI5v1VAoN5W
- 9OTMulLRhn2GKIczIK+Fk+WWanO8CK4UlbXwN8aXJ7TE3dJZX5aGFZYYTc5bjg9JUXkv
- QBfA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=3pTQ1V9SGNzxvooxi/cQN6BZaEeV0mA5pkIF97bSw2c=;
- fh=rlMvtmHJ+7MH+s4Ok/HlPYiN4gbDix9vy/GlW4dhBIk=;
- b=JgnSWLeSjL12hzdyPRu1dC/CNJZUxGIyQiJvY2XLYx+Qu5dgmb8ZlA/qYnQZzlgoM0
- nGOIxXY/eCdgqld3bQVo6pgO9WiHTXmX6AtF9n22dnYIgBTOFgxaAD64kHCQcbfeICrm
- JiMi4lzKd12+QShQBGZpKMyVppu42v1JX/waaApv2VxULv+yAMtJFJh7Deou+ZaE2WdQ
- icnTEseKryAtPiPFAUhkoqzVSEKXSFSCEMrOmtgPErsr3OEBKpz+8ijCvQ7rrzgW24kB
- xocKfLk3u5+woC6YBCrG/Jp4HbBqN3KDznapCd1e8w9+4WI3biR9yo6zxgY9fn1ZfnUm
- jTKg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783971536; x=1784576336; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=3pTQ1V9SGNzxvooxi/cQN6BZaEeV0mA5pkIF97bSw2c=;
- b=AG6+tLifQ7YlFs43f+1ky63WgzDOzu0a62FnXnqd+RyzwND53O6JQe051rs1x2pCip
- p6VOdDtX/+oXG/bGdsN9cAO08HLYO22psky7BWhCJiiSU8ZZUgYkyUxJY9Q2SNEPSIWK
- K7tsegH4G/S4LfdkkgVZSVFODJJeUWEXO1qJv4lfpvL8SpOYh3PVKl8g9oiAMwxh0aXZ
- MWMHfTflWCtmUNZ/j2lUXf9D84VcegzrLso7PQj/xGYh6kWowXqF50ZkaLvVt3WcQUkC
- fnFyGC9uZRRPvsih/a2z5kR+4lRPNzPGeTzKId2jale67eaBGpu++uhk0WZW9NZjVR0Y
- NWjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783971536; x=1784576336;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=3pTQ1V9SGNzxvooxi/cQN6BZaEeV0mA5pkIF97bSw2c=;
- b=ecm20vX7yjRBt2n3mWedLNKk66xY3AoIMRoy8HlO1TaYIqQxnM1nM7XNnq/oCTSUAp
- XBiyCqMepFSc/JLhNfObW9MvLjy8YjrCcv/S0SoV8PRZ3AfSuv/wn5XhOXoQOH20i5cI
- PjXWaHdJlisN5W+/gaJni4L32KfOSIXiKW2WLZrurZsoo2mztfI4q8m/nGs0mM8z5bpZ
- EtS0kuMa2Htzn0CU0ay2kwJ2s3JZ174FPEojHcA1P5kDIsgURnk9fPBaafDTTzuqkZtM
- 4n5XFtF+3FX/roFOCMeNlnhKS4muOBAHst9olXldB/5Pl1Z/K2Exs3RMUU4FqfZJKqLX
- ml6Q==
-X-Gm-Message-State: AOJu0YxbrG6fy+AwyHS6q/f/8LXep8LiUna/5yJ9OfqSG+1+YLSYS4MP
- ZNX0llsUumlzgIXFhfxrb4lgaDBew6BmkyI/jUT3O5M7tNpMwunHP4dGu7GfzXR2sUeTI2/dYjG
- N1Fg5yFiC7YCPSs5Yq0jc6sLFl34g65RmxP2I/Qp+
-X-Gm-Gg: AfdE7cmM3hz10GHjrCmHsEDe0LAC2NpC7qouqlx50XfEnU4pLvvoMHe/GkPUjCEi+ez
- 0c12Hl3yFud44Gea0EoIemjCeZkcmfHCYR6F3pJgPeM42aR+fU9aPm5rhvVrgL3jNULDIMYkgF5
- eVe/a3b5TkGlpWsX9U7opZa+0WsV3BJvXUXYsMQK5eCN4HeRkrHfVpib3XWVcPiHF6Rv+k4hFLI
- xvHnNRu/sU2emH3Ho9vr3b3Rqf5+qOGZnaBg25qwYfYah5zERPPlb/vSz2w1l/H56UAsL2v
-X-Received: by 2002:ac8:5fc6:0:b0:51a:8945:3136 with SMTP id
- d75a77b69052e-51cbf2102e5mr101834281cf.56.1783971535908; Mon, 13 Jul 2026
- 12:38:55 -0700 (PDT)
+Received: from PH8PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11012043.outbound.protection.outlook.com [40.107.209.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 592B810E65A;
+ Mon, 13 Jul 2026 20:06:06 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=RtK7ZmQIP2qQ3w21I3oDcXztJj+UlRRDMtGviF+ZSkp8euq70MwV75juUNkS/V8gmS1DS942Dtyp8Nnf16S1Uvodd7lG7mk48Vd0KIfpne+UKCuiGanYZ0/wJ69PkswAwJls7vBOclAqSthrh6OnxXuEUEfv1p8X/VnW6QQiYqd/F6Fp+t8jQt1Gcrv2ir+I3SmmCIO/VD8Jho3v83Ehg5ZcWTgWcANeGDej5K59H53KSqX3zPsdZcT7owSaXT638jWBVgTPx6OCvf7+gsfP9PU70QvPL7yTxqeuUjRLAqipIs2LrGsjd+zi+ZHzNLw6YtQiqXTHUsgYonerFFLyTw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CvtFaoklJHZcO7xD9NbgTPWTQmEla24kl7d1kBmeS/0=;
+ b=QWAieqy6L0p8834O5MGtwe3pLRG7311U/p9JHXCxQ+vn9SAzN59cRlwnBQ+7rnqDZ3geraqeP2O2qNiR7+Lootw+CZ9wvomNUJtzBMc/SzLC9fnjPgfBtn01yrmA8EkQ7a2E8vE3j8OurwAd4wSzoDF8Xv6jjPWZt7RPrjNljgbgVqBaPFK4igMjACpoe6u/0/zpLfTwuKwFld+RcxeWpbH6822gRjHVTww/CMSrOx6oZ8ZN3fqbyymRCwppmy7ggDgd/bcKvTY7APQZN9HAo1Xi3eHYdTStsfsRB4XGRl4VuUODxnPxUUErRDYlfmiipQWZUehKZBR5z7OxfwIAcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CvtFaoklJHZcO7xD9NbgTPWTQmEla24kl7d1kBmeS/0=;
+ b=ecDW9i3sSn5WbI+kYF/uQd5Lf898GHmar+kYLcSuM40uV8Fmj/txEaCwjYj0RxwwGOrxXl0QWK6gDU3j3zZVVHsjScznd4B0AqChVq28bIBa73Jp0HtU4lJhZHED5++T7Ns3vTBtN/1C7Zu+coeVA3mOOPKZenM3gMYeyHSEr/Y=
+Received: from SJ0PR12MB7007.namprd12.prod.outlook.com (2603:10b6:a03:486::8)
+ by SN7PR12MB7348.namprd12.prod.outlook.com (2603:10b6:806:29b::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Mon, 13 Jul
+ 2026 20:06:03 +0000
+Received: from SJ0PR12MB7007.namprd12.prod.outlook.com
+ ([fe80::6f95:c4a2:894d:9e8a]) by SJ0PR12MB7007.namprd12.prod.outlook.com
+ ([fe80::6f95:c4a2:894d:9e8a%5]) with mapi id 15.21.0181.019; Mon, 13 Jul 2026
+ 20:06:02 +0000
+Message-ID: <2fa23cb1-b4c9-459b-a0dc-31960313a243@amd.com>
+Date: Mon, 13 Jul 2026 16:05:51 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] drm: Guard DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Robert Mader <robert.mader@collabora.com>,
+ "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ dri-devel@lists.freedesktop.org
+Cc: Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Daniel Stone <daniels@collabora.com>, Uma Shankar <uma.shankar@intel.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>, Melissa Wen <mwen@igalia.com>,
+ Simon Ser <contact@emersion.fr>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Leandro Ribeiro <leandro.ribeiro@collabora.com>
+References: <20260703073230.19982-1-robert.mader@collabora.com>
+ <6d8806b8-fc71-4699-82c4-7189a0ea2284@intel.com>
+ <bb5918f5-a6da-4908-9332-18e0df39c005@linux.intel.com>
+ <7d58b289-eabe-4d68-9080-c7202b0f60a0@intel.com>
+ <d42d5750-f3c5-4e2b-baa3-514b87e59e86@linux.intel.com>
+ <361dfc91-94e8-4289-9b3e-5280803d9257@collabora.com>
+ <a7887776-c26c-4f6d-a662-2d8ef005ff4c@linux.intel.com>
+Content-Language: en-US
+From: Harry Wentland <harry.wentland@amd.com>
+In-Reply-To: <a7887776-c26c-4f6d-a662-2d8ef005ff4c@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YT4PR01CA0375.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:fd::10) To SJ0PR12MB7007.namprd12.prod.outlook.com
+ (2603:10b6:a03:486::8)
 MIME-Version: 1.0
-References: <CAA1YtmtZu4xH0dFXUUp97Apz4wNAvtpY2=QfhKgpt1scMFpYqQ@mail.gmail.com>
-In-Reply-To: <CAA1YtmtZu4xH0dFXUUp97Apz4wNAvtpY2=QfhKgpt1scMFpYqQ@mail.gmail.com>
-From: Tadeus Prastowo <0x66726565@gmail.com>
-Date: Mon, 13 Jul 2026 21:38:44 +0200
-X-Gm-Features: AUfX_my9bZZ7w7hgRpxvhUMfX4S8h6w6UKOBe-czxcJpwKMy3zFcDJhAD3q404A
-Message-ID: <CAA1YtmsiNJH2NyO3EFnLW6bfDs79xMHj5vRX6keXBd-5LemCxw@mail.gmail.com>
-Subject: Re: Commit 99cfbed19d06 at Linux kernel breaks AOC monitor 24P2Q
-To: intel-gfx@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, ville.syrjala@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR12MB7007:EE_|SN7PR12MB7348:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5e6cf495-b3ff-4b51-e556-08dee11a2a24
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|7416014|376014|23010399003|22082099003|18002099003|4143699003|11063799006|56012099006|6133799003;
+X-Microsoft-Antispam-Message-Info: KDmTXZrKpxJM1/ZgYCmTXOsdv8NYeCZfqvy8VMfQSxAG31Cls8vCL9D6o2im/bujVZ5xL/TzdNWCxrBjeRJ45hTK1M3u81DG9v//2DSCqC+NcdURNxrkAxkJhtGLZdZoV2/2fR1bEdwg2mWuiskr3VeLAXpSFvr1T4Bt7OTdwYStHgKOrnOES6FR43XGtnW29yOEyviQKCYBpZXsKS/IF+SH6xsUhKKbZCoGdb96Ec1F8TR9Ojs3aohh6bPpRIXY/araXEAK2opohMHkODBebNJDIuSGKfUzGYuNVe+QoJsbpGA6n6Fh5TQqm08JxapKpWgARWjYTPmq/CIjkk2woXFEhKV40QRH99ot5c98yPidxg07QJwAzj2UranrVx/mP2t552y6jTyCOUAKpsqQPgQgh6DMhkFzgyIq7TGLxy6fIA05bmIQEUCEidNO24LAKs0/ngSuHar+/rkWuXOHdJ4j7zWR0NtJxAA5y36/rhc0rO3T3OirhVOq76yb8Tbl3q5Lwns1WkKVckRAKRW4lEh0qX5pGskJnohKpmyyfV24IjUnK7zQn0PtmiG5RwFZa9Er8DHrQq0Gs1kg3P0Qnc7y4xFegUsbkplYGolUs7fx+jYB0c1oNOqFRyTFdEybPfhRItMwc9JJM+c2xxv+pGP3Q6qBZV/A6Woj+qNztlg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR12MB7007.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(7416014)(376014)(23010399003)(22082099003)(18002099003)(4143699003)(11063799006)(56012099006)(6133799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZWVPeFhESlR5N0x2MEc3ZHorNWYzL0RzOFZDL0pLVjZqTFI2Z0IrKzlqNGxU?=
+ =?utf-8?B?V2RHbkFaRWh3bEdPbGYrMVJrRHBJeFB1YWZHSElZUEdJempNRGJWdkJOZ3Zw?=
+ =?utf-8?B?N3JlbXJpenJ2eDNnR3YrZUQ4MXlZV0hjNmxFZldybzdSd3BqMFdValEySEVp?=
+ =?utf-8?B?aFh2dDJmQyt3K3p1OEVXY1lFN3htTFB2UEVRQjBXSGNaVUI1TUl6Kzk5VnJ1?=
+ =?utf-8?B?UFFTN2k3QjFsS2lGOVNrOEhSSW54aER0SXNvQllWMXdyL3FSVUN3UjJtQ1Jz?=
+ =?utf-8?B?ZFIyUE1OOVN3VVFSbHR1ZEE1MndqTnZuQmk4ZFNKdVRWV1dHbnZlSjIzeFdh?=
+ =?utf-8?B?ajhDSkdlSXMycGlWQXZ5RXEvbHpRMUpZbEhsc1NWV0dtR0QvN3NzMi9IbWdl?=
+ =?utf-8?B?a2RraWZRN0V2UXdrV0FCN2JxejFFajhTSXVxc3lXWk1NZ3ZMeUszL0ZsVWhl?=
+ =?utf-8?B?NTVvNTRENm40TkowT1JxUzhDNjVsNUVidmY3cmFFMkJPdjlEMWpGWW10c0wy?=
+ =?utf-8?B?WFBpSEtWa0xIS1lIOGt0aWNXWGpLa2hrMGRndVRQK3hxSlUxazBPS3FZa210?=
+ =?utf-8?B?TGU3bHNOaDByTDFOblVDSlVidmtHaFNCR2o5UUc1bVhZSVd1TU5qNkRVYzNi?=
+ =?utf-8?B?dEt0dy9vRCtDRkkvTFozZEpTM0dYaUlKdFczMEljamxjN2daUDJZOGJuTlZV?=
+ =?utf-8?B?OE44bm5FcUs5ditReXhlT2wrMG1LVCs2ZUQ5S2VBZHAxT2pXSHJtTllNc3R0?=
+ =?utf-8?B?NXVrODdDZTZkcDVZeFN4UXcyRHlRRmgrTmF6clhXY3dnd1h3VDdFSmE3NTUr?=
+ =?utf-8?B?dWsvUjFhNm02UUVRV0F3S3F5SDZlZDRES1I4b0RPVDlwc0ZyUUt4bUJtSW5a?=
+ =?utf-8?B?bWlFY0FYVXUwYThRVXZBbWgwOElwSXR4OGhDbHFHc1ZUVzI4RXNyajh5ejI0?=
+ =?utf-8?B?aVZsWjZWaFd1TUE3TGJLaHFxNDZER1YycWEvOHRaKzI0YitZM2ZZYVlHTTN4?=
+ =?utf-8?B?czlOSEVESHo0T1JJNzd1Y215M0QxaytmR3MvSkJOVDdNdVpreHNhQ3BrMVpz?=
+ =?utf-8?B?Yy82SkNYZzEwTUw3VDRDaExvbjZtQUFieGNwNFZ2bVJvYzZaOUZFdjBjb0dq?=
+ =?utf-8?B?UmcrS285QkVZeUwxK0FET3dZN2toQ1E0RnJjaG52dFgrRDJ1NG13dXErRUs2?=
+ =?utf-8?B?RWNaM2k4WnV4dFp4Skl4K1VCaTI2aFVFaGQ2QjFmN1REdW9kTms4MFRRU1JV?=
+ =?utf-8?B?K1FDVC9aQU0vNUFVVHk5blgreGliUlp2QXkrQmZacklZSXltVE1tV3Y5R29r?=
+ =?utf-8?B?c3Ywd3BQVHFTUGFFeHNMR1lOUTUyWVVxb2ZNZmtySm1iL2pNNkd4eHJ6d2dr?=
+ =?utf-8?B?TzEvV3JTcnJqb0RPbFRGMVB2dDNka2orMlFaSVdsZXJYdWpUdEpRZW1mQ1pI?=
+ =?utf-8?B?QXdYdDhvZkJVZnlCM3c4TnduYnMvZEpVd0dFVVhXYmZkS0NUOWZheGErNnFo?=
+ =?utf-8?B?dDhOUFR4Y1BmS0tGUGJqV2h1TkZySXVjSENnS3lZZW0zem5zOGlxVkl5QWor?=
+ =?utf-8?B?d25id1lSVmRoMklrdU02K3diQ2cyaHV0Zzc2OU9mbzRQTnFCZXI5YzdxMTRH?=
+ =?utf-8?B?Tnc3b1J0VThyN3MrdlZlSGJmYVg3aXZvc3dFNVA4Zk5hRHA3WFU5YmxUZTI5?=
+ =?utf-8?B?bUdXQUgzZng5bkVqZDdFcHVwZ0ZrVEhZaTd5WlVCMndzNy9iYTNEN0pWZnA0?=
+ =?utf-8?B?b0ExcFNqOXBxL0laa2Y2OFVIOGFZZ21MOEJyczhkL3NjNFJHUXd1eFNJMm9o?=
+ =?utf-8?B?ck1iRXNDYXBNTDVmeVdUaUU1V2tWdzdTeGNaZ3UrSWs5M0oyRHBvb1FuaXlS?=
+ =?utf-8?B?ZzgxVTZlNWRqVlV5Ym1EcTFzSHRMYVlJeW9kaDZEQkxEZUkrNmNHOU9IYXds?=
+ =?utf-8?B?UTJYenJ6R056b011MElFVnRHcDQ2YTIwd2ZlUkR3bzNlWjJJQmRINjNvSm02?=
+ =?utf-8?B?c0VGZXIwM1JOZGhjdU1rcnNwQllXdmlBNnhRQWJ6YW04WGxzTmpUVkZQQ29E?=
+ =?utf-8?B?ZmdQLy9zeVA0K0Q1VnZmSTNsdWk2Ujl6bjE5TUNHMWJhWXQ4OTc5UGJSTjBW?=
+ =?utf-8?B?bHF4ZkppWDFnT3ZGQ1pBaW9PVFhnMWZzdGovSWJMRTRFRG5GTi9ZZktEc1JY?=
+ =?utf-8?B?Nm9WZDE3S1VOZmw2NEVRa1E3S0NNT2sxUmtyUmJGQmNLTlpnU2RUSnNXTHRU?=
+ =?utf-8?B?TXpsTEdyT0dpSzhLZ2FnV1FoN2kzSmQvLzZKSDBYMktsNUFUTkhtSGdTcmZT?=
+ =?utf-8?B?eXVnRWVwbm1XT0drNUR3dmVVbklrS0VTSS85M0NRcmFFR2xlZUZzQT09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e6cf495-b3ff-4b51-e556-08dee11a2a24
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB7007.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2026 20:06:02.7241 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9nc4baFflIsc6WL7TPzSn12O0oNcEwqKEboL3sO+bhJWlBfc+YiNynQG3X0uGUiIcLK/cruUyLiToT3Ttkb7XA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7348
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,193 +157,88 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[0x66726565@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_CC(0.00)[kernel.org,suse.de,gmail.com,ffwll.ch,vger.kernel.org,lists.freedesktop.org,collabora.com,intel.com,bootlin.com,igalia.com,emersion.fr];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[harry.wentland@amd.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,intel.com:url,aoc.com:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:dkim,amd.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D105574EC7D
+X-Rspamd-Queue-Id: B353074EF33
 
-Hi everyone,
 
-Sorry that I forgot to CC the maintainers in the initial e-mail I sent
-yesterday, which can be found at the end of this e-mail.
 
-I also would like to add further important details:
+On 2026-07-09 07:49, Maarten Lankhorst wrote:
+> Hey,
+> 
+> On 7/9/26 13:14, Robert Mader wrote:
+>> Hi,
+>>
+>> On 09.07.26 12:02, Maarten Lankhorst wrote:
+>>> Hey,
+>>>
+>>> On 7/9/26 08:44, Borah, Chaitanya Kumar wrote:
+>>>>
+>>>> On 7/7/2026 6:31 PM, Maarten Lankhorst wrote:
+>>>>> Hey,
+>>>>>
+>>>>> On 7/7/26 10:03, Borah, Chaitanya Kumar wrote:
+>>>>>> On 7/3/2026 1:02 PM, Robert Mader wrote:
+>>>>>>> The client cap is currently advertised unconditionally, even for drivers
+>>>>>>> that do not support plane color pipelines. If clients supporting the later,
+>>>>>> s/later/latter
+>>>>>>
+>>>>>>> like Wayland compositors or tools like drm_info, enable the client cap on
+>>>>>>> such drivers they will be left without both color pipeline and the legacy
+>>>>>>> properties COLOR_ENCODING and COLOR_RANGE, effectively breaking YUV->RGB
+>>>>>>> conversion support.
+>>>>>>>
+>>>>>>> Prevent that by only marking the cap supported if there are actually planes
+>>>>>>> with color pipelines.
+>>>>>>>
+>>>>>>> Note: while the color pipeline replacement for the legacy properties is
+>>>>>>> still under review (1), we can assume that it will work as a drop-in
+>>>>>>> replacement.
+>>>>>> This change will but a driver can also choose to export colorops like programmable CTM_3x4 to achieve the same.
+>>>>>>
+>>>>>> We should also perhaps document this somewhere that if a driver supports LEGACY properties, it is imperative to implement some version of it with the color pipeline line property.
+>>>>> Would this be doable inside drm core? Implement the color pipeline properties, get the fixed pipeline for free?
+>>>> Right now, the Bypass(default) pipeline is automatically created when we call drm_plane_create_color_pipeline_property(), we could come up with a similar helper that could also create a pipeline that replaces the legacy properties.
+>>>>
+>>>> But this can't replace the existing helper entirely because some HW (though unlikely) might not support YUV buffers.
+>>> No need to do this for free, but a cheaper way for drivers to implement legacy
+>>> properties by only implementing the pipeline would be nice, similar to how
+>>> atomic also implements legacy modesetting and universal planes.
+>>
+>> I really like this idea - should we take it to the corresponding series, https://lore.kernel.org/dri-devel/20260623164812.81110-1-harry.wentland@amd.com/ so the initial implementations for AMD and VKMS directly do so?
+> 
+> That would be great!
+> 
 
-* The problem is found on two additional custom PCs for a total of
-three custom PCs as follows:
-** PC-1: Intel Celeron N5100 @ 1.10GHz whose integrated Intel video
-card is 8086:4e61 (JasperLake).
-** PC-2: Intel N97 whose integrated Intel video card is 8086:46d1
-(Alder Lake-N).
-** PC-3: Intel N150 whose integrated Intel video card is 8086:46d4
-(the newer Alder Lake-N).
+If I understand you correctly you suggest to map legacy COLOR_RANGE and COLOR_ENCODING to the new FIXED_MATRIX colorop in a generic way, instead of having drivers advertise them separately. Do I have that right?
 
-* The problem is _not_ found on the following custom PC:
-** PC-4: Intel Celeron J4125 CPU @ 2.00GHz whose integrated Intel
-video card is 8086:3185 (UHD Graphics 600).
+It's probably a good idea. It should be easy to make that change after merging the Fixed Matrix series with YUV support.
 
-The problem can be forced to occur on PC-4 by building the kernel at
-commit 99cfbed19d06 after rewriting line 702 of the file
-"intel_dp_link_training.c"
-(https://github.com/torvalds/linux/blob/99cfbed19d06dfe9c9929c436b5a768231c=
-05b70/drivers/gpu/drm/i915/display/intel_dp_link_training.c#L702)
-to be:
+Harry
 
-link_config[0] =3D DP_MSA_TIMING_PAR_IGNORE_EN;
+> Kind regards,
+> ~Maarten Lankhorst
 
-Therefore, it is clear that on PC-1, PC-2, and PC-3, the conditional
-expression "crtc_state->vrr.flipline" evaluates to true while on PC-4,
-it evaluates to false.
-
-The commit message says the following on changing the conditional
-expression from "crtc_state->vrr.enable" to
-"crtc_state->vrr.flipline":
-
-"I decided to leave the MSA timing ignore bit set all the time whether
-VRR is actually enabled or not. If the sink can figure out the timings
-with that information when VRR is active then surely it can also do it
-when VRR is inactive."
-
-That decision by Ville Syrj=C3=A4l=C3=A4 seems to not work with the AOC mon=
-itor
-24P2Q, a DP-to-DP cable, and either PC-1 or PC-2 or PC-3.
-
-Ville Syrj=C3=A4l=C3=A4 assumed 3 years ago that the sink could figure out =
-the
-timings regardless of whether VRR is active or inactive.
-
-The real case at hand with the AOC monitor 24P2Q, a DP-to-DP cable,
-and either PC-1 or PC-2 or PC-3 demonstrates that it seems not to be
-the case.
-
-Nevertheless, my question remains: is the rationale given by Ville
-Syrj=C3=A4l=C3=A4 for his decision 3 years ago invalid according to the
-DisplayPort (DP) standard and so the bug is in i915, or is the
-rationale valid according to the standard and so the bug is in the
-BIOSes of PC-1, PC-2, and PC-3?
-
-Thank you for your help.
-
---
-Best regards,
-Tadeus Prastowo
-
-On Mon, Jul 13, 2026 at 2:36=E2=80=AFAM Tadeus Prastowo <0x66726565@gmail.c=
-om> wrote:
->
-> Hi everyone,
->
-> I have an AOC monitor with the following details:
-> * Product No. 24P2Q.
-> * Model No. 24P2.
-> * Manufactured in March 2021.
-> * Native resolution is 1920x1080.
-> * Input connections: DP, DVI, HDMI, and VGA.
-> * Product website: https://www.aoc.com/uk/monitors/24p2q
->
-> The AOC monitor is connected to a custom PC with the following details:
-> * CPU: Intel(R) Celeron(R) N5100 @ 1.10GHz
-> (https://www.intel.com/content/www/us/en/products/sku/212329/intel-celero=
-n-processor-n5100-4m-cache-up-to-2-80-ghz/specifications.html).
-> * Integrated Intel video card VID:PID is 8086:4e61 (JasperLake UHD graphi=
-cs).
-> * The mainboard has two DP output ports.
->
-> The monitor and the custom PC are connected with a DP-to-DP cable.
->
-> The monitor has been working fine with Ubuntu 20.04 LTS in its native
-> resolution: 1920x1080@60.  The Ubuntu 20.04 has Linux kernel version
-> 5.15.
->
-> But, the monitor no longer works in its native resolution after
-> upgrading to Ubuntu 24.04 LTS: the monitor screen remains black.  The
-> Ubuntu 24.04 has Linux kernel version 6.14.  The monitor can work when
-> the resolution is set to 1024x768@60 using xrandr, but that is not the
-> solution of this problem because I want the monitor to work at its
-> native resolution.
->
-> The problem remains when using the latest Ubuntu LTS (26.04), which
-> has Linux kernel version 7.0.
->
-> Different DP-to-DP cables have been tested with Ubuntu 24.04, but the
-> problem remains.  The monitor works with Ubuntu 24.04 when either a
-> DP-to-DVI or DP-to-HDMI or DP-to-VGA cable is used, but the monitor
-> cannot work with Ubuntu 24.04 when using a DP-to-DP cable, which
-> again, presents no problem whatsoever when using Ubuntu 20.04 with
-> kernel 5.15.
->
-> The monitor works with Ubuntu 24.04 using a DP-to-DP cable when
-> connected to a different PC that uses a different Intel processor and
-> a different integrated Intel video card.
->
-> In other words, the problem is specific to the custom PC described at
-> the beginning with a DP-to-DP connection to the AOC monitor.
->
-> I have bisected the Linux kernel and found out that the cause of the
-> problem is the following diff-hunk of commit 99cfbed19d06
-> (https://github.com/torvalds/linux/commit/99cfbed19d06#diff-eb927a6d3f058=
-8695ab1a8f54a0c90a7a5feddcfa8379e49130b2594b819f686),
-> which is found between Linux kernel v6.4 and v6.5-rc1:
->
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -699,7 +699,7 @@ intel_dp_prepare_link_train(struct intel_dp *intel_dp=
-,
->          drm_dp_dpcd_write(&intel_dp->aux, DP_LINK_RATE_SET,
->                    &rate_select, 1);
->
-> -    link_config[0] =3D crtc_state->vrr.enable ? DP_MSA_TIMING_PAR_IGNORE=
-_EN : 0;
-> +    link_config[0] =3D crtc_state->vrr.flipline ?
-> DP_MSA_TIMING_PAR_IGNORE_EN : 0;
->      link_config[1] =3D intel_dp_is_uhbr(crtc_state) ?
->          DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
->      drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2=
-);
->
-> After I rebuilt the Linux kernel at commit 99cfbed19d06 by either
-> reverting the hunk or rewriting the assignment statement to
-> "link_config[0] =3D 0", the AOC monitor works fine again with the custom
-> PC using a DP-to-DP cable and Ubuntu 24.04 with my custom kernel.
->
-> Since this problem persists even in the latest state of the Linux
-> kernel as of yesterday
-> (https://github.com/torvalds/linux/commit/44696aa3a489), my question
-> is then as follows:
->
-> Is the actual problem the i915 driver or the BIOS of the custom PC?
-> Note that I do not blame the firmware of the AOC monitor because the
-> AOC monitor works fine when connected through a DP-to-DP cable to a
-> Ubuntu 24.04 running on a different PC that has a different Intel
-> processor and a different model of the integrated Intel video card.
->
-> Thank you very much for any help.  If you need further
-> information/test, just let me know.
->
-> --
-> Best regards,
-> Tadeus Prastowo
