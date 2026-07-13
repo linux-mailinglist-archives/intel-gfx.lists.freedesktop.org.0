@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id UbVBMuVvVWq6oQAAu9opvQ
+	id 9yJ4EOhvVWq7oQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 01:08:21 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 01:08:24 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74BB374FA23
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 01:08:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9B1174FA26
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 01:08:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=GKsAd99W;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=n2wYD7qV;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F050A10EB6B;
-	Mon, 13 Jul 2026 23:08:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AEB410EB77;
+	Mon, 13 Jul 2026 23:08:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 557DF10EB6A;
- Mon, 13 Jul 2026 23:08:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92B9110EB6A;
+ Mon, 13 Jul 2026 23:08:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -28,26 +28,27 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=i9m81uqTyCsQpQBm1+cRgZm9Hj2CBoctFJLvl3Nqe0c=; b=GKsAd99W4ArEo5H/DPQ7wtOHfK
- zpTTnyyJqZyU4BUNmdaRWEfUX/Aq//rV+kiGBjSKD87PzotMhMvs+oUKV9EoCDqLV40Wzbb/+a5/t
- rfoiH1Z+SsMu9Gzd8tU7ztrGA81SuQISPPSMRMBL8MGuH1f95OLaA3oYn3IHtsXd//gZ2msH9H3Vv
- E/2rGkpJRxGKkSEZqQRw/Ajg8ghPgp8SPDAZMlyIkQDsmEmsToWPim6SoyqZpm8vPyrTbov01zJhC
- RGiiKCnW4QEIkCYlZ96C3qarEcz/Mk+59yK+LD876cOYpKGJgYyg1iODOUvtvR8g4c0q/pcx+fglp
- XXsfLuww==;
+ bh=jnJPwEDFD2PsFqeoXo4tZj2C398wR6WOcpMiXzhjkbQ=; b=n2wYD7qV5EEn6fFh/iJpojCXx1
+ RIn9r2ywzkN8nV2k5RUKIKRLwLKrJKTNjIShJdys8+XWZE874ED1+trUNvVKbu6UevR8tFj7TyisP
+ CKleHupOYeVjXQagGU9Ohjam8H9PGV0SXnsHKQekwixh+b3y4iaOVsF79ObBWYcSKPQtv7e3+pj0Y
+ hSXxL3TF6IZK3TQcywFgIqatKURICDyjw0q7aeBS8DNtvM02GSxA/tiUIjV1mSXeyrgVO4/5i+SFY
+ MtQ3VxTtRI9059XJmWsJmeNPi+f7g7UUg3W4baal0kUnukmJapx6OsNSDxkQRY+i33xPbNlTnYSzB
+ rJW4KKcg==;
 Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
  helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wjPl2-00EiHA-5s; Tue, 14 Jul 2026 01:08:16 +0200
+ id 1wjPl4-00EiHA-E6; Tue, 14 Jul 2026 01:08:18 +0200
 From: John Harrison <John.Harrison@Igalia.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com,
  Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v7 7/9] drm/vc4: use drmm_writeback_connector_init()
-Date: Mon, 13 Jul 2026 16:07:23 -0700
-Message-ID: <20260713230726.3738290-8-John.Harrison@Igalia.com>
+ Suraj Kandpal <suraj.kandpal@intel.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>
+Subject: [PATCH v7 8/9] drm: writeback: drop excess connector initialization
+ functions
+Date: Mon, 13 Jul 2026 16:07:24 -0700
+Message-ID: <20260713230726.3738290-9-John.Harrison@Igalia.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260713230726.3738290-1-John.Harrison@Igalia.com>
 References: <20260713230726.3738290-1-John.Harrison@Igalia.com>
@@ -93,76 +94,126 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,Igalia.com:from_mime,Igalia.com:mid,intel.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,Igalia.com:from_mime,Igalia.com:mid,intel.com:email,bootlin.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 74BB374FA23
+X-Rspamd-Queue-Id: D9B1174FA26
 
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-The driver uses drm_writeback_connector_init() instead of its drmm
-counterpart, but it doesn't perform the job queue cleanup (neither
-manually nor by calling drm_writeback_connector_cleanup()). On the
-contrary, the drmm_writeback_connector_init() function ensures the
-proper cleanup of the job queue.
+Now as all drivers have been converted to
+drmm_writeback_connector_init(), drop drm_writeback_connector_init() and
+drm_writeback_connector::encoder field, they are unused now.
 
-Use drmm_writeback_connector_init() in order to initialize writeback
-connector instance.
-
-v2: Drop unbind call as no longer necessary (complained by Sashiko).
-
-Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: John Harrison <John.Harrison@Igalia.com>
 ---
- drivers/gpu/drm/vc4/vc4_txp.c | 18 ++++--------------
- 1 file changed, 4 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/drm_writeback.c | 55 ---------------------------------
+ include/drm/drm_writeback.h     | 18 -----------
+ 2 files changed, 73 deletions(-)
 
-diff --git a/drivers/gpu/drm/vc4/vc4_txp.c b/drivers/gpu/drm/vc4/vc4_txp.c
-index bc3f366fc3e6..322cc65dc787 100644
---- a/drivers/gpu/drm/vc4/vc4_txp.c
-+++ b/drivers/gpu/drm/vc4/vc4_txp.c
-@@ -377,7 +377,6 @@ vc4_txp_connector_detect(struct drm_connector *connector, bool force)
- static const struct drm_connector_funcs vc4_txp_connector_funcs = {
- 	.detect = vc4_txp_connector_detect,
- 	.fill_modes = drm_helper_probe_single_connector_modes,
--	.destroy = drm_connector_cleanup,
- 	.reset = drm_atomic_helper_connector_reset,
- 	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
-@@ -601,10 +600,10 @@ static int vc4_txp_bind(struct device *dev, struct device *master, void *data)
- 
- 	drm_connector_helper_add(&txp->connector.base,
- 				 &vc4_txp_connector_helper_funcs);
--	ret = drm_writeback_connector_init_with_encoder(drm, &txp->connector,
--							encoder,
--							&vc4_txp_connector_funcs,
--							drm_fmts, ARRAY_SIZE(drm_fmts));
-+	ret = drmm_writeback_connector_init(drm, &txp->connector,
-+					    &vc4_txp_connector_funcs,
-+					    encoder,
-+					    drm_fmts, ARRAY_SIZE(drm_fmts));
- 	if (ret)
- 		return ret;
- 
-@@ -618,17 +617,8 @@ static int vc4_txp_bind(struct device *dev, struct device *master, void *data)
+diff --git a/drivers/gpu/drm/drm_writeback.c b/drivers/gpu/drm/drm_writeback.c
+index b4a002e6d043..683da368e339 100644
+--- a/drivers/gpu/drm/drm_writeback.c
++++ b/drivers/gpu/drm/drm_writeback.c
+@@ -148,61 +148,6 @@ static int create_writeback_properties(struct drm_device *dev)
  	return 0;
  }
  
--static void vc4_txp_unbind(struct device *dev, struct device *master,
--			   void *data)
+-static const struct drm_encoder_funcs drm_writeback_encoder_funcs = {
+-	.destroy = drm_encoder_cleanup,
+-};
+-
+-/**
+- * drm_writeback_connector_init - Initialize a writeback connector and its properties
+- * @dev: DRM device
+- * @wb_connector: Writeback connector to initialize
+- * @con_funcs: Connector funcs vtable
+- * @enc_helper_funcs: Encoder helper funcs vtable to be used by the internal encoder
+- * @formats: Array of supported pixel formats for the writeback engine
+- * @n_formats: Length of the formats array
+- * @possible_crtcs: possible crtcs for the internal writeback encoder
+- *
+- * This function creates the writeback-connector-specific properties if they
+- * have not been already created, initializes the connector as
+- * type DRM_MODE_CONNECTOR_WRITEBACK, and correctly initializes the property
+- * values. It will also create an internal encoder associated with the
+- * drm_writeback_connector and set it to use the @enc_helper_funcs vtable for
+- * the encoder helper.
+- *
+- * Drivers should always use this function instead of drm_connector_init() to
+- * set up writeback connectors.
+- *
+- * Returns: 0 on success, or a negative error code
+- */
+-int drm_writeback_connector_init(struct drm_device *dev,
+-				 struct drm_writeback_connector *wb_connector,
+-				 const struct drm_connector_funcs *con_funcs,
+-				 const struct drm_encoder_helper_funcs *enc_helper_funcs,
+-				 const u32 *formats, int n_formats,
+-				 u32 possible_crtcs)
 -{
--	struct vc4_txp *txp = dev_get_drvdata(dev);
+-	int ret = 0;
 -
--	drm_connector_cleanup(&txp->connector.base);
+-	drm_encoder_helper_add(&wb_connector->encoder, enc_helper_funcs);
+-
+-	wb_connector->encoder.possible_crtcs = possible_crtcs;
+-
+-	ret = drm_encoder_init(dev, &wb_connector->encoder,
+-			       &drm_writeback_encoder_funcs,
+-			       DRM_MODE_ENCODER_VIRTUAL, NULL);
+-	if (ret)
+-		return ret;
+-
+-	ret = drm_writeback_connector_init_with_encoder(dev, wb_connector, &wb_connector->encoder,
+-			con_funcs, formats, n_formats);
+-
+-	if (ret)
+-		drm_encoder_cleanup(&wb_connector->encoder);
+-
+-	return ret;
 -}
+-EXPORT_SYMBOL(drm_writeback_connector_init);
 -
- static const struct component_ops vc4_txp_ops = {
- 	.bind   = vc4_txp_bind,
--	.unbind = vc4_txp_unbind,
- };
+ static void delete_writeback_properties(struct drm_device *dev)
+ {
+ 	if (dev->mode_config.writeback_pixel_formats_property) {
+diff --git a/include/drm/drm_writeback.h b/include/drm/drm_writeback.h
+index c380a7b8f55a..879ca103320c 100644
+--- a/include/drm/drm_writeback.h
++++ b/include/drm/drm_writeback.h
+@@ -24,17 +24,6 @@ struct drm_writeback_connector {
+ 	 */
+ 	struct drm_connector base;
  
- static int vc4_txp_probe(struct platform_device *pdev)
+-	/**
+-	 * @encoder: Internal encoder used by the connector to fulfill
+-	 * the DRM framework requirements. The users of the
+-	 * @drm_writeback_connector control the behaviour of the @encoder
+-	 * by passing the @enc_funcs parameter to drm_writeback_connector_init()
+-	 * function.
+-	 * For users of drm_writeback_connector_init_with_encoder(), this field
+-	 * is not valid as the encoder is managed within their drivers.
+-	 */
+-	struct drm_encoder encoder;
+-
+ 	/**
+ 	 * @pixel_formats_blob_ptr:
+ 	 *
+@@ -148,13 +137,6 @@ drm_connector_to_writeback(struct drm_connector *connector)
+ 	return container_of(connector, struct drm_writeback_connector, base);
+ }
+ 
+-int drm_writeback_connector_init(struct drm_device *dev,
+-				 struct drm_writeback_connector *wb_connector,
+-				 const struct drm_connector_funcs *con_funcs,
+-				 const struct drm_encoder_helper_funcs *enc_helper_funcs,
+-				 const u32 *formats, int n_formats,
+-				 u32 possible_crtcs);
+-
+ int drm_writeback_connector_init_with_encoder(struct drm_device *dev,
+ 				struct drm_writeback_connector *wb_connector,
+ 				struct drm_encoder *enc,
 -- 
 2.43.0
 
