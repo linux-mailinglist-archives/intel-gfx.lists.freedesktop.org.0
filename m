@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 7Eu0IORvVWq0oQAAu9opvQ
+	id UbVBMuVvVWq6oQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 01:08:20 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 01:08:21 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E208F74FA1E
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 01:08:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74BB374FA23
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 01:08:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=IJbzVtL+;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=GKsAd99W;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7194210EB7F;
-	Mon, 13 Jul 2026 23:08:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F050A10EB6B;
+	Mon, 13 Jul 2026 23:08:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D086D10EB80;
- Mon, 13 Jul 2026 23:08:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 557DF10EB6A;
+ Mon, 13 Jul 2026 23:08:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -28,27 +28,26 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=2Y9m0rT5of52KPtGGBWUfbnf0VkaffRAoZKmusQxBts=; b=IJbzVtL+KcT01uvY8jh9v6bIyQ
- vKpUhxhCm2+BN4fq9yX29Dqo/QcTUX0Ju4/TgPgGeKpHybKZdhy1XWvMK4mXc7fW13gSP2wHZ6h0K
- 3vyZC34Q9o2xfMTC6jUHMs3lHCzhvpt2Obyh62O0qxwrF/wfJYRnE/VuIG4xkeiw42hZymtQxYAEI
- ruteuw/OH99x/G8TZ+7ggBsZWS2aInBY2WZvCsTO08X8KkOpy1tpstct7giB3JV/VemOLbvKYB93l
- kKlaoGNOdDxD+Pg/UNkJ2ALbdttoEBd4dhaiTzdODEiruQJi8gUNO3gLacT8DMu1r4ditY+HYE6rR
- 46HLQUFg==;
+ bh=i9m81uqTyCsQpQBm1+cRgZm9Hj2CBoctFJLvl3Nqe0c=; b=GKsAd99W4ArEo5H/DPQ7wtOHfK
+ zpTTnyyJqZyU4BUNmdaRWEfUX/Aq//rV+kiGBjSKD87PzotMhMvs+oUKV9EoCDqLV40Wzbb/+a5/t
+ rfoiH1Z+SsMu9Gzd8tU7ztrGA81SuQISPPSMRMBL8MGuH1f95OLaA3oYn3IHtsXd//gZ2msH9H3Vv
+ E/2rGkpJRxGKkSEZqQRw/Ajg8ghPgp8SPDAZMlyIkQDsmEmsToWPim6SoyqZpm8vPyrTbov01zJhC
+ RGiiKCnW4QEIkCYlZ96C3qarEcz/Mk+59yK+LD876cOYpKGJgYyg1iODOUvtvR8g4c0q/pcx+fglp
+ XXsfLuww==;
 Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
  helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wjPkz-00EiHA-ME; Tue, 14 Jul 2026 01:08:14 +0200
+ id 1wjPl2-00EiHA-5s; Tue, 14 Jul 2026 01:08:16 +0200
 From: John Harrison <John.Harrison@Igalia.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com,
  Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>
-Subject: [PATCH v7 6/9] drm: renesas: rcar-du: use
- drmm_writeback_connector_init()
-Date: Mon, 13 Jul 2026 16:07:22 -0700
-Message-ID: <20260713230726.3738290-7-John.Harrison@Igalia.com>
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v7 7/9] drm/vc4: use drmm_writeback_connector_init()
+Date: Mon, 13 Jul 2026 16:07:23 -0700
+Message-ID: <20260713230726.3738290-8-John.Harrison@Igalia.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260713230726.3738290-1-John.Harrison@Igalia.com>
 References: <20260713230726.3738290-1-John.Harrison@Igalia.com>
@@ -94,9 +93,9 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[Igalia.com:from_mime,Igalia.com:mid,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,Igalia.com:from_mime,Igalia.com:mid,intel.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E208F74FA1E
+X-Rspamd-Queue-Id: 74BB374FA23
 
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
@@ -106,61 +105,64 @@ manually nor by calling drm_writeback_connector_cleanup()). On the
 contrary, the drmm_writeback_connector_init() function ensures the
 proper cleanup of the job queue.
 
-Use drmm_plain_encoder_alloc() to allocate simple encoder and
-drmm_writeback_connector_init() in order to initialize writeback
+Use drmm_writeback_connector_init() in order to initialize writeback
 connector instance.
 
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
----
- .../drm/renesas/rcar-du/rcar_du_writeback.c   | 22 +++++++++++++------
- 1 file changed, 15 insertions(+), 7 deletions(-)
+v2: Drop unbind call as no longer necessary (complained by Sashiko).
 
-diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
-index e5e6e6a156aa..ecfd4fc1f210 100644
---- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
-+++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
-@@ -134,7 +134,6 @@ static void rcar_du_wb_conn_reset(struct drm_connector *connector)
- static const struct drm_connector_funcs rcar_du_wb_conn_funcs = {
- 	.reset = rcar_du_wb_conn_reset,
+Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Signed-off-by: John Harrison <John.Harrison@Igalia.com>
+---
+ drivers/gpu/drm/vc4/vc4_txp.c | 18 ++++--------------
+ 1 file changed, 4 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/vc4/vc4_txp.c b/drivers/gpu/drm/vc4/vc4_txp.c
+index bc3f366fc3e6..322cc65dc787 100644
+--- a/drivers/gpu/drm/vc4/vc4_txp.c
++++ b/drivers/gpu/drm/vc4/vc4_txp.c
+@@ -377,7 +377,6 @@ vc4_txp_connector_detect(struct drm_connector *connector, bool force)
+ static const struct drm_connector_funcs vc4_txp_connector_funcs = {
+ 	.detect = vc4_txp_connector_detect,
  	.fill_modes = drm_helper_probe_single_connector_modes,
 -	.destroy = drm_connector_cleanup,
- 	.atomic_duplicate_state = rcar_du_wb_conn_duplicate_state,
- 	.atomic_destroy_state = rcar_du_wb_conn_destroy_state,
- };
-@@ -201,16 +200,25 @@ int rcar_du_writeback_init(struct rcar_du_device *rcdu,
- 			   struct rcar_du_crtc *rcrtc)
- {
- 	struct drm_writeback_connector *wb_conn = &rcrtc->writeback;
-+	struct drm_encoder *encoder;
-+
-+	encoder = drmm_plain_encoder_alloc(&rcdu->ddev, NULL,
-+					   DRM_MODE_ENCODER_VIRTUAL, NULL);
-+	if (IS_ERR(encoder))
-+		return PTR_ERR(encoder);
-+
-+	drm_encoder_helper_add(encoder, &rcar_du_wb_enc_helper_funcs);
-+
-+	encoder->possible_crtcs = drm_crtc_mask(&rcrtc->crtc);
+ 	.reset = drm_atomic_helper_connector_reset,
+ 	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
+ 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
+@@ -601,10 +600,10 @@ static int vc4_txp_bind(struct device *dev, struct device *master, void *data)
  
- 	drm_connector_helper_add(&wb_conn->base,
- 				 &rcar_du_wb_conn_helper_funcs);
+ 	drm_connector_helper_add(&txp->connector.base,
+ 				 &vc4_txp_connector_helper_funcs);
+-	ret = drm_writeback_connector_init_with_encoder(drm, &txp->connector,
+-							encoder,
+-							&vc4_txp_connector_funcs,
+-							drm_fmts, ARRAY_SIZE(drm_fmts));
++	ret = drmm_writeback_connector_init(drm, &txp->connector,
++					    &vc4_txp_connector_funcs,
++					    encoder,
++					    drm_fmts, ARRAY_SIZE(drm_fmts));
+ 	if (ret)
+ 		return ret;
  
--	return drm_writeback_connector_init(&rcdu->ddev, wb_conn,
--					    &rcar_du_wb_conn_funcs,
--					    &rcar_du_wb_enc_helper_funcs,
--					    writeback_formats,
--					    ARRAY_SIZE(writeback_formats),
--					    1 << drm_crtc_index(&rcrtc->crtc));
-+	return drmm_writeback_connector_init(&rcdu->ddev, wb_conn,
-+					     &rcar_du_wb_conn_funcs,
-+					     encoder,
-+					     writeback_formats,
-+					     ARRAY_SIZE(writeback_formats));
+@@ -618,17 +617,8 @@ static int vc4_txp_bind(struct device *dev, struct device *master, void *data)
+ 	return 0;
  }
  
- void rcar_du_writeback_setup(struct rcar_du_crtc *rcrtc,
+-static void vc4_txp_unbind(struct device *dev, struct device *master,
+-			   void *data)
+-{
+-	struct vc4_txp *txp = dev_get_drvdata(dev);
+-
+-	drm_connector_cleanup(&txp->connector.base);
+-}
+-
+ static const struct component_ops vc4_txp_ops = {
+ 	.bind   = vc4_txp_bind,
+-	.unbind = vc4_txp_unbind,
+ };
+ 
+ static int vc4_txp_probe(struct platform_device *pdev)
 -- 
 2.43.0
 
