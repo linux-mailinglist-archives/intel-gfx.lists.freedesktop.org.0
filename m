@@ -2,157 +2,158 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id phzlNxr/VGp6igAAu9opvQ
+	id 0YUOGAgBVWr2igAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2026 17:07:06 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2026 17:15:20 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A3CC74CCB4
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2026 17:07:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04DF674CE2F
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jul 2026 17:15:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=caF3hSeb;
+	dkim=pass header.d=intel.com header.s=Intel header.b=C5WdQDka;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com;
 	arc=reject ("signature check failed: fail, {[1] = sig:microsoft.com:reject}")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FACA10E118;
-	Mon, 13 Jul 2026 15:07:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59B3310EA2E;
+	Mon, 13 Jul 2026 15:15:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA4A910E118;
- Mon, 13 Jul 2026 15:07:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45CB410EA25;
+ Mon, 13 Jul 2026 15:15:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783955222; x=1815491222;
+ t=1783955715; x=1815491715;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=fsuwV5rMvHnr4t+j0lbFifrIqbx+jiMFRqNnT38RDZU=;
- b=caF3hSebcBvizvtVXxtyrPBvIl3j0S1QCg+Tu/79UwKua/VWPKqg8atY
- Oll3lhq4ui7nfPxiDrfyfQ8/1+WGh6IYcj/v5R6MsdbPkIDDm6E/bsQKR
- uZ8wdaKBbsbP6xj5O+3jm6ivY6MIkSyeTXgXYgchOrwSRwUsMEpj8lN9M
- 8aT0xrakWhkuBCmISeEVW/QtmJhSVK0MtWNsH1sTHaIKziedkWab8TtK2
- vQk1cwxxfBICa2Goi6gdkCqCnvIcDS1eZshk0HkpTMdudSpRL77MaPngt
- N8SjnCQI72Cqz0qlf5GKXToRnkiAEO0BsKYWGYy8pa0/SOxttqXljKSYY Q==;
-X-CSE-ConnectionGUID: uJdt+8v+Rv2OS5sZUHavrQ==
-X-CSE-MsgGUID: MI1KaqAyQHSa7i/vkAvEkA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="95934791"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="95934791"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 08:07:01 -0700
-X-CSE-ConnectionGUID: /0AlFHhbRO2sOwpzg/jkXw==
-X-CSE-MsgGUID: 57RR0HU9R82JapqR7ivudQ==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=TWH5Iqa0AdEwqcGr0ULDotLEWn/jGzc7IlTjnTAmskM=;
+ b=C5WdQDkaamdCavgCtXiNAClGX20noKc+efAA6CyIo+dmZRyLKD9zlQR1
+ dvw2c8Iw/XF+irO5/skPzzx7gH9EldJJFDvuZHeio33F0CV1pet8WK7Ir
+ KNpV5eq5FFDG5dglApkkNRZAMcyG953bClMZ1n51kabysGREKZVwlBv9W
+ 2jakj7pQLva3OILJj4RkWBUJ/9RTjkGSnbx2bVPrzsDUug3Wl8zmbsk1o
+ ZVGvJDcNp6BJWp+ODuXwhKQmGo0ov1NP6Rj0zd17n7rsfHTUpG+r+dGVX
+ vJ5fm0JSwxerYHg81xPf47yalxMAisRW86jHxlfS2U1hNmD40mElcOvf+ g==;
+X-CSE-ConnectionGUID: Z4i3wqP1SduESumbreT0Uw==
+X-CSE-MsgGUID: zHmwmi+NSle9tVSJY0cGWQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="95168287"
+X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="95168287"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2026 08:15:14 -0700
+X-CSE-ConnectionGUID: giTT3NrASCCMP/jycf/XHA==
+X-CSE-MsgGUID: W6ROtPBHS/q+LhnVnHhgLw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="256218381"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 08:07:01 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2026 08:15:14 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Mon, 13 Jul 2026 08:07:00 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.43; Mon, 13 Jul 2026 08:15:13 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Mon, 13 Jul 2026 08:07:00 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.13) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.43 via Frontend Transport; Mon, 13 Jul 2026 08:15:13 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.65) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Mon, 13 Jul 2026 08:06:59 -0700
+ 15.2.2562.43; Mon, 13 Jul 2026 08:15:12 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=F3baFoVch8FbAQ6USbp6mgKixUh1nXiHgzN29iRBFVBVD6vFZc8+spBpJyhTD2oIfLFp8PEw+J7NbXA5ulGukLEk/a58SC1Iq+fNLKS3Ahdwu7eOADaN6WTjuOwrD/JJSjswbuM2A0azcGLjOfU03HJNd3kUjp/X1efkB1914UM0MEMhXYXPF4e/tNFJjybK185oOBLLJacWZwXI+ikZFJtjai6IF/e0hs9gNjT2PhpWk3jFpD36c+KjLtOakf6TUU9Ys6DzJwIPanoV4hC+/l+PfgMleTW2kXvZV+Cfs3lJHsPFBwkK/ED9Zk3TFn1yep8iHJZ7PGuHBaOGvLx1lA==
+ b=WEVH38dNhiKzomMn0U7bE5d2Dk6vDXHM8zHPzqLjk2Yy+lt9pXkSyEMB9PHmHVoM+Pc0uhxlNUpsXderAAOMGEczdpJ/oThxgunMI9qxor3ptXlyxH059jACFrYYgUNLod5XJ6U8hFsrna2hqtyVPODRfr39YOQeHRoMegg45oMQsTj28dNd20xRln4uoJwRvt+65XOhZbBNKWnvfM3LmVtwBJK93bp5ihZ5nhM+lprccZ1oahpEWKyQnUnnBgy8zW0KAC2GFBaG79Uc9yy6HyLOLSPPH6d8/O1fvZczYh4QkaEdbDyAg0C0VmVYSxok5zE5W/BEHkRS1hSI474uYA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ajrt0XiI3pv+/wAAEUN4cBGKgALPf/9unmC0DUGpS74=;
- b=t+KClmwjEA4nI18vQ2SjOAcJG0z+w2l9Q/H6wvCVC5HjiAv4IhXmK8nADpIZOb+tzdNUTZIXdkmAf85mH8CjjqEB+kMt0RZHt2xz6S9dCKk0XjBPNiSvETULhEbvATu8jEWZXfKUYpiIVHN46jU1d6GL20cFP670bpE0Dt/9f3DbXQVj4KYm74uzeNL64YSQnDc0ldndzAaEDdEgbb0EwYdAsUQq+S9M2j6VLupfNpwYbPWDCpnt6H206stnea3Sk7C5LUS1T13MTfFiTqBW/ZtfY/p3t/vFjBOTQ7iqFSNsItt0bzGJpYqugYbg2CSyHgS3/sjwV2DxUh1kkdgj4g==
+ bh=fzRUuebEdkY9nhFiY3Dr6bOvHnGN1Gb5XBkYY8i5nVk=;
+ b=XctcM0UULpcevcLln/EjV1dg1XNFNkc/diVE6JTXAW93fKt3MWw5lSjPMgx6AQbHW4zsD8EZVLuCHhMV9RjkLOliYVySPyLyhwFmq1ZJxGN7h1W3VON9r1C7ptHiGQWOGZIgDycC6V4gCl07EW+1Xe1Sbvm7YkGqdi+zGPViMHm1n6Dmy1QEzFYeV1E08spy61IxF2sikKNBS4OHzr5ihhBiR24LbWNL3re3KA28qbNNgc8tahAGnQqLJhhrFuRiIYz8uiiwdzxEXUWMs6PLOgx6go2O0mDscwS6fn7C99mEQP8kNl/lQ9BJEo4N7PYRPY7BMkOrCXbtL6+FGkjRfA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by CY8PR11MB6892.namprd11.prod.outlook.com (2603:10b6:930:5b::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Mon, 13 Jul
- 2026 15:06:56 +0000
+ by SJ0PR11MB6815.namprd11.prod.outlook.com (2603:10b6:a03:484::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.19; Mon, 13 Jul
+ 2026 15:15:10 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0202.014; Mon, 13 Jul 2026
- 15:06:56 +0000
-Date: Mon, 13 Jul 2026 08:06:53 -0700
+ 15:15:10 +0000
+Date: Mon, 13 Jul 2026 08:15:07 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: Danilo Krummrich <dakr@kernel.org>
-CC: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- <christian.koenig@amd.com>, <thomas.hellstrom@linux.intel.com>,
- <ecourtney@nvidia.com>, <simona@ffwll.ch>, <nat@pixelcluster.dev>,
- <airlied@gmail.com>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 09/12] drm/ttm: nuke buffer refcounting
-Message-ID: <alT/Dbp0JSkfGRjA@gsse-cloud1.jf.intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <christian.koenig@amd.com>, <dakr@kernel.org>, <ecourtney@nvidia.com>,
+ <simona@ffwll.ch>, <nat@pixelcluster.dev>, <airlied@gmail.com>,
+ <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 04/12] drm/ttm: Switch LRU cursor to track dma_resv
+ instead of buffer objects
+Message-ID: <alUA++4ihNYEiU5+@gsse-cloud1.jf.intel.com>
 References: <20260710190752.2355-1-christian.koenig@amd.com>
- <20260710190752.2355-10-christian.koenig@amd.com>
- <DJVRYBLM3B94.MAUO8T8NXM5P@kernel.org>
-Content-Type: text/plain; charset="us-ascii"
+ <20260710190752.2355-5-christian.koenig@amd.com>
+ <051148cb56c32c89b6d06458144124d08d4b28d6.camel@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <DJVRYBLM3B94.MAUO8T8NXM5P@kernel.org>
-X-ClientProxiedBy: MW4P223CA0026.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:303:80::31) To PH7PR11MB6522.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <051148cb56c32c89b6d06458144124d08d4b28d6.camel@linux.intel.com>
+X-ClientProxiedBy: MW4PR04CA0320.namprd04.prod.outlook.com
+ (2603:10b6:303:82::25) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CY8PR11MB6892:EE_
-X-MS-Office365-Filtering-Correlation-Id: bf87b96d-9509-4ccf-29ca-08dee0f0616f
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ0PR11MB6815:EE_
+X-MS-Office365-Filtering-Correlation-Id: 02ab2927-56f3-4a6b-877f-08dee0f18791
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|7416014|23010399003|18002099003|22082099003|6133799003|4143699003|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info: jAzG/7BmTyMqtc3DnqMQ6Gz/RjolhI0LiKLPmdVvtG420JZzIBHf+/CsVSxrwKB8LN/zAa/jCNpuVJIVeX4nMf90YP9RFzZ+7a154NEw3csvUsSyzVg/LcP/2c8y5XUQhY55obFeVKgkAp4WoIxXAfVQSD5Ca0D/JjTRDjYHzurF6yV7XVdHGpSAPgx4u6E2V4NgabaC+WCmWXEzKdAPKqkntCsbB1KXYIhvt1TEB63F9+Ipkzz9CZWqDLCz7vvS4Rex80n21647lbqfv0jefPrvkuE8QG5d0fIxPsiuURltwUajHBjkJCVil9wmYUy4Kr9s3FPQlEAyqSBBN0EV7Jqu2EduOAeave2xUME+L84J3aCp60vEUUff7+wqqPcBEKHCCurcxcd2f6d06JmDeSFoACmns/XNUWXpMc1RtmfKwyu1ZL7ZkaWWPHJHvAg18kJbH1ywVnsZs7XvM3qlKcT0TMYQrRzveEp2sNj6aTex8AW+pREK0QOlhVJ9a9POw89fCUJPWk4i/bTcjJhnmSP3dMK28NbW+pjkABg4jSGvl+ot26UhlN1YAzOJxwccdFrmZoAqwaBQ0NXpavwo6NwUezIHKvYygjQ7TE2Yk/p0NY2+fVkwxDMoc7C+193q2oTWlzABDE4yYUB6Z3/dbIlBo3/6CWqUaLAyPs+oJqs=
+ ARA:13230040|7416014|376014|23010399003|366016|1800799024|18002099003|22082099003|4143699003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: 8Nhc1XcvZQmZZG2Q+5TtSxfil5FnElgMTvGeFvmaGPhV+jpOC2YZqVV+kjS9LOsDB0gKHFNmyn1Emw61U8/FDYF1uMyX7qaWuaiogbeSOyqzjg8tv2ljVmi5lblpHWR3cIyl6SAX0bgI5lN7g1bUI3vDW4kt+A68m5N/DETKvtcWyGjtk0VxLpJ1FavsYUAhw0butXtDovqUSbSWW0oN7fZE/TCXpkttIBZF6Y5+0CAcj1fXxLrSUh5RF1twtCYnjkjrgnE//wta+GAHuXUnZQVA+UFE8ENNbN2N4ztviMAtth+m1HNrhERnnevm96rstlernCCm7F116QPNSSyf7hcQbefavL6LPsjGBcIrskz30d0iPlcWddjGOjtKAb4SglCkOV3bkC/XBccCeY/2GIzgHI/wWTZk931oewMLlaUsqVl1upt8sGKs0SojiqDGQk7INS4Ju6geVvr/u6QBCUQ+FdOiXj6uOCGZzOUjzZZGwXf3g4f0JPVp7O5DIQq6/UnnsEljs6lms2M41xSEHIiFLraYpfToCj1I4jzg5Z7ZL53+9+DN1UvYfmd0b5T5PaDypPabTHHh/9AbjXWXA5W1kTfIxFK7oKPSQItI0gGO81lAvBa8HsFr59GJ2hG8Gzikt5SFxxTssva7nAG1VpnsN61DjCM9RT3g7xc89MA=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7416014)(23010399003)(18002099003)(22082099003)(6133799003)(4143699003)(56012099006)(11063799006);
+ SFS:(13230040)(7416014)(376014)(23010399003)(366016)(1800799024)(18002099003)(22082099003)(4143699003)(56012099006)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8nnRCf0fMg4A4J+HxsYKrh0Ma5WpaUT3C1wb+yCW5uiUaeCluC0opr3w3B8R?=
- =?us-ascii?Q?XHAY5rL9WzsW0VppYLNifJnkqxJ4ZBaj761P/ySuzPLInGpoig9phM2BzQ6W?=
- =?us-ascii?Q?2RII56lgb6pLzS4yGknpj+mzsqep2a75H/vw3vLKKnS7jrPYWG893QHhlvjS?=
- =?us-ascii?Q?hungNToxDMk9eCxuCu9Zcdp5NgZTITCsH0qoBsfC6psDSUOnFVkR3g0mdwJ3?=
- =?us-ascii?Q?P0Dm0xsSpEAJaC0FSKKuRNnF2vEen+qXwp5CvHh2M1RG3XEpdzw34tiTmqqm?=
- =?us-ascii?Q?Z794ttwXKL4ohfpmiF1whC5LKZzRgQlvmftKOAx3HGQa/BO6CNoYG591c3UG?=
- =?us-ascii?Q?So8KBtsNIyuppyfOCJSJWEfS25W+iT6/Ez9wteibrlyH4R3YYuO0FhTylQ75?=
- =?us-ascii?Q?1UAVda/6dUNRG35L64XhHG1+zDkNgWgfwDZr/nd74z6BYKkrmfm/ExKVU/WO?=
- =?us-ascii?Q?0+ERVxtW2bXrwFsW3gATYXbb2+KZgC7P0U3Qkq63HuHMt61gPaiHfuIa9WVr?=
- =?us-ascii?Q?N7N4B671NsOEtg0t9PXH6PIBvQGp/u5Xw1taYUKg8HpKqkrRM27yJyzg4NKx?=
- =?us-ascii?Q?8C6ZaqPWERcYqLRbGvDzzlyMHyHiCsO1B4XxtPusUNA9h7JXBdNwrfjICDNI?=
- =?us-ascii?Q?FRY1aPzqN5z8bEwexn5yysOINSlW0gekFbrCSwH1hdRxqNcFaULGGY6pgk/J?=
- =?us-ascii?Q?GgApQWNiHcHFg4z90237YOhlw0FheCqVvTrRidct4MQSi2Hvpfk/1bFWgD7s?=
- =?us-ascii?Q?gJS4EuIdJNV7bLjiTniCgrvmdZddu7bLs2o+ZkDSX51DSWACJTV0qEYSNJKQ?=
- =?us-ascii?Q?Yo8jd0b8sQTof+F7Bo08aErZfdu8d6/1YEfMrf0TrP7OM9C0NLDgGbVBR3m/?=
- =?us-ascii?Q?5g3PtJ8SBLfIDSR4LeE4gHcjbNTJKq/ybtbl+XPHHPNrneO59yc7LzgzfXjN?=
- =?us-ascii?Q?MO3fJt6iSRleoqImxg3pq4q2202vk49jV87/ksLdqcF3KdSXU32Bse86FuML?=
- =?us-ascii?Q?d/dB7nrNHh5rm381Gm24qEsMSPJURgwoY4ltAxzO1S21yUugG9SyJrB4lDoj?=
- =?us-ascii?Q?Hw82+d7GKibyvgZ0lNBuBkwgQdrrABpO3ljvblSwe0qqQ7IMRCOD5QIeNXuO?=
- =?us-ascii?Q?2BePiE/Nw5o/w0FpvnPEV+kT3xcwvbpRgmlHW7jT0VWvQ9XU8C1VF2kpV1b4?=
- =?us-ascii?Q?GlgMiGrbYE6OExVjFnPKwobFaaQXsV3tvpv1WOPg7VhPnBaQjn/7pWpfZPCo?=
- =?us-ascii?Q?EpHRpt6z9am9k9qh+btK2mhvT2EIwavUsriq/YTqQrLnoTWy1ip8gzLfCo68?=
- =?us-ascii?Q?ucT+zFLi4Mweinp8d8zZV95bWjBj/WJloQFb+ZMFQrpg2IYjejX55YMIGO+5?=
- =?us-ascii?Q?TDigvaKRUzM+6BJK7AwY7tm1iLUFFy/KsIgPAP5DVaviuN8340WuYJdxAAI0?=
- =?us-ascii?Q?lbhUNzB+EgLo++W3Xhvic1y3SEKwAlu6mVNw9VValhjnblZkPCBDgBCGhKOd?=
- =?us-ascii?Q?ajXhLj7OJyU8Pf+dcqX2X9GvoY9hkfleL+j6cHxHvOxODdXwEho9cIQxyX9d?=
- =?us-ascii?Q?t0JIkubCstaNxPAyPmu7GDD2uXyjT4qH37GOi/dhvgLFYmeYhRnO+T0hjdeE?=
- =?us-ascii?Q?w8mCkm3uycRjtlsDUDvX0+OxFWUCUwsoAgeVICr2Qr5J9vtkPKdtGItWph2w?=
- =?us-ascii?Q?GR/iE35Tlqgvo1R6Dgqyr6hyc72DBE2XiTpMO6rmtl9ggjFvbNOHyCKDmbwi?=
- =?us-ascii?Q?kxNCS6N16A=3D=3D?=
-X-Exchange-RoutingPolicyChecked: lGjaZi2dxPLZD00E9xBE7JVZuf4hGsAfMfJwEW3tDg8qg7eXlSKVxUnJaOOOPPRNlkpirOL96MVPyvxXiz+VOts2YcrrN9+6J5xMhblztckKzoHV2WWRXfT+qg+TTYaxgMaY4ZVxd7X8OpNkowaGYd4rymM8aiNAS0iLCtoy4XSeH+zRZpooUYYsj/3zD+TqXVNCl8ynhGGKZP0Wk9PjZ4IpMQ5OV1CgxS0PsRbi9ffcA2sqksmSevh/3yy8KqfTHErSpE+aQZmgaxWTYomfVpiktAZQT+4gIIm4aHwVYbBVg+3Rs3z0ZNEMidnox4YCt152LTWczYXyf08CsxnnUQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf87b96d-9509-4ccf-29ca-08dee0f0616f
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?jT2kjoCGV275glexJRSuX7+XpM1+vdP9xlBviiyjn8Pqrz7TKyitsPElWH?=
+ =?iso-8859-1?Q?E9D3BJGXxHX/P7AmPzrzgUw9cRP+vYtehrZbK8Mfoy9Wafwi8SN4SGBtja?=
+ =?iso-8859-1?Q?0+vfdNduvnBwUr1zNeX4c2MUrYOlu+RrMwO2DiQAOy7VsaRY1gC3fYJtKC?=
+ =?iso-8859-1?Q?5a5tWpCTbOvT0tnVs/iRRWPTS79ZZRSjZV+rQ27zQaEFZk2KQrmKSahTvL?=
+ =?iso-8859-1?Q?dIQhDSHQLDQaQn2CIviiMwgcz0CDECrVYHIP8gNFbGvrsDW3oq7CCjSn4C?=
+ =?iso-8859-1?Q?mHtS0wq4Oqdqp1LDInmmQ+7CfMwgL3D3pdxOQfjT7eS72WNG+6JkLgHji0?=
+ =?iso-8859-1?Q?5N4/heYRaaonV6rEUriX1fIpGhbTYsATZDwhIv93sTgbw6nEF1iVYp3YH1?=
+ =?iso-8859-1?Q?uvSznlYYAeQkPBhPzXulpcaalsLLCqXNjuR/MAt2N3R8Z0Y8QKA6jjuvzz?=
+ =?iso-8859-1?Q?i6ZLpUkLSxRryCdyVnktKPrEQdx5KAwZA2GJ7fnzY4V9XLk7i1KRgNahvT?=
+ =?iso-8859-1?Q?ckzaL195KzDm7vGxp/xEiGuM3vYpq6rIX2GokeSomRgKZQp23zEjIlqH/q?=
+ =?iso-8859-1?Q?qlI4pznfaQ4jDehY9RjUCs3RVzOKYyFfM7c0gI+OwAoaefhqcoXLN0E00f?=
+ =?iso-8859-1?Q?EHQaykTNZlFCnJ7eqQSm7Mah9XVb23sW9vvNMu2pKf1hEhAhCHSUvPcZ/0?=
+ =?iso-8859-1?Q?qHqyrDDyH6bLUnz+tA16vLzEC7lT4X6qB5zIy3I+1/bdqyELzZl9fOVnn7?=
+ =?iso-8859-1?Q?qxX4JZ6ZtmxBv1WMYfbxunhHlcsugWDj6sE1+Q3FMWeaTuBgx5odidr+hv?=
+ =?iso-8859-1?Q?qKL8mHb/av2tFS7k8LPtuGYLML5xPwg34leAt7MII9wh1QP0ttk1DRmCFD?=
+ =?iso-8859-1?Q?el0pnJAjY74iHbKLV0vKRfThi4QuwzJEFo0hOWt38qtIq/8XrLXA25E6dw?=
+ =?iso-8859-1?Q?CXGo7MeK8HT/OP+GrjL91rS6EFVVw6FZ+MAoHtDFzjg4tY0ATiMbwzjQzx?=
+ =?iso-8859-1?Q?vtLLBDpmNSeCGk2ZRFkgFzOol6xrYZ/vPvU1GekjE4qORJe7Eqr2orcSFV?=
+ =?iso-8859-1?Q?zXEL/rRBwDsCLhvBOTcxdSXwZuXzTUznABXrwRo2emka8Z7t7qZkbCI0yR?=
+ =?iso-8859-1?Q?g/48lR4wP7tqmNaOyh+15RSVlVPvxAlKmg6B77SbhN584hMMD3dtA7Yjd0?=
+ =?iso-8859-1?Q?FO+cYhvFqllp3YHyPXmcVtvPEycCSa61mqZWtO+pa+Vsu9vtmiWB21YJu+?=
+ =?iso-8859-1?Q?6/hoeEWvqoXovLF5fEfKGRpsPe0JM3YMTMOCJqfLRlSc9Q1Qr6S+YhqPdl?=
+ =?iso-8859-1?Q?fg0wA/TT4aaB2q+/6A0EaPc8qc4wf88wLQID7yZ07+37dG98389xljVfoY?=
+ =?iso-8859-1?Q?ikuUXrbEdI1EbYFZuzN2tUZrpquCkH9xTEOAaOPJxb5EUnP64XNi47x/5T?=
+ =?iso-8859-1?Q?QS7MI1B7V0su0SZmGNVpxq6G9qc5tac/pioCoJTnQTcEgCgh07Z7BWc7JP?=
+ =?iso-8859-1?Q?AiW3ODcOLZrbd/zSxk5LVZFeLcBDJSVNO2KGwSl8snxjG+TIff0Ymc1WJp?=
+ =?iso-8859-1?Q?IyDRGptbmAXjKVvbKrF/rX42DGkfHNhcUGEl/hizTO8Hi0xlHeCr4Bp2Yk?=
+ =?iso-8859-1?Q?HAdWORngBnvktHmjounFB7Z2he0YYDXZWVo7KV/MpxYdkAoflrrCGFnTgt?=
+ =?iso-8859-1?Q?LWNE4emXn50fO3FJz3l+YqtWITlwRgrJOuOOoqBWwU7jucnHcv1D+H4Vuo?=
+ =?iso-8859-1?Q?O7h3oWYo/WCeZYJw/WfkYwTj1Na8LQqWQ0Vs0nY0A5T/jRGrS5P9/jraHN?=
+ =?iso-8859-1?Q?LH44SbfT8A=3D=3D?=
+X-Exchange-RoutingPolicyChecked: OFxLQ1+7S+NGwrzbIAbt02iRNsJowSd5r0x7oTlhVfz3qv4rMHKKLJNoPJCHuA5gukGWXJjRH6omAXv5XMcaVqpiig9WYoIKhEK6sGDbY5bD0RkSCFiuUsVV09L+TZF4FzUpag4zeGxkQtaBiJIzqBxeOHIj88hORh0Wq0DY7nPKyuXcqHwaY1Ck1UAnSMgMTDGHu15s8NXZzIIz3OavrqD97daS4OEvVzRMXuRS6oWZ8uDvARwiRmo58j7fc4UN9GgkP+IUV0i4VONpx8OZYrEfw0BYA+0uLhDcV/TleoLSz8BlXSJhGv2jecodRKgdShxDFrLX/+ywFDV27jGPTQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 02ab2927-56f3-4a6b-877f-08dee0f18791
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2026 15:06:56.6149 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2026 15:15:10.1514 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: z/KL+SI2eknJiHP770X50bHAMAC/rceD2UPq0yZCzGjXwXhOlZfh9dSK3PWr9AiRiN3aLqzq1hyIBEzbX3Tkag==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6892
+X-MS-Exchange-CrossTenant-UserPrincipalName: gzij9dvW7Ta1flaBTMUAX3kI83Xm+1yqJbK5rxIzFGuu5cnN7U0Hu2Ey/mUYspA2oiC+Jqn77D3M/KRD3jCFjg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6815
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -169,59 +170,385 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[gmail.com,amd.com,linux.intel.com,nvidia.com,ffwll.ch,pixelcluster.dev,lists.freedesktop.org,vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[amd.com,kernel.org,nvidia.com,ffwll.ch,pixelcluster.dev,gmail.com,lists.freedesktop.org,vger.kernel.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gsse-cloud1.jf.intel.com:mid,lists.freedesktop.org:from_smtp,amd.com:email,intel.com:from_mime,intel.com:dkim];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[matthew.brost@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8A3CC74CCB4
+X-Rspamd-Queue-Id: 04DF674CE2F
 
-On Sat, Jul 11, 2026 at 03:26:18PM +0200, Danilo Krummrich wrote:
-> On Fri Jul 10, 2026 at 8:52 PM CEST, =?UTF-8?q?Christian=20K=C3=B6nig?= wrote:
-> > +/**
-> > + * ttm_bo_is_deleted - test if buffer is already deleted
-> > + * @bo: the struct ttm_buffer_object to test
-> > + *
-> > + * Returns true if the buffer is already deleted and only waiting for
-> > + * destruction.
-> > + */
-> > +static inline bool ttm_bo_is_deleted(struct ttm_buffer_object *bo)
-> > +{
-> > +	return !kref_read(&bo->base.refcount);
-> > +}
+On Mon, Jul 13, 2026 at 03:40:55PM +0200, Thomas Hellström wrote:
+> On Fri, 2026-07-10 at 20:52 +0200, Christian König wrote:
+> > Refactor the LRU cursor to hold references to dma_resv directly while
+> > locking it rather than the buffer object.
+> > 
+> > This avoid the need to grab a reference to the BO and so allows
+> > handling
+> > of BOs with zero reference count.
+> > 
+> > Signed-off-by: Christian König <christian.koenig@amd.com>
+> > ---
+> >  drivers/gpu/drm/ttm/ttm_bo_util.c  | 124 +++++++++++++++------------
+> > --
+> >  drivers/gpu/drm/ttm/ttm_resource.c |  18 +++++
+> >  include/drm/ttm/ttm_bo.h           |  10 +--
+> >  include/drm/ttm/ttm_resource.h     |   2 +
+> >  4 files changed, 87 insertions(+), 67 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c
+> > b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> > index 029c218f9fb47..1f7361604b552 100644
+> > --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
+> > +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> > @@ -819,19 +819,17 @@ int ttm_bo_pipeline_gutting(struct
+> > ttm_buffer_object *bo)
+> >  }
+> >  
+> >  static bool ttm_lru_walk_trylock(struct ttm_bo_lru_cursor *curs,
+> > -				 struct ttm_buffer_object *bo)
+> > +				 struct dma_resv *resv)
+> >  {
+> >  	struct ttm_operation_ctx *ctx = curs->arg->ctx;
+> >  
+> > -	curs->needs_unlock = false;
+> > -
+> > -	if (dma_resv_trylock(bo->base.resv)) {
+> > -		curs->needs_unlock = true;
+> > +	if (dma_resv_trylock(resv)) {
+> > +		curs->resv = dma_resv_get(resv);
+> >  		return true;
+> >  	}
+> >  
+> > -	if (bo->base.resv == ctx->resv && ctx->allow_res_evict) {
+> > -		dma_resv_assert_held(bo->base.resv);
+> > +	if (resv == ctx->resv && ctx->allow_res_evict) {
+> > +		dma_resv_assert_held(resv);
+> >  		return true;
+> >  	}
+> >  
+> > @@ -839,18 +837,18 @@ static bool ttm_lru_walk_trylock(struct
+> > ttm_bo_lru_cursor *curs,
+> >  }
+> >  
+> >  static int ttm_lru_walk_ticketlock(struct ttm_bo_lru_cursor *curs,
+> > -				   struct ttm_buffer_object *bo)
+> > +				   struct dma_resv *resv)
+> >  {
+> >  	struct ttm_lru_walk_arg *arg = curs->arg;
+> >  	int ret;
+> >  
+> >  	if (arg->ctx->interruptible)
+> > -		ret = dma_resv_lock_interruptible(bo->base.resv,
+> > arg->ticket);
+> > +		ret = dma_resv_lock_interruptible(resv, arg-
+> > >ticket);
+> >  	else
+> > -		ret = dma_resv_lock(bo->base.resv, arg->ticket);
+> > +		ret = dma_resv_lock(resv, arg->ticket);
+> >  
+> >  	if (!ret) {
+> > -		curs->needs_unlock = true;
+> > +		curs->resv = dma_resv_get(resv);
+> >  		/*
+> >  		 * Only a single ticketlock per loop. Ticketlocks
+> > are prone
+> >  		 * to return -EDEADLK causing the eviction to fail,
+> > so
+> > @@ -920,14 +918,16 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk
+> > *walk, struct ttm_device *bdev,
+> >  }
+> >  EXPORT_SYMBOL(ttm_lru_walk_for_evict);
+> >  
+> > -static void ttm_bo_lru_cursor_cleanup_bo(struct ttm_bo_lru_cursor
+> > *curs)
+> > +static void ttm_bo_lru_cursor_cleanup(struct ttm_bo_lru_cursor
+> > *curs)
+> >  {
+> > -	struct ttm_buffer_object *bo = curs->bo;
+> > +	if (curs->resv) {
+> > +		dma_resv_unlock(curs->resv);
+> > +		dma_resv_put(curs->resv);
+> > +		curs->resv = NULL;
+> > +	}
+> >  
+> > -	if (bo) {
+> > -		if (curs->needs_unlock)
+> > -			dma_resv_unlock(bo->base.resv);
+> > -		ttm_bo_put(bo);
+> > +	if (curs->bo) {
+> > +		drm_gem_object_put(&curs->bo->base);
+> >  		curs->bo = NULL;
+> >  	}
+> >  }
+> > @@ -941,7 +941,7 @@ void ttm_bo_lru_cursor_fini(struct
+> > ttm_bo_lru_cursor *curs)
+> >  {
+> >  	spinlock_t *lru_lock = &curs->res_curs.man->bdev->lru_lock;
+> >  
+> > -	ttm_bo_lru_cursor_cleanup_bo(curs);
+> > +	ttm_bo_lru_cursor_cleanup(curs);
+> >  	spin_lock(lru_lock);
+> >  	ttm_resource_cursor_fini(&curs->res_curs);
+> >  	spin_unlock(lru_lock);
+> > @@ -972,21 +972,18 @@ ttm_bo_lru_cursor_init(struct ttm_bo_lru_cursor
+> > *curs,
+> >  EXPORT_SYMBOL(ttm_bo_lru_cursor_init);
+> >  
+> >  static struct ttm_buffer_object *
+> > -__ttm_bo_lru_cursor_next(struct ttm_bo_lru_cursor *curs)
+> > +__ttm_bo_lru_cursor_iter(struct ttm_bo_lru_cursor *curs, bool first)
+> >  {
+> >  	spinlock_t *lru_lock = &curs->res_curs.man->bdev->lru_lock;
+> > -	struct ttm_resource *res = NULL;
+> > -	struct ttm_buffer_object *bo;
+> >  	struct ttm_lru_walk_arg *arg = curs->arg;
+> > -	bool first = !curs->bo;
+> > -
+> > -	ttm_bo_lru_cursor_cleanup_bo(curs);
+> > +	int ret;
+> >  
+> > -	spin_lock(lru_lock);
+> >  	for (;;) {
+> > -		int mem_type, ret = 0;
+> > -		bool bo_locked = false;
+> > +		struct ttm_resource *res;
+> > +
+> > +		ttm_bo_lru_cursor_cleanup(curs);
+> >  
+> > +		spin_lock(lru_lock);
+> >  		if (first) {
+> >  			res = ttm_resource_manager_first(&curs-
+> > >res_curs);
+> >  			first = false;
+> > @@ -996,43 +993,48 @@ __ttm_bo_lru_cursor_next(struct
+> > ttm_bo_lru_cursor *curs)
+> >  		if (!res)
+> >  			break;
+> >  
+> > -		bo = res->bo;
+> > -		if (ttm_lru_walk_trylock(curs, bo))
+> > -			bo_locked = true;
+> > -		else if (!arg->ticket || arg->ctx->no_wait_gpu ||
+> > arg->trylock_only)
+> > -			continue;
+> > -
+> > -		if (!ttm_bo_get_unless_zero(bo)) {
+> > -			if (curs->needs_unlock)
+> > -				dma_resv_unlock(bo->base.resv);
+> > -			continue;
+> > +		if (!ttm_lru_walk_trylock(curs, res->bo->base.resv))
+> > {
+> > +			struct dma_resv *resv;
+> > +
+> > +			if (!arg->ticket || arg->ctx->no_wait_gpu ||
+> > +			    arg->trylock_only) {
+> > +				spin_unlock(lru_lock);
+> > +				continue;
+> > +			}
+> > +
+> > +			resv = dma_resv_get(res->bo->base.resv);
+> > +			spin_unlock(lru_lock);
+> > +
+> > +			ret = ttm_lru_walk_ticketlock(curs, resv);
+> > +			if (ret && ret != -EALREADY)
+> > +				return ERR_PTR(ret);
+> > +
+> > +			/*
+> > +			 * We need to double check that we still
+> > have the same
+> > +			 * dma_resv object.
 > 
-> This is an anti-pattern, branch decisions cannot rely on an atomic reference
-> count unless additional invariants are upheld that otherwise guarantee that the
-> read values does not instantly become meaningless.
+> While I think this would actually work, we need documentation and
+> asserts of what exactly we're relying on here to keep the bo alive.
+> Otherwise future work will most likely break something.
+> 
 
-So I believe that means the TTM refcount reaching zero is a terminal
-state; i.e., reinitialization (0 -> 1) is not allowed. I believe I agree
-with that or if reinit is allowed the check needs to change.
+As a general comment, we should build some TTM assertion macros akin to
+xe_assert. TTM has a lot of subtle invariants that make the whole thing
+work, and many of them are not guarded by assertions. Assertions, of
+course, help catch bugs at runtime, but they also serve as
+self-documenting invariants, which leads to a codebase that is easier to
+understand and maintain.
 
 Matt 
 
+> Thanks,
+> Thomas
 > 
-> Something like this should at least document in which context and under which
-> conditions it is valid to rely on the returned value.
+> 
+> > +			 */
+> > +			spin_lock(lru_lock);
+> > +			res = ttm_resource_manager_current(&curs-
+> > >res_curs);
+> > +			if (ret || !res || res->bo->base.resv !=
+> > resv) {
+> > +				spin_unlock(lru_lock);
+> > +				dma_resv_put(resv);
+> > +				continue;
+> > +			}
+> > +			dma_resv_put(resv);
+> >  		}
+> > -
+> > -		mem_type = res->mem_type;
+> >  		spin_unlock(lru_lock);
+> > -		if (!bo_locked)
+> > -			ret = ttm_lru_walk_ticketlock(curs, bo);
+> > +
+> > +		/* Grab a GEM reference to the BO if it isn't
+> > already deleted */
+> 
+> 
+> 
+> > +		if (kref_get_unless_zero(&res->bo->base.refcount))
+> > +			curs->bo = res->bo;
+> >  
+> >  		/*
+> > -		 * Note that in between the release of the lru lock
+> > and the
+> > -		 * ticketlock, the bo may have switched resource,
+> > -		 * and also memory type, since the resource may have
+> > been
+> > -		 * freed and allocated again with a different memory
+> > type.
+> > -		 * In that case, just skip it.
+> > +		 * The BO is now locked so it can't be released any
+> > more until
+> > +		 * we drop both the lock and the eventual GEM
+> > reference.
+> >  		 */
+> > -		curs->bo = bo;
+> > -		if (!ret && bo->resource && bo->resource->mem_type
+> > == mem_type)
+> > -			return bo;
+> > -
+> > -		ttm_bo_lru_cursor_cleanup_bo(curs);
+> > -		if (ret && ret != -EALREADY)
+> > -			return ERR_PTR(ret);
+> > -
+> > -		spin_lock(lru_lock);
+> > +		return res->bo;
+> >  	}
+> > -
+> > -	spin_unlock(lru_lock);
+> > -	return res ? bo : NULL;
+> > +	return NULL;
+> >  }
+> >  
+> >  /**
+> > @@ -1046,7 +1048,7 @@ __ttm_bo_lru_cursor_next(struct
+> > ttm_bo_lru_cursor *curs)
+> >   */
+> >  struct ttm_buffer_object *ttm_bo_lru_cursor_next(struct
+> > ttm_bo_lru_cursor *curs)
+> >  {
+> > -	return __ttm_bo_lru_cursor_next(curs);
+> > +	return __ttm_bo_lru_cursor_iter(curs, false);
+> >  }
+> >  EXPORT_SYMBOL(ttm_bo_lru_cursor_next);
+> >  
+> > @@ -1060,8 +1062,8 @@ EXPORT_SYMBOL(ttm_bo_lru_cursor_next);
+> >   */
+> >  struct ttm_buffer_object *ttm_bo_lru_cursor_first(struct
+> > ttm_bo_lru_cursor *curs)
+> >  {
+> > -	ttm_bo_lru_cursor_cleanup_bo(curs);
+> > -	return __ttm_bo_lru_cursor_next(curs);
+> > +	ttm_bo_lru_cursor_cleanup(curs);
+> > +	return __ttm_bo_lru_cursor_iter(curs, true);
+> >  }
+> >  EXPORT_SYMBOL(ttm_bo_lru_cursor_first);
+> >  
+> > diff --git a/drivers/gpu/drm/ttm/ttm_resource.c
+> > b/drivers/gpu/drm/ttm/ttm_resource.c
+> > index 154d6739256f8..4a765b25472c3 100644
+> > --- a/drivers/gpu/drm/ttm/ttm_resource.c
+> > +++ b/drivers/gpu/drm/ttm/ttm_resource.c
+> > @@ -714,6 +714,24 @@ ttm_resource_manager_next(struct
+> > ttm_resource_cursor *cursor)
+> >  	return NULL;
+> >  }
+> >  
+> > +/* TODO */
+> > +struct ttm_resource *
+> > +ttm_resource_manager_current(struct ttm_resource_cursor *cursor)
+> > +{
+> > +	struct ttm_resource_manager *man = cursor->man;
+> > +	struct ttm_lru_item *lru;
+> > +
+> > +	lockdep_assert_held(&man->bdev->lru_lock);
+> > +
+> > +	lru = &cursor->hitch;
+> > +	list_for_each_entry_continue_reverse(lru, &man->lru[cursor-
+> > >priority],
+> > +					     link) {
+> > +		if (ttm_lru_item_is_res(lru))
+> > +			return ttm_lru_item_to_res(lru);
+> > +	}
+> > +	return NULL;
+> > +}
+> > +
+> >  /**
+> >   * ttm_lru_first_res_or_null() - Return the first resource on an lru
+> > list
+> >   * @head: The list head of the lru list.
+> > diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+> > index 8310bc3d55f90..30e835414e721 100644
+> > --- a/include/drm/ttm/ttm_bo.h
+> > +++ b/include/drm/ttm/ttm_bo.h
+> > @@ -488,15 +488,13 @@ struct ttm_bo_lru_cursor {
+> >  	/** @res_curs: Embedded struct ttm_resource_cursor. */
+> >  	struct ttm_resource_cursor res_curs;
+> >  	/**
+> > -	 * @bo: Buffer object pointer if a buffer object is
+> > refcounted,
+> > -	 * NULL otherwise.
+> > +	 * @resv: reference to the locked dma_resv
+> >  	 */
+> > -	struct ttm_buffer_object *bo;
+> > +	struct dma_resv *resv;
+> >  	/**
+> > -	 * @needs_unlock: Valid iff @bo != NULL. The bo resv needs
+> > -	 * unlock before the next iteration or after loop exit.
+> > +	 * @bo: TTM BO with GEM reference, NULL for deleted BOs
+> >  	 */
+> > -	bool needs_unlock;
+> > +	struct ttm_buffer_object *bo;
+> >  	/** @arg: Pointer to common BO LRU walk arguments. */
+> >  	struct ttm_lru_walk_arg *arg;
+> >  };
+> > diff --git a/include/drm/ttm/ttm_resource.h
+> > b/include/drm/ttm/ttm_resource.h
+> > index a5d386583fb6e..e8e9c8b81ce4b 100644
+> > --- a/include/drm/ttm/ttm_resource.h
+> > +++ b/include/drm/ttm/ttm_resource.h
+> > @@ -488,6 +488,8 @@ struct ttm_resource *
+> >  ttm_resource_manager_first(struct ttm_resource_cursor *cursor);
+> >  struct ttm_resource *
+> >  ttm_resource_manager_next(struct ttm_resource_cursor *cursor);
+> > +struct ttm_resource *
+> > +ttm_resource_manager_current(struct ttm_resource_cursor *cursor);
+> >  
+> >  struct ttm_resource *
+> >  ttm_lru_first_res_or_null(struct list_head *head);
