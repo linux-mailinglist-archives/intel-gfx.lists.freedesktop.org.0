@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id V8TXIdxvVWqpoQAAu9opvQ
+	id zaogCd1vVWqsoQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 01:08:12 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 01:08:13 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BAEC74FA09
+	by mail.lfdr.de (Postfix) with ESMTPS id A48C574FA0E
 	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 01:08:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=G38CUH1M;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=NRPPm1e3;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EBB310EB73;
-	Mon, 13 Jul 2026 23:08:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 215FC10EB79;
+	Mon, 13 Jul 2026 23:08:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A51AB10E90C;
- Mon, 13 Jul 2026 23:08:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7995E10EB77;
+ Mon, 13 Jul 2026 23:08:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -28,27 +28,26 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=q4zTrWvspNQOgrPNXPQgwUnNIIyzAJpXvOzRD+1kkDU=; b=G38CUH1MJPmVrZhVpBZE8qJFl8
- a64ObmUcZlURWbLUxOILvGaufxCU8M65CejkOhvFwWe0YdMKCE6AsdXJyNkHSeSvVxEM6QeuCVWGB
- flSuEpw/D75jKMCHdhYWgMdbyobrB4ykI0gmjTOPhTZaHm8usr1Ci6jWxxLejWVzG7NPoLzr2/Nv/
- p+OvO3+oYnLOmKa1ixAZ57pmc5fnIu6qp5R+AdTr610vKsY80LsZtEGqvHUiS3JpLze29SMO7Cmgh
- DZ8bNO4eQrqVbYMPBT8pL9VuuO+0WJ3Y6f34GyShmtL1onWd8pI94feKhgZ5HJMap6TojtXVzj9wR
- BYcGqrwA==;
+ bh=ogqx4JC2Bn9jeLYccrvGTKzYR0yir8BnH1/SoTEeO2w=; b=NRPPm1e3NLbW97nW3appc8Xuy8
+ m6UqQySqNn0Kf2RhfUNqMyiGLYXaYz+S95qWLDXSbxILaG7PGEnJ9Od3mBHS4lRRQu51DKJMMhv4H
+ 9bM4i2mvYByoUd9mtleueWdj2V8wvDquIfeVNMkmGUi5GOdudls7olmuuMpKbZVt67cgi9RZk7XS3
+ cDEJWhbaU8oSRSgiOTaOiJN0ExJcQIG6JRN0GuFjxSchvO0NtvIbQI5tZ9Qd8ywgoFbfZ5rDRMiWF
+ tfSiwxM/rhXju1A1m8g6rold+02J60rm5u6EjZX2lmnJz1kpWsdJBJHGbkYtdAvHtCpslKowdkiFC
+ or4rdN2w==;
 Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
  helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wjPko-00EiHA-8B; Tue, 14 Jul 2026 01:08:02 +0200
+ id 1wjPkq-00EiHA-J8; Tue, 14 Jul 2026 01:08:04 +0200
 From: John Harrison <John.Harrison@Igalia.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com,
  Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Alex Hung <alex.hung@amd.com>
-Subject: [PATCH v7 2/9] drm/amd/display: use drmm allocation for writeback
- connector
-Date: Mon, 13 Jul 2026 16:07:18 -0700
-Message-ID: <20260713230726.3738290-3-John.Harrison@Igalia.com>
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v7 3/9] drm/amd/display: use drmm_writeback_connector_init()
+Date: Mon, 13 Jul 2026 16:07:19 -0700
+Message-ID: <20260713230726.3738290-4-John.Harrison@Igalia.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260713230726.3738290-1-John.Harrison@Igalia.com>
 References: <20260713230726.3738290-1-John.Harrison@Igalia.com>
@@ -86,66 +85,94 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	RCVD_COUNT_THREE(0.00)[3];
 	ARC_NA(0.00)[];
 	DKIM_TRACE(0.00)[igalia.com:-];
-	RCPT_COUNT_FIVE(0.00)[6];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[John.Harrison@Igalia.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[igalia.com,oss.qualcomm.com,wanadoo.fr,amd.com];
+	RCPT_COUNT_FIVE(0.00)[6];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:email,Igalia.com:from_mime,Igalia.com:mid,amd.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[Igalia.com:from_mime,Igalia.com:mid,intel.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1BAEC74FA09
+X-Rspamd-Queue-Id: A48C574FA0E
 
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-Currently memory used for writeback connectors isn't freed on driver
-unbinding, leaking the memory. Use drm_device-memory allocation
-function for the writeback connector, making sure that the memory is
-freed on the driver unbinding.
+The driver uses drm_writeback_connector_init() instead of its drmm
+counterpart, but it doesn't perform the job queue cleanup (neither
+manually nor by calling drm_writeback_connector_cleanup()). On the
+contrary, the drmm_writeback_connector_init() function ensures the
+proper cleanup of the job queue.
 
-v2: Fixed missing parameter
+Use drmm_plain_encoder_alloc() to allocate simple encoder and
+drmm_writeback_connector_init() in order to initialize writeback
+connector instance.
 
-Reported-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Suggested-by: Alex Hung <alex.hung@amd.com>
+Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: John Harrison <John.Harrison@Igalia.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |  2 +-
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c   | 18 +++++++++++++-----
+ 2 files changed, 14 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 67b825cbb88f..1fd48e28f5fe 100644
+index 1fd48e28f5fe..1726eb6a3c63 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -96,6 +96,7 @@
- #include <drm/drm_fourcc.h>
- #include <drm/drm_edid.h>
- #include <drm/drm_eld.h>
-+#include <drm/drm_managed.h>
- #include <drm/drm_mode.h>
- #include <drm/drm_utils.h>
- #include <drm/drm_vblank.h>
-@@ -2597,7 +2598,7 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
- 		link = dc_get_link_at_index(dm->dc, i);
+@@ -4899,7 +4899,7 @@ static void dm_set_writeback(struct amdgpu_display_manager *dm,
+ 		return;
+ 	}
  
- 		if (link->connector_signal == SIGNAL_TYPE_VIRTUAL) {
--			struct amdgpu_dm_wb_connector *wbcon = kzalloc_obj(*wbcon);
-+			struct amdgpu_dm_wb_connector *wbcon = drmm_kzalloc_obj(adev_to_drm(adev), *wbcon);
+-	acrtc = to_amdgpu_crtc(wb_conn->encoder.crtc);
++	acrtc = to_amdgpu_crtc(crtc_state->base.crtc);
+ 	if (!acrtc) {
+ 		drm_err(adev_to_drm(adev), "no amdgpu_crtc found\n");
+ 		kfree(wb_info);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c
+index 0bf82e46f773..3ee31634549e 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c
+@@ -174,7 +174,6 @@ static const struct drm_encoder_helper_funcs amdgpu_dm_wb_encoder_helper_funcs =
  
- 			if (!wbcon) {
- 				drm_err(adev_to_drm(adev), "KMS: Failed to allocate writeback connector\n");
-@@ -2606,7 +2607,7 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
+ static const struct drm_connector_funcs amdgpu_dm_wb_connector_funcs = {
+ 	.fill_modes = drm_helper_probe_single_connector_modes,
+-	.destroy = drm_connector_cleanup,
+ 	.reset = amdgpu_dm_connector_funcs_reset,
+ 	.atomic_duplicate_state = amdgpu_dm_connector_atomic_duplicate_state,
+ 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
+@@ -193,17 +192,26 @@ int amdgpu_dm_wb_connector_init(struct amdgpu_display_manager *dm,
+ 	struct dc *dc = dm->dc;
+ 	struct dc_link *link = dc_get_link_at_index(dc, link_index);
+ 	int res;
++	struct drm_encoder *encoder;
++
++	encoder = drmm_plain_encoder_alloc(&dm->adev->ddev, NULL,
++					   DRM_MODE_ENCODER_VIRTUAL, NULL);
++	if (IS_ERR(encoder))
++		return PTR_ERR(encoder);
++
++	drm_encoder_helper_add(encoder, &amdgpu_dm_wb_encoder_helper_funcs);
++
++	encoder->possible_crtcs = amdgpu_dm_get_encoder_crtc_mask(dm->adev);
  
- 			if (amdgpu_dm_wb_connector_init(dm, wbcon, i)) {
- 				drm_err(adev_to_drm(adev), "KMS: Failed to initialize writeback connector\n");
--				kfree(wbcon);
-+				drmm_kfree(adev_to_drm(adev), wbcon);
- 				continue;
- 			}
+ 	wbcon->link = link;
  
+ 	drm_connector_helper_add(&wbcon->base.base, &amdgpu_dm_wb_conn_helper_funcs);
+ 
+-	res = drm_writeback_connector_init(&dm->adev->ddev, &wbcon->base,
++	res = drmm_writeback_connector_init(&dm->adev->ddev, &wbcon->base,
+ 					    &amdgpu_dm_wb_connector_funcs,
+-					    &amdgpu_dm_wb_encoder_helper_funcs,
++					    encoder,
+ 					    amdgpu_dm_wb_formats,
+-					    ARRAY_SIZE(amdgpu_dm_wb_formats),
+-					    amdgpu_dm_get_encoder_crtc_mask(dm->adev));
++					    ARRAY_SIZE(amdgpu_dm_wb_formats));
+ 
+ 	if (res)
+ 		return res;
 -- 
 2.43.0
 
