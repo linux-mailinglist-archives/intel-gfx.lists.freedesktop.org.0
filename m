@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id TBt3IoaFVWp8pgAAu9opvQ
+	id 4S/uJx6NVWrlpwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 02:40:38 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 03:13:02 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA7F974FE49
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 02:40:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6141E750011
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 03:13:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=none
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DA6D10E434;
-	Tue, 14 Jul 2026 00:40:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D434B10E4F3;
+	Tue, 14 Jul 2026 01:12:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24BFD10E3EA;
- Tue, 14 Jul 2026 00:40:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD6F210E3EA;
+ Tue, 14 Jul 2026 01:12:57 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============6597415245972977272=="
+ boundary="===============1073352165655628766=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_v7_drm=3A_writeback=3A_cl?=
- =?utf-8?q?ean_up_writeback_connector_initialization?=
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Fix_t?=
+ =?utf-8?q?oo_few_bits_in_transcoder_mask_variables_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "John Harrison" <john.harrison@igalia.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Jul 2026 00:40:34 -0000
-Message-ID: <178398963411.185790.2659436280006884883@6beec6c84f66>
+Date: Tue, 14 Jul 2026 01:12:57 -0000
+Message-ID: <178399157780.185790.13727451977693668329@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260713230726.3738290-1-John.Harrison@Igalia.com>
-In-Reply-To: <20260713230726.3738290-1-John.Harrison@Igalia.com>
+References: <20260713234138.3861243-1-John.Harrison@Igalia.com>
+In-Reply-To: <20260713234138.3861243-1-John.Harrison@Igalia.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,7 +53,7 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.11 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -76,24 +76,24 @@ X-Spamd-Result: default: False [-0.11 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,lists.freedesktop.org:from_smtp,lists.freedesktop.org:replyto,patchwork.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[6beec6c84f66:mid,01.org:url,emeril.freedesktop.org:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BA7F974FE49
+X-Rspamd-Queue-Id: 6141E750011
 
---===============6597415245972977272==
+--===============1073352165655628766==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: v7 drm: writeback: clean up writeback connector initialization
-URL   : https://patchwork.freedesktop.org/series/170358/
+Series: drm/i915/display: Fix too few bits in transcoder mask variables (rev2)
+URL   : https://patchwork.freedesktop.org/series/170334/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_18816 -> Patchwork_170358v1
+CI Bug Log - changes from CI_DRM_18816 -> Patchwork_170334v2
 ====================================================
 
 Summary
@@ -103,7 +103,7 @@ Summary
 
   No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170358v1/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170334v2/index.html
 
 Participating hosts (42 -> 40)
 ------------------------------
@@ -113,7 +113,7 @@ Participating hosts (42 -> 40)
 Known issues
 ------------
 
-  Here are the changes found in Patchwork_170358v1 that come from known issues:
+  Here are the changes found in Patchwork_170334v2 that come from known issues:
 
 ### IGT changes ###
 
@@ -122,7 +122,7 @@ Known issues
   * igt@i915_selftest@live:
     - bat-arlh-2:         [DMESG-WARN][1] -> [PASS][2] +1 other test pass
    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18816/bat-arlh-2/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170358v1/bat-arlh-2/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170334v2/bat-arlh-2/igt@i915_selftest@live.html
 
   
 
@@ -130,18 +130,18 @@ Known issues
 Build changes
 -------------
 
-  * Linux: CI_DRM_18816 -> Patchwork_170358v1
+  * Linux: CI_DRM_18816 -> Patchwork_170334v2
 
   CI-20190529: 20190529
   CI_DRM_18816: 4df02bb6acd1307de4de001699112cbdaf5afdfc @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_9005: 5d0cdd6f2f5d3ad4992da1edf67f22622a8bb153 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_170358v1: 4df02bb6acd1307de4de001699112cbdaf5afdfc @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_170334v2: 4df02bb6acd1307de4de001699112cbdaf5afdfc @ git://anongit.freedesktop.org/gfx-ci/linux
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170358v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170334v2/index.html
 
---===============6597415245972977272==
+--===============1073352165655628766==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -161,42 +161,42 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>v7 drm: writeback: clean up writeback connector initialization</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170358/">https://patchwork.freedesktop.org/series/170358/</a></td></tr>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Fix too few bits in transcoder mask variables (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170334/">https://patchwork.freedesktop.org/series/170334/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170358v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170358v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170334v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170334v2/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from CI_DRM_18816 -&gt; Patchwork_170358v1</h1>
+    <h1>CI Bug Log - changes from CI_DRM_18816 -&gt; Patchwork_170334v2</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170358v1/index.html</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170334v2/index.html</p>
 <h2>Participating hosts (42 -&gt; 40)</h2>
 <p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
 <h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_170358v1 that come from known issues:</p>
+<p>Here are the changes found in Patchwork_170334v2 that come from known issues:</p>
 <h3>IGT changes</h3>
 <h4>Possible fixes</h4>
 <ul>
 <li>igt@i915_selftest@live:<ul>
-<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18816/bat-arlh-2/igt@i915_selftest@live.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170358v1/bat-arlh-2/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18816/bat-arlh-2/igt@i915_selftest@live.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170334v2/bat-arlh-2/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
 </ul>
 </li>
 </ul>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: CI_DRM_18816 -&gt; Patchwork_170358v1</li>
+<li>Linux: CI_DRM_18816 -&gt; Patchwork_170334v2</li>
 </ul>
 <p>CI-20190529: 20190529<br />
   CI_DRM_18816: 4df02bb6acd1307de4de001699112cbdaf5afdfc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
   IGT_9005: 5d0cdd6f2f5d3ad4992da1edf67f22622a8bb153 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_170358v1: 4df02bb6acd1307de4de001699112cbdaf5afdfc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+  Patchwork_170334v2: 4df02bb6acd1307de4de001699112cbdaf5afdfc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
 
 </body>
 </html>
 
---===============6597415245972977272==--
+--===============1073352165655628766==--
