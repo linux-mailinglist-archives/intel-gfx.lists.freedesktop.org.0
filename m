@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SpjRDBC7VWpwsAAAu9opvQ
+	id BaOCERe7VWp4sAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 06:29:04 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 06:29:11 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3B5F750D7A
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 06:29:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3B87750D87
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 06:29:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=RGR81HgJ;
+	dkim=pass header.d=intel.com header.s=Intel header.b=GFkhYsJ1;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4370410EBE9;
-	Tue, 14 Jul 2026 04:29:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52BF810EBF0;
+	Tue, 14 Jul 2026 04:29:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FB6C10EBD5;
- Tue, 14 Jul 2026 04:29:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2F8C10EBE3;
+ Tue, 14 Jul 2026 04:29:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784003340; x=1815539340;
+ t=1784003348; x=1815539348;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OF75BhOONNQwzjaDyW6clqtCVnBwxI6cANd1t7Zpbe0=;
- b=RGR81HgJ++7bseUJa0ErxPLg6iVE5ML8DrzmUefaBLlN6Wc5xOGs/vD1
- 1AluWUuVPlgc1oY5yUy/OW7T5DhqoyKyzB8bXMB57cwIRl04eDNWeDC88
- +2sHloXa0sQRKOXfTiXAXUJe6Fratwmi+SU1IGizntc8cKQToAm2/YO/J
- at4mFgfJYC7x+k56DroK21g/7I1NTVlSTogEeB4n71aDUj0qZYn9qqomI
- PUkw2pYYdDC/2p+biouQYLVoMd+cHt1hlXM3Ggm7Uy7xQ8bhZlFhuomoq
- aa9vCBunoU24j3wW1G2d+X3EMPLcZblxWW57Hk3x85QAyOo6LdMyTVqCR Q==;
-X-CSE-ConnectionGUID: NC4O44YKQoKtnGMxOkyyTQ==
-X-CSE-MsgGUID: bFdwFt1ITWKzwMmjAp2IJg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="88297114"
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="88297114"
+ bh=Iz13OkrzowM1z18jUf4GwG9PO2H1LnktR4XWdsbq37o=;
+ b=GFkhYsJ1HZS7gnSlUByGaxSeHbOqaxEQZmcSfjeHZSbsLfu+o+Qu2bNo
+ M3bN6DVAEhUxKPbVi8B1snQ5pJCKG/dogricnSWOLszXl5k5tl5yG0VXA
+ smWEeTYLmX2fcYPkWwSgOW8lHtXUR10Ardr+ZVORGDKBf89c6VOma5NSL
+ LI9b6hBBoCt/jCfALyYtX/D4xC1HOGOffypbwEId6DV//+Y1YiXa9YRuu
+ p1gD/1ApVqhaWCYh4QrFNGF+sff388H/4snE/6BYurrnSL8nv1a0ZneGY
+ sBGIUKVo2UPlwuJWJMTHqfR0+Q2hw9JnE21CLBvF8zOGLLuuDq5NE/5Xb w==;
+X-CSE-ConnectionGUID: tgWzqSDpQOSDhfO+j8cyxw==
+X-CSE-MsgGUID: /1APFI2wQI6tBUHSU6sMcw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="88297139"
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="88297139"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2026 21:29:00 -0700
-X-CSE-ConnectionGUID: 2NG896aqSQOdqmu+y68zqQ==
-X-CSE-MsgGUID: 9MKkoAS7QMOcsNRNFdUDnQ==
+ 13 Jul 2026 21:29:07 -0700
+X-CSE-ConnectionGUID: PWX2X3suQlWUfyxY8sRdcA==
+X-CSE-MsgGUID: lhIef2pPQvaVodz47Xo5wQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="255243194"
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; d="scan'208";a="255243218"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa008.jf.intel.com with ESMTP; 13 Jul 2026 21:28:53 -0700
+ by orviesa008.jf.intel.com with ESMTP; 13 Jul 2026 21:29:00 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  kernel-list@raspberrypi.com, amd-gfx@lists.freedesktop.org,
@@ -57,11 +57,11 @@ Cc: uma.shankar@intel.com, arun.r.murthy@intel.com, abhinav.kumar@linux.dev,
  tomi.valkeinen+renesas@ideasonboard.com,
  kieran.bingham+renesas@ideasonboard.com, louis.chauvet@bootlin.com,
  kernel-dev@igalia.com, John.Harrison@Igalia.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v6 5/7] drm: writeback: Modify drm_writeback_get_out_fence
- helper
-Date: Tue, 14 Jul 2026 09:58:03 +0530
-Message-Id: <20260714042805.77934-6-suraj.kandpal@intel.com>
+ Suraj Kandpal <suraj.kandpal@intel.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH v6 6/7] drm: writeback: Modify prepare_writeback_job helper
+Date: Tue, 14 Jul 2026 09:58:04 +0530
+Message-Id: <20260714042805.77934-7-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260714042805.77934-1-suraj.kandpal@intel.com>
 References: <20260714042805.77934-1-suraj.kandpal@intel.com>
@@ -93,7 +93,7 @@ X-Spamd-Result: default: False [1.69 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	ARC_NA(0.00)[];
@@ -108,16 +108,17 @@ X-Spamd-Result: default: False [1.69 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx,renesas];
 	FORGED_SENDER_MAILLIST(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D3B5F750D7A
+X-Rspamd-Queue-Id: E3B87750D87
 
-drm_writeback_get_out_fence() does not itself need the parent
-drm_connector object, but update it to take drm_connector for
-consistency across the writeback interface, which is being moved
-to use the top level drm_connector and traverse down to
-drm_writeback_connector rather than passing in the lower level
-object and traversing back up.
+The prepare_writeback_job() connector helper hook needs access to
+the parent drm_connector object as well as the drm_writeback_connector
+object itself. So, pass in the top level drm_connector and traverse
+down to drm_writeback_connector rather than passing in the lower
+level object and traversing back up. This also makes it uniform
+with the params passed to other drm_connector_helper_funcs hooks.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Reviewed-by: John Harrison <John.Harrison@Igalia.com>
 ---
 v5 -> v6:
@@ -127,61 +128,100 @@ v3 -> v4:
 - Update subject line for consitency (John)
 - Update commit message across commits for consitency (John)
 
- drivers/gpu/drm/drm_atomic_uapi.c | 4 +---
- drivers/gpu/drm/drm_writeback.c   | 4 ++--
- include/drm/drm_writeback.h       | 2 +-
- 3 files changed, 4 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c | 2 +-
+ drivers/gpu/drm/drm_writeback.c                      | 2 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c        | 3 +--
+ drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c  | 5 ++---
+ drivers/gpu/drm/vkms/vkms_writeback.c                | 2 +-
+ include/drm/drm_modeset_helper_vtables.h             | 2 +-
+ 6 files changed, 7 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-index a5c11832ff64..2271cd970985 100644
---- a/drivers/gpu/drm/drm_atomic_uapi.c
-+++ b/drivers/gpu/drm/drm_atomic_uapi.c
-@@ -1492,7 +1492,6 @@ static int prepare_signaling(struct drm_device *dev,
- 	}
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c
+index 92039d93f9e4..e0425eda0bb6 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c
+@@ -85,7 +85,7 @@ STATIC_IFN_KUNIT int amdgpu_dm_wb_connector_get_modes(struct drm_connector *conn
+ }
+ EXPORT_IF_KUNIT(amdgpu_dm_wb_connector_get_modes);
  
- 	for_each_new_connector_in_state(state, conn, conn_state, i) {
--		struct drm_writeback_connector *wb_conn;
- 		struct drm_out_fence_state *f;
- 		struct dma_fence *fence;
- 		s32 __user *fence_ptr;
-@@ -1514,8 +1513,7 @@ static int prepare_signaling(struct drm_device *dev,
- 		f[*num_fences].out_fence_ptr = fence_ptr;
- 		*fence_state = f;
- 
--		wb_conn = &conn->writeback;
--		fence = drm_writeback_get_out_fence(wb_conn);
-+		fence = drm_writeback_get_out_fence(conn);
- 		if (!fence)
- 			return -ENOMEM;
- 
+-static int amdgpu_dm_wb_prepare_job(struct drm_writeback_connector *wb_connector,
++static int amdgpu_dm_wb_prepare_job(struct drm_connector *connector,
+ 			       struct drm_writeback_job *job)
+ {
+ 	struct amdgpu_framebuffer *afb;
 diff --git a/drivers/gpu/drm/drm_writeback.c b/drivers/gpu/drm/drm_writeback.c
-index df8484a7aa03..d2ccb4dcba0a 100644
+index d2ccb4dcba0a..e6b52de69ad6 100644
 --- a/drivers/gpu/drm/drm_writeback.c
 +++ b/drivers/gpu/drm/drm_writeback.c
-@@ -531,10 +531,10 @@ drm_writeback_signal_completion(struct drm_connector *connector,
- EXPORT_SYMBOL(drm_writeback_signal_completion);
+@@ -396,7 +396,7 @@ int drm_writeback_prepare_job(struct drm_writeback_job *job)
+ 	int ret;
  
- struct dma_fence *
--drm_writeback_get_out_fence(struct drm_writeback_connector *wb_connector)
-+drm_writeback_get_out_fence(struct drm_connector *connector)
+ 	if (funcs->prepare_writeback_job) {
+-		ret = funcs->prepare_writeback_job(wb_connector, job);
++		ret = funcs->prepare_writeback_job(connector, job);
+ 		if (ret < 0)
+ 			return ret;
+ 	}
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
+index c9f53490c1a7..061e6960c09b 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
+@@ -87,10 +87,9 @@ static const struct drm_connector_funcs dpu_wb_conn_funcs = {
+ 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
+ };
+ 
+-static int dpu_wb_conn_prepare_job(struct drm_writeback_connector *wb_conn,
++static int dpu_wb_conn_prepare_job(struct drm_connector *connector,
+ 		struct drm_writeback_job *job)
  {
- 	struct dma_fence *fence;
--	struct drm_connector *connector = drm_writeback_to_connector(wb_connector);
-+	struct drm_writeback_connector *wb_connector = &connector->writeback;
+-	struct drm_connector *connector = drm_writeback_to_connector(wb_conn);
+ 	struct dpu_wb_connector *dpu_wb_conn = to_dpu_wb_conn(connector);
  
- 	if (WARN_ON(connector->connector_type !=
- 		    DRM_MODE_CONNECTOR_WRITEBACK))
-diff --git a/include/drm/drm_writeback.h b/include/drm/drm_writeback.h
-index 5e8ab51c2da4..2afa48ea7c00 100644
---- a/include/drm/drm_writeback.h
-+++ b/include/drm/drm_writeback.h
-@@ -104,5 +104,5 @@ drm_writeback_signal_completion(struct drm_connector *connector,
- 				int status);
+ 	if (!job->fb)
+diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
+index 4b0f6cd46acb..218b6504cacf 100644
+--- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
++++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
+@@ -47,11 +47,10 @@ static int rcar_du_wb_conn_get_modes(struct drm_connector *connector)
+ 				    dev->mode_config.max_height);
+ }
  
- struct dma_fence *
--drm_writeback_get_out_fence(struct drm_writeback_connector *wb_connector);
-+drm_writeback_get_out_fence(struct drm_connector *connector);
- #endif
+-static int rcar_du_wb_prepare_job(struct drm_writeback_connector *connector,
++static int rcar_du_wb_prepare_job(struct drm_connector *connector,
+ 				  struct drm_writeback_job *job)
+ {
+-	struct drm_connector *conn = drm_writeback_to_connector(connector);
+-	struct rcar_du_crtc *rcrtc = wb_to_rcar_crtc(conn);
++	struct rcar_du_crtc *rcrtc = wb_to_rcar_crtc(connector);
+ 	struct rcar_du_wb_job *rjob;
+ 	int ret;
+ 
+diff --git a/drivers/gpu/drm/vkms/vkms_writeback.c b/drivers/gpu/drm/vkms/vkms_writeback.c
+index 2e3df9388dd2..86e5b92c7965 100644
+--- a/drivers/gpu/drm/vkms/vkms_writeback.c
++++ b/drivers/gpu/drm/vkms/vkms_writeback.c
+@@ -72,7 +72,7 @@ static int vkms_wb_connector_get_modes(struct drm_connector *connector)
+ 				    dev->mode_config.max_height);
+ }
+ 
+-static int vkms_wb_prepare_job(struct drm_writeback_connector *wb_connector,
++static int vkms_wb_prepare_job(struct drm_connector *connector,
+ 			       struct drm_writeback_job *job)
+ {
+ 	struct vkms_writeback_job *vkmsjob;
+diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/drm_modeset_helper_vtables.h
+index ca6268945c28..4e26568a16fb 100644
+--- a/include/drm/drm_modeset_helper_vtables.h
++++ b/include/drm/drm_modeset_helper_vtables.h
+@@ -1119,7 +1119,7 @@ struct drm_connector_helper_funcs {
+ 	 *
+ 	 * This callback is used by the atomic modeset helpers.
+ 	 */
+-	int (*prepare_writeback_job)(struct drm_writeback_connector *connector,
++	int (*prepare_writeback_job)(struct drm_connector *connector,
+ 				     struct drm_writeback_job *job);
+ 	/**
+ 	 * @cleanup_writeback_job:
 -- 
 2.34.1
 
