@@ -2,38 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CfcRB4c3Vmp61gAAu9opvQ
+	id 3tuBMDBNVmpQ3AAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 15:20:07 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 16:52:32 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73B5675500C
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 15:20:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 404BD756159
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jul 2026 16:52:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=none
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6164210E6B2;
-	Tue, 14 Jul 2026 13:20:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18A9210E099;
+	Tue, 14 Jul 2026 14:52:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83CB910E6B2;
- Tue, 14 Jul 2026 13:20:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1647272240111796514=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E844110E047;
+ Tue, 14 Jul 2026 14:52:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Add_validation_for_DMC_fi?=
- =?utf-8?q?rmware_header_parsing?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/i915/bios?=
+ =?utf-8?q?=3A_Move_a_variable_assignment_behind_a_null_pointer_check_in_int?=
+ =?utf-8?q?el=5Fbios=5Fencoder=5Fsupports=5Fdp=5Fdual=5Fmode=28=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
+To: "Markus Elfring" <Markus.Elfring@web.de>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Jul 2026 13:20:03 -0000
-Message-ID: <178403520353.188619.10012317560886158105@6beec6c84f66>
+Date: Tue, 14 Jul 2026 14:52:28 -0000
+Message-ID: <178404074894.189058.15044390033677598636@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260714121146.1415532-1-dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <20260714121146.1415532-1-dibin.moolakadan.subrahmanian@intel.com>
+References: <e81277a0-93f8-45e9-9fa4-7c2c2df9c311@web.de>
+In-Reply-To: <e81277a0-93f8-45e9-9fa4-7c2c2df9c311@web.de>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,133 +53,46 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.11 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
 	RCPT_COUNT_TWO(0.00)[2];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	FREEMAIL_TO(0.00)[web.de];
 	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_COUNT_TWO(0.00)[2];
 	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,lists.freedesktop.org:replyto,6beec6c84f66:mid,patchwork.freedesktop.org:url,gitlab.freedesktop.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:url,emeril.freedesktop.org:from_mime,patchwork.freedesktop.org:url,6beec6c84f66:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 73B5675500C
-
---===============1647272240111796514==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 404BD756159
 
 == Series Details ==
 
-Series: Add validation for DMC firmware header parsing
-URL   : https://patchwork.freedesktop.org/series/170409/
-State : success
+Series: drm/i915/bios: Move a variable assignment behind a null pointer check in intel_bios_encoder_supports_dp_dual_mode()
+URL   : https://patchwork.freedesktop.org/series/170415/
+State : failure
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_18817 -> Patchwork_170409v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170409v1/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
+Series author address 'markus.elfring@web.de' is not on the allowlist, which prevents CI from being automatically triggered.
+If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
+Exception occurred during validation, bailing out!
+Build URL: http://gfx-ci.igk.intel.com:8080/job/CI_PW_kernel/181358/ (on built-in)
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18817 -> Patchwork_170409v1
-
-  CI-20190529: 20190529
-  CI_DRM_18817: d3709d2bd13debee032d55c0dd71f145e11ec366 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_170409v1: d3709d2bd13debee032d55c0dd71f145e11ec366 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170409v1/index.html
-
---===============1647272240111796514==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add validation for DMC firmware header parsing</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170409/">https://patchwork.freedesktop.org/series/170409/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170409v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170409v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18817 -&gt; Patchwork_170409v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170409v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18817 -&gt; Patchwork_170409v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18817: d3709d2bd13debee032d55c0dd71f145e11ec366 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_170409v1: d3709d2bd13debee032d55c0dd71f145e11ec366 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1647272240111796514==--
