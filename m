@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id pMqeA4N4V2ocOwEAu9opvQ
+	id mIGZDIZ4V2odOwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 14:09:39 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 14:09:42 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6955A75DEF7
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 14:09:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F283575DEFD
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 14:09:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=hh+gjpC7;
+	dkim=pass header.d=intel.com header.s=Intel header.b="FujN+/ID";
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC54E10F029;
-	Wed, 15 Jul 2026 12:09:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8340110F019;
+	Wed, 15 Jul 2026 12:09:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 137BE10F018;
- Wed, 15 Jul 2026 12:09:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1252610F036;
+ Wed, 15 Jul 2026 12:09:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784117375; x=1815653375;
+ t=1784117379; x=1815653379;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DxxJA/mjWXXchxQrJQ3ms6VXET66Gqy0kLFG3Cg1Y+0=;
- b=hh+gjpC7byY+kDJaGASn5pwuWRqxzyrLBETrPD6yVm8TAaCpladTfsRD
- 8HnaOpwrQ1pvAnT8kCxJNFtAIUwm9tXaMr0gVW6Xk9I6klJc5CjW2zYOu
- 6DevpkD4d+I7W7CntS9mR499TuUyqmgIIQVYGe4fimeqFnMD8N25C+NkE
- CXapuIqDUkzVxPLi96jSDbghkNDkHnIQf8yzdGXUpeOjLz24Sfl++K/41
- laIWEOZacmdUf7iWXy2ZWCItSsDfBd3ve2j8PMEPjzj+fur9vzyNVyjVC
- AKXMgKXkYcoQUtPsuEhfLqNBzrEySRWxnJYXV+1Xj3X45Rwg7d45oPVuB A==;
-X-CSE-ConnectionGUID: wrAAmGs5Qp6wq0y/7zW90w==
-X-CSE-MsgGUID: +Jos+PSgQ/KuR8sC1wAP8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="96120985"
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="96120985"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2026 05:09:35 -0700
-X-CSE-ConnectionGUID: xMH4tXSPQRe0eEVmyrYk4Q==
-X-CSE-MsgGUID: j6ndZrIBTz6vJTO0BPXkIg==
+ bh=EMK5Y8+swBHlHMX9nsbSsIrjrxvatLUDCraIvA5CVuE=;
+ b=FujN+/IDgk1Z38QNlkdzwXWJInw/He6YUoZaRE00LFCfrx6PzLFkgUxI
+ lbd+GTuEWHCuirqqxRhibfDBprk1Ml1wbvN1yUEX88lgSJWI5ZbEb8cbv
+ nlsYUxdaFiOtUSQ3CirsjlQ+i4u1gTOhLNzGCepqA7lPT09pvS04rC2HM
+ nCbP7O2XT8c3N9PUvuWzeje3PRsMKmHfzj9FjnpHi4BVMlfXxAxPyTVR/
+ SFUjj9kBiJRHI6mycQv8TkzFiLSH+CPQMDzfGnCb9x6VqdGwq1sJcsEr2
+ nfpgTjtUc2J1DYziNO8VwotZmga8wOIoKf79FBEfIBblr+8DcUrkwQnau Q==;
+X-CSE-ConnectionGUID: ho/1C2+YSv2KMSm3InygNw==
+X-CSE-MsgGUID: Kv/smVZHQBm7nwpDmE8KMw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="84778038"
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="84778038"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2026 05:09:38 -0700
+X-CSE-ConnectionGUID: J1V2qKNQQfSOcUTX+7CVaA==
+X-CSE-MsgGUID: Cegjh212TEm0PcrVGXM0yQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="254420561"
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="260461828"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.168])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2026 05:09:33 -0700
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2026 05:09:37 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/4] drm/i915/cdclk: Use intel_cdclk_ppc() in
- intel_modeset_readout_hw_state()
-Date: Wed, 15 Jul 2026 15:09:23 +0300
-Message-ID: <20260715120926.10786-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/4] drm/i915/cdclk: Introduce HAS_2PPC()
+Date: Wed, 15 Jul 2026 15:09:24 +0300
+Message-ID: <20260715120926.10786-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260715120926.10786-1-ville.syrjala@linux.intel.com>
 References: <20260715120926.10786-1-ville.syrjala@linux.intel.com>
@@ -104,68 +103,44 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,linux.intel.com:from_mime,linux.intel.com:mid,intel.com:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6955A75DEF7
+X-Rspamd-Queue-Id: F283575DEFD
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Replace the hand roller intel_cdclk_ppc() with the real thing
-in intel_modeset_readout_hw_state().
+We'll need to check for the "does the platform do 2 pixels per clock?"
+thing in a few places. Add a feature macro for it.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c         |  2 +-
- drivers/gpu/drm/i915/display/intel_cdclk.h         |  1 +
- drivers/gpu/drm/i915/display/intel_modeset_setup.c | 12 ++++--------
- 3 files changed, 6 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c          | 2 +-
+ drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index d3c5e3438d19..1d7ff2cbaebb 100644
+index 1d7ff2cbaebb..12bb6c414683 100644
 --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2908,7 +2908,7 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
- }
- 
+@@ -2910,7 +2910,7 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
  /* pixels per CDCLK */
--static int intel_cdclk_ppc(struct intel_display *display, bool double_wide)
-+int intel_cdclk_ppc(struct intel_display *display, bool double_wide)
+ int intel_cdclk_ppc(struct intel_display *display, bool double_wide)
  {
- 	return DISPLAY_VER(display) >= 10 || double_wide ? 2 : 1;
+-	return DISPLAY_VER(display) >= 10 || double_wide ? 2 : 1;
++	return HAS_2PPC(display) || double_wide ? 2 : 1;
  }
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-index 1ff7d078b42c..a60cbf745ee2 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-@@ -22,6 +22,7 @@ struct intel_cdclk_config {
- 	bool joined_mbus;
- };
  
-+int intel_cdclk_ppc(struct intel_display *display, bool double_wide);
- void intel_cdclk_init_hw(struct intel_display *display);
- void intel_cdclk_uninit_hw(struct intel_display *display);
- void intel_init_cdclk_hooks(struct intel_display *display);
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index e27a531e1aa2..14d829171c7d 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -854,14 +854,10 @@ static void intel_modeset_readout_hw_state(struct intel_display *display)
- 			 * FIXME don't have the fb yet, so can't
- 			 * use plane->min_cdclk() :(
- 			 */
--			if (plane_state->uapi.visible && plane->min_cdclk) {
--				if (crtc_state->double_wide || DISPLAY_VER(display) >= 10)
--					crtc_state->plane_min_cdclk[plane->id] =
--						DIV_ROUND_UP(crtc_state->pixel_rate, 2);
--				else
--					crtc_state->plane_min_cdclk[plane->id] =
--						crtc_state->pixel_rate;
--			}
-+			if (plane_state->uapi.visible && plane->min_cdclk)
-+				crtc_state->plane_min_cdclk[plane->id] =
-+					DIV_ROUND_UP(crtc_state->pixel_rate,
-+						     intel_cdclk_ppc(display, crtc_state->double_wide));
- 			drm_dbg_kms(display->drm,
- 				    "[PLANE:%d:%s] min_cdclk %d kHz\n",
- 				    plane->base.base.id, plane->base.name,
+ /* max pixel rate as % of CDCLK (not accounting for PPC) */
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 9aeba329b9bd..7121e7cd9512 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -146,6 +146,7 @@ struct intel_display_platforms {
+ 	func(supports_tv);
+ 
+ #define HAS_128B_Y_TILING(__display)	(!(__display)->platform.i915g && !(__display)->platform.i915gm)
++#define HAS_2PPC(__display)		(DISPLAY_VER(__display) >= 10)
+ #define HAS_4TILE(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
+ #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
+ #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
 -- 
 2.54.0
 
