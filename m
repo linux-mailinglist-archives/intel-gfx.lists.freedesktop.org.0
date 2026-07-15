@@ -2,63 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wKZBGV9fV2p2KgEAu9opvQ
+	id UFj0EeBmV2q+LQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 12:22:23 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 12:54:24 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C63E75CEE6
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 12:22:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9E8475D220
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 12:54:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=eU4ueQlj;
+	dkim=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=none
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9545310EF93;
-	Wed, 15 Jul 2026 10:22:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C3B510E18C;
+	Wed, 15 Jul 2026 10:54:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A67910EF91;
- Wed, 15 Jul 2026 10:22:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784110940; x=1815646940;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=7kib2SsV4E9erkKElamD7tpJ22q71EG2oELIZnif9xE=;
- b=eU4ueQljiqmX6kQ4gLI5VPIrrv6h27VexdjPW5RKDnB1ieYulftJqNyn
- NSDzCzZn/C61OrYy79p5Vef1NA5PQmiI67Dk0dbUtA3sVQwYa2pVRnQGl
- ZII58n0vpdbP+51Ul7kXNQPV4+mj1B6M++vSPEhIyqtmCzyABmMwpmUbk
- NLMnY+CK2p1kQff408f76tEiJdkxilLvJ4N76TLV5JfkvIjI87u2nFw6Y
- 7JYPZtPOzRuFqKYBA4ekp661WTv4kvUbuqYpLbhQkHIyRbR2ULPE71T5w
- uwOmMDN1wp+mMYGJmfQ+Xx/I+sNByW0NqblcHhw0EDv++JlB+YbLomv93 Q==;
-X-CSE-ConnectionGUID: Kv5oVmKBTP2mEdTUPvIAVQ==
-X-CSE-MsgGUID: w+nJdZQeRl2dHLcHRVLZeQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="102299911"
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="102299911"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2026 03:22:20 -0700
-X-CSE-ConnectionGUID: f+RHi65LRuGZhqQvSDRB7w==
-X-CSE-MsgGUID: 7/MrC1LRQqaA7vmVnRukcg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="252743644"
-Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa007.fm.intel.com with ESMTP; 15 Jul 2026 03:22:18 -0700
-From: Uma Shankar <uma.shankar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, suraj.kandpal@intel.com,
- Uma Shankar <uma.shankar@intel.com>
-Subject: [v2 2/2] drm/i915/dram: Interpret 0xF populated-channel count as 16
-Date: Wed, 15 Jul 2026 16:11:19 +0530
-Message-ID: <20260715104119.4128662-3-uma.shankar@intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260715104119.4128662-1-uma.shankar@intel.com>
-References: <20260715104119.4128662-1-uma.shankar@intel.com>
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D1DC10EFA9;
+ Wed, 15 Jul 2026 10:54:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7701982848062734480=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EFull=3A_success_for_drm/i915/selftests=3A_Fi?=
+ =?utf-8?q?x_GT_PM_sort_comparators_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Emre Cecanpunar" <emreleno@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 15 Jul 2026 10:54:21 -0000
+Message-ID: <178411286117.190771.5298112543421602300@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260714220430.238433-1-emreleno@gmail.com>
+In-Reply-To: <20260714220430.238433-1-emreleno@gmail.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,140 +46,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[uma.shankar@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:from_mime,intel.com:mid,intel.com:email,intel.com:dkim,lists.freedesktop.org:from_smtp]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,lists.freedesktop.org:replyto,emeril.freedesktop.org:from_mime,6beec6c84f66:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0C63E75CEE6
+X-Rspamd-Queue-Id: B9E8475D220
 
-The register MEM_SS_INFO_GLOBAL [Number of populated channels] field
-definition is updated with an encoding for 16 channels.
+--===============7701982848062734480==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-For 16-channel configuration, program 1111b. A programmed value of 1111b
-must be interpreted as 16 channels for memory bandwidth calculations.
+== Series Details ==
 
-The MEM_SS_INFO_GLOBAL populated-channel field is only 4 bits and cannot
-encode 16, so on Xe3p the BIOS programs the saturated field value (0xf)
-to indicate the fully-populated 16-channel config (4 memory controllers
-x 4 channels). Interpret it as 16 and let the bandwidth math handle the
-larger channel count.
+Series: drm/i915/selftests: Fix GT PM sort comparators (rev2)
+URL   : https://patchwork.freedesktop.org/series/170443/
+State : success
 
-Gate the behaviour through intel_display_wa(INTEL_DISPLAY_WA_16030862157)
-instead of an open-coded DISPLAY_VER() check.
+== Summary ==
 
-v2: Switched to intel_display_wa.c framework (Suraj)
+CI Bug Log - changes from CI_DRM_18827_full -> Patchwork_170443v2_full
+====================================================
 
-WA: 16030862157
-Bspec: 69131, 68859
-Assisted-by: Claude:claude-opus-4-8
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c   | 20 +++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_dram.c | 12 ++++++++++++
- 2 files changed, 29 insertions(+), 3 deletions(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 41539fdfeac5..aaa0350dca78 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -14,6 +14,7 @@
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_display_utils.h"
-+#include "intel_display_wa.h"
- #include "intel_dram.h"
- #include "intel_mchbar.h"
- #include "intel_parent.h"
-@@ -272,7 +273,14 @@ static int icl_get_qgv_points(struct intel_display *display,
- 		case INTEL_DRAM_LPDDR4:
- 		case INTEL_DRAM_LPDDR5:
- 			qi->t_bl = 16;
--			qi->max_numchannels = 8;
-+			/*
-+			 * Wa_16030862157
-+			 * Xe3p supports a fully-populated 16-channel LPDDR
-+			 * config (4 memory controllers x 4 channels); earlier
-+			 * D14+ platforms top out at 8.
-+			 */
-+			qi->max_numchannels =
-+				intel_display_wa(display, INTEL_DISPLAY_WA_16030862157) ? 16 : 8;
- 			qi->channel_width = 16;
- 			qi->deinterleave = 4;
- 			break;
-@@ -624,10 +632,16 @@ static int tgl_get_bw_info(struct intel_display *display,
- 
- 	ipqdepth = min(ipqdepthpch, display_bw_params->displayrtids / num_channels);
- 	/*
-+	 * Wa_16030862157
- 	 * clperchgroup = 4kpagespermempage * clperchperblock,
--	 * clperchperblock = 8 / num_channels * interleave
-+	 * clperchperblock = max(8 / num_channels, 1) * interleave
-+	 *
-+	 * The 8 / num_channels truncating divide collapses to 0 for
-+	 * >8-channel configs (16-channel: 8 / 16 = 0); the max(..., 1) floor
-+	 * keeps clperchperblock >= 1 there while preserving the literal
-+	 * truncating divide for <=8-channel configs.
- 	 */
--	clperchgroup = 4 * (8 / num_channels) * qi.deinterleave;
-+	clperchgroup = 4 * max(8 / num_channels, 1) * qi.deinterleave;
- 
- 	display->bw.num_qgv_points = qi.num_qgv_points;
- 	display->bw.num_psf_gv_points = qi.num_psf_points;
-diff --git a/drivers/gpu/drm/i915/display/intel_dram.c b/drivers/gpu/drm/i915/display/intel_dram.c
-index f103f7cba018..7e2fc24e240c 100644
---- a/drivers/gpu/drm/i915/display/intel_dram.c
-+++ b/drivers/gpu/drm/i915/display/intel_dram.c
-@@ -13,6 +13,7 @@
- #include "intel_display_core.h"
- #include "intel_display_utils.h"
- #include "intel_display_regs.h"
-+#include "intel_display_wa.h"
- #include "intel_dram.h"
- #include "intel_mchbar.h"
- #include "intel_parent.h"
-@@ -796,6 +797,17 @@ static int xelpdp_get_dram_info(struct intel_display *display, struct dram_info
- 	dram_info->num_qgv_points = REG_FIELD_GET(MTL_N_OF_ENABLED_QGV_POINTS_MASK, val);
- 	/* PSF GV points not supported in D14+ */
- 
-+	/*
-+	 * Wa_16030862157
-+	 * MEM_SS_INFO_GLOBAL populated-channel field is only 4 bits and
-+	 * cannot encode 16, so on Xe3p the BIOS programs the saturated field
-+	 * value (0xf) to indicate the fully-populated 16-channel config (4
-+	 * memory controllers x 4 channels). Interpret it as 16.
-+	 */
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_16030862157) &&
-+	    dram_info->num_channels == REG_FIELD_MAX(MTL_N_OF_POPULATED_CH_MASK))
-+		dram_info->num_channels = 16;
-+
- 	if (DISPLAY_VER(display) >= 35)
- 		dram_info->ecc_impacting_de_bw = REG_FIELD_GET(XE3P_ECC_IMPACTING_DE, val);
- 
--- 
-2.50.1
+  **SUCCESS**
 
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 10)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18827 -> Patchwork_170443v2
+
+  CI-20190529: 20190529
+  CI_DRM_18827: 6dd678fdc2f39062bed466d7e3c851736e376531 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_170443v2: 6dd678fdc2f39062bed466d7e3c851736e376531 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170443v2/index.html
+
+--===============7701982848062734480==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/selftests: Fix GT PM sort comparators (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170443/">https://patchwork.freedesktop.org/series/170443/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170443v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170443v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18827_full -&gt; Patchwork_170443v2_full</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 10)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18827 -&gt; Patchwork_170443v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18827: 6dd678fdc2f39062bed466d7e3c851736e376531 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_170443v2: 6dd678fdc2f39062bed466d7e3c851736e376531 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============7701982848062734480==--
