@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id WydeGGtpV2qeMwEAu9opvQ
+	id hFmrJW9pV2qkMwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 13:05:15 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 13:05:19 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F24475D480
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 13:05:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 660A075D494
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 13:05:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=B3g49HxL;
+	dkim=pass header.d=lankhorst.se header.s=default header.b="TwShqh/8";
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=lankhorst.se
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB20210EFCD;
-	Wed, 15 Jul 2026 11:05:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E55C910EFD6;
+	Wed, 15 Jul 2026 11:05:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0631510EFC9;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95CE810EFC9;
  Wed, 15 Jul 2026 11:05:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1784113510;
- bh=eowTLQqczcYI+CUVlxdNRWQEiE5if0J55Fz2gqOLbbs=;
+ s=default; t=1784113511;
+ bh=8gnsQ5zQV9Lot6RrcPgAap6D5kkprnOggCyt//y9IcE=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=B3g49HxL+Jc7zoUHa3+lYxS+JmD/337inocuYJ0iXbBced2ouxHSaZDE/zES7DN10
- R6nVvwLtrTuqOD4MX9KS751lcmy5u+GaGFgHYlrRWJfI2sGBtk7Xh5bmFdJX+yksiI
- NqHHihtCzFeezh8HmQJGdy+sN3XxQUgk5aRuZJhyifpg03CFBiZM+8eeR5i03FnM8n
- F96PgXBlGoS1pmTVhw0dzIhIlxaZQAmBu7qpA798xTTtD3Eq0qQLSXrVwazssDxhbO
- UFsqO797ULdbjNDG9Kc039FoKhA/UAG5DNnJPAY1fXzFiGJruh3wkR497kUuibe5JC
- EL+2hnvDfB/xw==
+ b=TwShqh/8LdDvrA/ktvHxy/s5FHKJewDcHGJ8ErCqTZGufZzkJe5XNxWEffk7NSBlM
+ x44jCW/g5rJuYtwrLuCOjvvd0DlonU9ProBFaaUO2RvsbGcJV19kLyn7s3kiZIZzVf
+ 5LtObpysHGOJDTtce/WglwQMrzxfkeCh9xvfCPftgslG0zkGbC4yQAe5h92LA2h3rU
+ q3Mvb1v88yUmSy1cSpS5RVIU3YwYZ/cz5FHiCVCNxdQUU6mpl5kAVzUqzwYwZuttsy
+ eVgYpS/dkq+gmD6oLJexffCuqRoh4jSW/GIude1oaM6Rmdhr3Y8YxFoFV8PyQ3bfyi
+ amGsF3U1c4pCw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 5/6] drm/xe/display: Remove duplicated code
-Date: Wed, 15 Jul 2026 13:05:56 +0200
-Message-ID: <20260715110557.2172095-6-dev@lankhorst.se>
+Subject: [PATCH v2 6/6] drm/xe/ggtt: Remove xe_ggtt_insert_bo_at
+Date: Wed, 15 Jul 2026 13:05:57 +0200
+Message-ID: <20260715110557.2172095-7-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260715110557.2172095-1-dev@lankhorst.se>
 References: <20260715110557.2172095-1-dev@lankhorst.se>
@@ -82,84 +82,80 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lankhorst.se:from_mime,lankhorst.se:mid,lankhorst.se:email,lankhorst.se:dkim,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,lankhorst.se:from_mime,lankhorst.se:mid,lankhorst.se:email,lankhorst.se:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2F24475D480
+X-Rspamd-Queue-Id: 660A075D494
 
-The order of pte vs checks isn't important, so read the pte
-outside the if block. This makes it slightly more readable.
+This code was created specifically for the display handover,
+and can be removed now that we temporarily reserve the area
+of GGTT that contains the original framebuffer contents.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 35 ++++++-------------
- 1 file changed, 11 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c   |  8 +-------
+ drivers/gpu/drm/xe/xe_ggtt.c | 16 ----------------
+ drivers/gpu/drm/xe/xe_ggtt.h |  2 --
+ 3 files changed, 1 insertion(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index 5540b0fca392a..e16a6a1e6288a 100644
---- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-+++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -64,7 +64,7 @@ initial_plane_bo(struct xe_device *xe,
- 	struct xe_bo *bo;
- 	resource_size_t phys_base;
- 	u32 base, size, flags;
--	u64 page_size = xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
-+	u64 page_size = xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K, pte;
- 	struct xe_ggtt_node *original_ggtt_node;
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index c266fa6bade1b..5d7d91444dce3 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2560,13 +2560,7 @@ __xe_bo_create_locked(struct xe_device *xe,
+ 			if (t != tile && !(bo->flags & XE_BO_FLAG_GGTTx(t)))
+ 				continue;
  
- 	if (plane_config->size == 0)
-@@ -77,16 +77,14 @@ initial_plane_bo(struct xe_device *xe,
- 			page_size);
- 	size -= base;
- 
--	if (IS_DGFX(xe)) {
--		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
--
--		if (is_pte_local(pte) != need_pte_local(xe)) {
--			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
--			return NULL;
--		}
--
--		phys_base = pte & ~(page_size - 1);
-+	pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
-+	phys_base = pte & ~(page_size - 1);
-+	if (is_pte_local(pte) != need_pte_local(xe)) {
-+		drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
-+		return NULL;
-+	}
- 
-+	if (IS_DGFX(xe)) {
- 		flags |= XE_BO_FLAG_VRAM0;
- 
- 		/*
-@@ -104,25 +102,14 @@ initial_plane_bo(struct xe_device *xe,
- 			    "Using phys_base=%pa, based on initial plane programming\n",
- 			    &phys_base);
- 	} else {
--		struct ttm_resource_manager *stolen;
--		u64 pte;
-+		flags |= XE_BO_FLAG_STOLEN;
-+		phys_base -= xe_ttm_stolen_gpu_offset(xe);
- 
--		stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
--		if (!stolen) {
-+		if (!ttm_manager_type(&xe->ttm, XE_PL_STOLEN)) {
- 			drm_dbg_kms(&xe->drm, "No stolen for initial FB\n");
- 			return NULL;
+-			if (flags & XE_BO_FLAG_FIXED_PLACEMENT) {
+-				err = xe_ggtt_insert_bo_at(t->mem.ggtt, bo,
+-							   start + xe_bo_size(bo), U64_MAX,
+-							   exec);
+-			} else {
+-				err = xe_ggtt_insert_bo(t->mem.ggtt, bo, exec);
+-			}
++			err = xe_ggtt_insert_bo(t->mem.ggtt, bo, exec);
+ 			if (err)
+ 				goto err_unlock_put_bo;
  		}
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index ff479e0a9f3b3..017e7eeeb2c50 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -900,22 +900,6 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 	return err;
+ }
  
--		pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
+-/**
+- * xe_ggtt_insert_bo_at - Insert BO at a specific GGTT space
+- * @ggtt: the &xe_ggtt where bo will be inserted
+- * @bo: the &xe_bo to be inserted
+- * @start: address where it will be inserted
+- * @end: end of the range where it will be inserted
+- * @exec: The drm_exec transaction to use for exhaustive eviction.
+- *
+- * Return: 0 on success or a negative error code on failure.
+- */
+-int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+-			 u64 start, u64 end, struct drm_exec *exec)
+-{
+-	return __xe_ggtt_insert_bo_at(ggtt, bo, start, end, exec);
+-}
 -
--		if (is_pte_local(pte) != need_pte_local(xe)) {
--			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
--			return NULL;
--		}
--
--		phys_base = (pte & ~(page_size - 1)) - xe_ttm_stolen_gpu_offset(xe);
--		flags |= XE_BO_FLAG_STOLEN;
--
- 		if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
- 		    IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION) &&
- 		    !xe_display_bo_fbdev_prefer_stolen(xe, plane_config->size)) {
+ /**
+  * xe_ggtt_insert_bo - Insert BO into GGTT
+  * @ggtt: the &xe_ggtt where bo will be inserted
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 83654544feb6d..02e72dbae0e58 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -36,8 +36,6 @@ void xe_ggtt_node_remove_noclear(struct xe_ggtt_node *node);
+ size_t xe_ggtt_node_pt_size(const struct xe_ggtt_node *node);
+ void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
+ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo, struct drm_exec *exec);
+-int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+-			 u64 start, u64 end, struct drm_exec *exec);
+ void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
+ u64 xe_ggtt_largest_hole(struct xe_ggtt *ggtt, u64 alignment, u64 *spare);
+ 
 -- 
 2.53.0
 
