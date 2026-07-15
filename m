@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id OyabFJyVV2ruXQAAu9opvQ
+	id WLmSOJqVV2rtXQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 16:13:48 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 16:13:46 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E18B075F38A
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 16:13:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA71C75F387
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 16:13:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=lPqkc7AT;
+	dkim=pass header.d=intel.com header.s=Intel header.b=DyJfNkpE;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFB4910F0DB;
-	Wed, 15 Jul 2026 14:13:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAF4510F0D4;
+	Wed, 15 Jul 2026 14:13:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E2C110F0D1;
- Wed, 15 Jul 2026 14:13:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCAFC10F0D4;
+ Wed, 15 Jul 2026 14:13:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784124822; x=1815660822;
+ t=1784124824; x=1815660824;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qDFIQ49RFGU38zjGiqt49/Uuks398IxFftHgviLP6dU=;
- b=lPqkc7ATKvEFtMdUNP1Q4Zb1US1UJr2vU6JhBgKaheKLUcCzsduQ2qXz
- Lpg/w4Y8tdfWlzVy1LdDEbyWKZNsrmeH33vQomY/j2van0NmXq3Us3aiW
- P5RQdqoCWzsRhnRMzks71X17YJN0KAzdze1uqim+smy0G6wjSWCMAz9ur
- bprutw20Uc1dSb8WzmsY+Tf+PMQKnEyEG5YYs8D2EaCieAbIPu+VD1ger
- hVfaG8O93K0DrmORO7OZcjKmZw1dms32d90AB5y74oMcEY9m+gJhqlpdN
- WvWreiTTtOjXvtStBaq+Xsk+7rRkb07RRecPASmAb74hNJwPWPh+aEXwA w==;
-X-CSE-ConnectionGUID: WFdLODuZTp+nAyW+PbNLew==
-X-CSE-MsgGUID: oLWDpM8kTBCCOVZkFU5sVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="110310298"
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="110310298"
+ bh=vIGKMt0FVnblZLljLmC0u3HBZcTQXjIZStmvz8fbfso=;
+ b=DyJfNkpEUhCjbVhIzWEMhFWASAUsbne+h3b4MI4ichwdhlpS2VKnyFle
+ g8lWtLgm/L5mM21/zOicDuexBSZP1YQ9K+Pdd6pM+39QoXFElYamwB0i9
+ jHw02ehN2XjoJhR7KwjIWROBGno/LPm2o0IPLi4lVT53IYzN+Y0QW4lvU
+ 9FlNAzLGIaRqLLV3l9HgUJua2oFshVsjhQqi18MeoMpUW/XZHU+KYZ6J0
+ ca4Ko1JQ55bE3m1HcST4ouxCbLpBRxGQ9GrTo3ErqYn/FZN6AVTPmPV99
+ E0+xWvpgoxhk5EWgAVtVItNRm2rc6ZZwB36aypdjifEJeDMONxJ693ixj w==;
+X-CSE-ConnectionGUID: RvkAm7gQRPO7u5qHyOyiBw==
+X-CSE-MsgGUID: cIaE1s4vRGa8bd0/RdvzkQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="110310300"
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="110310300"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2026 07:13:42 -0700
-X-CSE-ConnectionGUID: o7fscxxAT5yknsnxB4LIxA==
-X-CSE-MsgGUID: j7ATkMURROKbaXgIYz7bUg==
+ 15 Jul 2026 07:13:44 -0700
+X-CSE-ConnectionGUID: 5jcM97dRQzOal3x0mh9OKQ==
+X-CSE-MsgGUID: 81QxOCwDSZWMwabBbU/MLA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="260008535"
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="260008539"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by orviesa004.jf.intel.com with ESMTP; 15 Jul 2026 07:13:40 -0700
+ by orviesa004.jf.intel.com with ESMTP; 15 Jul 2026 07:13:42 -0700
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, suraj.kandpal@intel.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [v3 1/2] drm/i915/xe3p/dram: Interpret 0xF populated-channel count as
- 16
-Date: Wed, 15 Jul 2026 20:02:42 +0530
-Message-ID: <20260715143243.4141208-2-uma.shankar@intel.com>
+Subject: [v3 2/2] drm/i915/xe3p/bw: Update bw calculation to account for 16
+ channels
+Date: Wed, 15 Jul 2026 20:02:43 +0530
+Message-ID: <20260715143243.4141208-3-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260715143243.4141208-1-uma.shankar@intel.com>
 References: <20260715143243.4141208-1-uma.shankar@intel.com>
@@ -100,94 +100,70 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E18B075F38A
+X-Rspamd-Queue-Id: AA71C75F387
 X-Rspamd-Action: no action
 
 Wa_16030862157:
-Interpret 0xF populated-channel count as 16
-The register MEM_SS_INFO_GLOBAL [Number of populated channels] field
-definition is updated with an encoding for 16 channels.
+Update Bandwidth Calculation to account for 16channel memory
+config.
 
-For 16-channel configuration, program 1111b. A programmed value of 1111b
-must be interpreted as 16 channels for memory bandwidth calculations.
-
-The MEM_SS_INFO_GLOBAL populated-channel field is only 4 bits and cannot
-encode 16, so on Xe3p the BIOS programs the saturated field value (0xf)
-to indicate the fully-populated 16-channel config (4 memory controllers
-x 4 channels). Interpret it as 16 and let the bandwidth math handle the
-larger channel count.
-
-v2: Limit the WA only till NVL (Suraj)
-    Logical separation of WA (Vinod)
+v2: Logical separation of changes (Suraj, Vinod)
 
 WA: 16030862157, 16030875223
-Bspec: 69131, 79482
-
+Bspec: 69131, 68859
 Assisted-by: Claude:claude-opus-4-8
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_wa.c |  2 ++
- drivers/gpu/drm/i915/display/intel_display_wa.h |  1 +
- drivers/gpu/drm/i915/display/intel_dram.c       | 14 +++++++++++++-
- 3 files changed, 16 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 20 +++++++++++++++++---
+ 1 file changed, 17 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index b4c49816f7eb..3662e0f17c69 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -140,6 +140,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
- 						STEP_A0, STEP_B0);
- 	case INTEL_DISPLAY_WA_16029024088:
- 		return DISPLAY_VER(display) >= 35;
-+	case INTEL_DISPLAY_WA_16030862157:
-+		return DISPLAY_VER(display) == 35;
- 	case INTEL_DISPLAY_WA_18034343758:
- 		return DISPLAY_VER(display) == 20 ||
- 			(display->platform.pantherlake &&
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-index 92b3980bea84..338b32e4162d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-@@ -54,6 +54,7 @@ enum intel_display_wa {
- 	INTEL_DISPLAY_WA_16025573575,
- 	INTEL_DISPLAY_WA_16025596647,
- 	INTEL_DISPLAY_WA_16029024088,
-+	INTEL_DISPLAY_WA_16030862157,
- 	INTEL_DISPLAY_WA_18034343758,
- 	INTEL_DISPLAY_WA_22010178259,
- 	INTEL_DISPLAY_WA_22010947358,
-diff --git a/drivers/gpu/drm/i915/display/intel_dram.c b/drivers/gpu/drm/i915/display/intel_dram.c
-index f103f7cba018..0763d0bfd98e 100644
---- a/drivers/gpu/drm/i915/display/intel_dram.c
-+++ b/drivers/gpu/drm/i915/display/intel_dram.c
-@@ -13,6 +13,7 @@
- #include "intel_display_core.h"
- #include "intel_display_utils.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 41539fdfeac5..aaa0350dca78 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -14,6 +14,7 @@
  #include "intel_display_regs.h"
+ #include "intel_display_types.h"
+ #include "intel_display_utils.h"
 +#include "intel_display_wa.h"
  #include "intel_dram.h"
  #include "intel_mchbar.h"
  #include "intel_parent.h"
-@@ -794,7 +795,18 @@ static int xelpdp_get_dram_info(struct intel_display *display, struct dram_info
+@@ -272,7 +273,14 @@ static int icl_get_qgv_points(struct intel_display *display,
+ 		case INTEL_DRAM_LPDDR4:
+ 		case INTEL_DRAM_LPDDR5:
+ 			qi->t_bl = 16;
+-			qi->max_numchannels = 8;
++			/*
++			 * Wa_16030862157
++			 * Xe3p supports a fully-populated 16-channel LPDDR
++			 * config (4 memory controllers x 4 channels); earlier
++			 * D14+ platforms top out at 8.
++			 */
++			qi->max_numchannels =
++				intel_display_wa(display, INTEL_DISPLAY_WA_16030862157) ? 16 : 8;
+ 			qi->channel_width = 16;
+ 			qi->deinterleave = 4;
+ 			break;
+@@ -624,10 +632,16 @@ static int tgl_get_bw_info(struct intel_display *display,
  
- 	dram_info->num_channels = REG_FIELD_GET(MTL_N_OF_POPULATED_CH_MASK, val);
- 	dram_info->num_qgv_points = REG_FIELD_GET(MTL_N_OF_ENABLED_QGV_POINTS_MASK, val);
--	/* PSF GV points not supported in D14+ */
-+
-+	/*
+ 	ipqdepth = min(ipqdepthpch, display_bw_params->displayrtids / num_channels);
+ 	/*
 +	 * Wa_16030862157
-+	 * MEM_SS_INFO_GLOBAL populated-channel field is only 4 bits and
-+	 * cannot encode 16, so on Xe3p the BIOS programs the saturated field
-+	 * value (0xf) to indicate the fully-populated 16-channel config (4
-+	 * memory controllers x 4 channels). Interpret it as 16.
-+	 */
-+
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_16030862157) &&
-+	    dram_info->num_channels == REG_FIELD_MAX(MTL_N_OF_POPULATED_CH_MASK))
-+		dram_info->num_channels = 16;
+ 	 * clperchgroup = 4kpagespermempage * clperchperblock,
+-	 * clperchperblock = 8 / num_channels * interleave
++	 * clperchperblock = max(8 / num_channels, 1) * interleave
++	 *
++	 * The 8 / num_channels truncating divide collapses to 0 for
++	 * >8-channel configs (16-channel: 8 / 16 = 0); the max(..., 1) floor
++	 * keeps clperchperblock >= 1 there while preserving the literal
++	 * truncating divide for <=8-channel configs.
+ 	 */
+-	clperchgroup = 4 * (8 / num_channels) * qi.deinterleave;
++	clperchgroup = 4 * max(8 / num_channels, 1) * qi.deinterleave;
  
- 	if (DISPLAY_VER(display) >= 35)
- 		dram_info->ecc_impacting_de_bw = REG_FIELD_GET(XE3P_ECC_IMPACTING_DE, val);
+ 	display->bw.num_qgv_points = qi.num_qgv_points;
+ 	display->bw.num_psf_gv_points = qi.num_psf_points;
 -- 
 2.50.1
 
