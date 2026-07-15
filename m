@@ -2,71 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id o74dHXWHV2p1WQAAu9opvQ
+	id Y28PK52HV2p4WQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 15:13:25 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 15:14:05 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCFF975E87A
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 15:13:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14CCC75E887
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 15:14:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=d8JvlKX5;
+	dkim=pass header.d=intel.com header.s=Intel header.b=aVTsYqE2;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com;
 	arc=reject ("signature check failed: fail, {[1] = sig:microsoft.com:reject}")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30B3010F049;
-	Wed, 15 Jul 2026 13:13:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97BA510F04A;
+	Wed, 15 Jul 2026 13:14:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D56810F049;
- Wed, 15 Jul 2026 13:13:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46C1610F04A;
+ Wed, 15 Jul 2026 13:14:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784121202; x=1815657202;
+ t=1784121242; x=1815657242;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=lNEZfZxDBbJ9tzb3thhctewCoP719pXr+cnymXls6k4=;
- b=d8JvlKX5vUL+WmcZ0rnj6D/EsspalVOE66ApB3/W+ZuhZQWnRtI9SDgk
- e3a7bzDymwMZEOFN9I8I1g9IxWhMgYLG+4bNNh4BpZgEAjEoZJpIqt1qz
- 5Hjs2jxjdmLgTqUBAgcswHU8SpdZhu13uwQ8y/88iNa9sI2ohJm62znqN
- MrwMyd3BFTyl9IFbD2L281uu35iPJo+33vqWYw74Vt8Zz/3LBn+jj6rzk
- ZtU68+Yh1AGjUvorKDKmHaStkpT0Y/B6UJdr+nzktlbkSZCdfMh5cOVGE
- GtVv7PwqfEk1SUieVBtYGtgoNP8R4ouV5iHwTTJd6LvuNjFD5/+AZTltr w==;
-X-CSE-ConnectionGUID: 2HWJ8L4FTFy7FUoDUY99VA==
-X-CSE-MsgGUID: 5ZftjniqQaeVA5ejNpUgbg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="110304050"
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="110304050"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2026 06:13:14 -0700
-X-CSE-ConnectionGUID: oCcjrA+IQTiZxCWFM98lLw==
-X-CSE-MsgGUID: gKUfYzscT06nC11dGIUANA==
+ bh=SPesej56rP/Nz4sgKrYTAtC8+FRDAsBy4/uHAmC2Lqg=;
+ b=aVTsYqE2nNiC6pDlUq8WLvM2CJyNbBXzr02YNKiX/0kCA5zrw0BNAjpv
+ C6rN7yHVK4rwIJ/WU3F4U5TPIndbDIhml8XMxhKBiHCem529tv2l8UQQo
+ 0xq/IpJ+4E2IUvmc6aMwh7dZM8IE3wLmGIVP7EFGX8zwpt8GTSKqov2sC
+ Brlua41zgT8m45W2k66Zv/H02FwIK15qh7JCp/pTaRiPejbZigBQu/eoW
+ Kp//z8P2yg8yKOwyUKlKqOsHZRK99fYZLeBotR/cPKQjMg+5JqPkS5nKZ
+ ZHdpfg9TnoBRdWXzsaj/dgLo1W2Cska9NOezNykQQOcmnD2b02Wye08Cg w==;
+X-CSE-ConnectionGUID: R1WRxT5eQyi9XrRiSTLXeQ==
+X-CSE-MsgGUID: yvHq4rtcThqFnAChPNDMDA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="95403842"
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="95403842"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2026 06:14:02 -0700
+X-CSE-ConnectionGUID: +uttXcCgQKSOlKVpn3G2yg==
+X-CSE-MsgGUID: xy5Jj7J7RMGclGnw4sNC4w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="259996337"
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="258138305"
 Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2026 06:13:14 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2026 06:14:02 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
  fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Wed, 15 Jul 2026 06:13:13 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.43; Wed, 15 Jul 2026 06:14:01 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Wed, 15 Jul 2026 06:13:13 -0700
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.20) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.43 via Frontend Transport; Wed, 15 Jul 2026 06:14:01 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.61) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Wed, 15 Jul 2026 06:13:12 -0700
+ 15.2.2562.43; Wed, 15 Jul 2026 06:14:01 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kxXR4YJkMtQuMvJTWv9JWeEsZBnEuI4UyyWHkhJtdq8AapFIoacSgPhS9hv/Niyyf58ZMH57TsyYWgQ3wGtOaQ1/7jyKX5FbksRtI6yidqYfZPvo2GndVXMN/mpUELnVtV7/KTuXiumCE8rBq42RE/x4zi45rv3cdluJOa1k9jpNjmIcUWWyDyY0Yb5iGJr5M3IJcwXusvARaC51TtoM5c/nPwXB3bVE1uhjAGN6SVVHRgXE5VWVEkOFDnAHB4LIbG3WGuhUV3geyiDHrrzkhRxN5TlqJLcztK4G4x+rinyW6ZGUZgB7H6kZNn+9gWNDNPuiC+DiF+LmKYUZp7d0nA==
+ b=XGxLW8L0bYZCldPwvwHqItgwmlaVTnvEIa+5lOfOjIzsCfuMgOC1n3lBwFwAxj11bDzGhQcP0TBB5ZMUjT1WHrqqI2b03A10hrhXqstv9u+NceSVnMIunYBrv//GPxG2tUH/RbizGAPB/T5/00BSXbpvIzBLI/9OslFe3xIL9pPXnniYfHvHjp9HQS/u1SQCQ+7ZxtnH5k0obYWQ8iTH9Jk/XyUzasFcmegt3VMTF/tQGOvK9yy2FJuIOcS2xTUyz+v5NfKI2a7+3WHsjj3c32WB2rqxYx8nim7k/m4MXCHN4pJvIdfLQOCyDm5Xy9C7EILDaed5hNkZ63N61cO4Lg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=j70dZXThkBHTWvH/xpwWtbqxJ5rj56C9pX7PXXrLCBo=;
- b=O2Um0eEcsViSm5Mr8A7Ykb11j5p7b29hpQIBVBiZjiiGjNdGejFflCm+QLumjzK8+hyf/NaVmOPLjncrin2YtjfXZxJddmLPSHvW2HSS0ophUX0mS0OcwOOU1A36sfzyAYdHYPWTLC2hHVAxSnFd2Ke/HTPD6dHlYD2MR8T29f03T/tjY2ozBXqe+UOd7grUIVRfix1/V06Q8HIbSeVy2b9VO72ALTeSUC45fPjuxNeTUS7QpiYIEqYF0fTzXX9+dZ7/l1Fi90ziML8rG/IRyFAe4g837mjGiHEkXgw/bidw50+TNmR5qPwkPV5lYVQk1Vy28IbGlXyXSmYk6eDJ4w==
+ bh=7jVRz2vsKTTFPVbwEPhCj4PowA92iDYQf613OhaijWc=;
+ b=HwOFcnQ2mHAVPsIVr+b5sAjpezk1mnjp7Xk3f7MxzmcSTYWd1b2Z5UWKgWr4y+2+X+i30KJsPRjRaRumd8iiPp2RcM0HzCZMi2IB8om8SdLBDMZK0jdaFbQKd5IameXdybhoLPT3vPhQNfceDGYpi0f1y9zmLpqkGk7gT5MCQ5MKl64ewFHWFdbjAPIbL2XvKSHRQgbslesSDJy81xaFtcgzjhqfF6DI4kB6mmGBTtAlztC6wkF9BzWS5lDUhGFyheILKN6PBK6mnsuH4dQMQAizLeaZglWCCitnmxOGKVHUOkvjQk5NQ4R7xBHmc3nyxlW/+X+kyn56aO6Kie5XsA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -74,92 +74,93 @@ Received: from PH0PR11MB7636.namprd11.prod.outlook.com (2603:10b6:510:26f::13)
  by SN7PR11MB6558.namprd11.prod.outlook.com (2603:10b6:806:26e::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.9; Wed, 15 Jul
- 2026 13:13:10 +0000
+ 2026 13:13:58 +0000
 Received: from PH0PR11MB7636.namprd11.prod.outlook.com
  ([fe80::d611:6fa9:bc34:46b]) by PH0PR11MB7636.namprd11.prod.outlook.com
  ([fe80::d611:6fa9:bc34:46b%5]) with mapi id 15.21.0223.008; Wed, 15 Jul 2026
- 13:13:10 +0000
-Message-ID: <a5dfc99d-f74e-4551-b101-3a664e2858b8@intel.com>
-Date: Wed, 15 Jul 2026 18:42:59 +0530
+ 13:13:58 +0000
+Message-ID: <93810ca2-67a9-4052-bcd2-838b585c5b54@intel.com>
+Date: Wed, 15 Jul 2026 18:43:51 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/8] drm/i915/vrr: Add per-CRTC vrr/cmrr debugfs control
+Subject: Re: [PATCH v3 2/8] drm/i915/display: Move CMRR crtc_state members
+ under VRR
 To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
  <intel-gfx@lists.freedesktop.org>
 CC: <intel-xe@lists.freedesktop.org>, <uma.shankar@intel.com>,
  <ankit.k.nautiyal@intel.com>
 References: <20260714103938.2371448-1-mitulkumar.ajitkumar.golani@intel.com>
- <20260714103938.2371448-2-mitulkumar.ajitkumar.golani@intel.com>
+ <20260714103938.2371448-3-mitulkumar.ajitkumar.golani@intel.com>
 Content-Language: en-GB
 From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20260714103938.2371448-2-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20260714103938.2371448-3-mitulkumar.ajitkumar.golani@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0022.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:177::6) To PH0PR11MB7636.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA5PR01CA0023.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:177::15) To PH0PR11MB7636.namprd11.prod.outlook.com
  (2603:10b6:510:26f::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH0PR11MB7636:EE_|SN7PR11MB6558:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1d8b2be1-e175-4e99-6d42-08dee272d15f
+X-MS-Office365-Filtering-Correlation-Id: b92c39a8-9e67-40d4-e4ba-08dee272ee26
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|23010399003|4143699003|56012099006|11063799006|6133799003|22082099003|18002099003|3023799007|10067099003;
-X-Microsoft-Antispam-Message-Info: bYPBcDVBNvfP3By321XVl8jZmAsP8oyrH8ts0wZlHAndmbci/p8AuAvn2AEdU3LO+XrlnmgeuJHWnQAaOuVkAMWmqWhf4kdOMxUWZQ5qHQ5zxpuHoZ9eXUUj1hrvvN01DtCGXHq2n5pEwc2Xykr5nbde3Frj20bXxhH9+B0qIBvcp721rYE59MCT9SGhliZI4BMCk5SeV7qtnS2SC2dHm/vexvA6WYNF7XkIyglo52ctF29qCBbguFFQW3eQFYNnkvxsB3Xbr3ROSs5ZmNM3I5kUSHtFouJNq852W+9DkKwGb+RANfbGs2zn8t+It/qUHLFQ6WZq2xAL8VyktCZQExxTpuju5ilqq8BbcjKxlsHv3dF+p3v2OrklFUFHkW8LAkPX/WuuKRk7OI+TcnEmDHgId58Ou8vSXGeDGybsIyUx1F4h6CaTORe39+J90pWidQ5unBIUhAcWPR8m1zakZdECraxKgnO0wyGVQ18kNUgDzIWxjeA4Jw0uFaRp2+yqYSBEoIMkIWbL08GMsggYl0mrEKwo4drZN9JTKGEqeQKFrnkJ8sv2DI8dJ3qsB7ld/Vl3tspwqfE12qIIqtJkaz5if25jDj5bhEx+IQfu4HbNJ6ObiaRPY2H3qb52cBJUyD9FPnMXaUZlQXUb7KqwpAp1uR1U0MgF3zT034C/Omo=
+ ARA:13230040|1800799024|376014|366016|23010399003|4143699003|56012099006|11063799006|22082099003|18002099003|10067099003;
+X-Microsoft-Antispam-Message-Info: GPqBfx/ADY9aGRWvUCkHF1o3l1w6pVshJYxMeu7Zj2K/qu7syW51EDRN4+iOCDaVDoU2wBhhiZbbvuUlPEsceEyt2Es8BXmjTZXscMkAcrQQc8qCjScrdrCSwjDAjAKmILs9yclo2vB+VN1ef4CvaO9yGXHo2wcAvh2LbESD0JtZGxn2KQyQCHfI5uRshbLSmSxSYbE7dwEhjMxEuAW/eG6G9wAmrdsuKCy2TcBG9IPGMa8pE7W/08trdj61kWeabCvJ7vngFCBrnnNIUBV03QYtZAsvZvOneEfhjwZmbcU7UlDBj1ql35A7iW12M1zQb2m8wqzgEbeexlun/UJBIlmPGDMqmGHcikRk0lYO/jUIvKQBIOPsBi1e5bWWpSr9E55wtSQjBF9zGeiJ8VW6RljRN1jV/ISGJJbX1HOEV1rF1B4+HmWvQ6O6/vaUB1nTNqnHNWCfDC5wZaIMViSstYMFYFCRit2GQD+s4lFAjBwdnYoURWGnfB5Xgw1VLbEHSUZKyY7sqebT70TwW5zCLFXygVWsREkJknwDnUVkKEL5CjAS71t5tpkTdlcZXALjuzwyuEG8xIbbcOKY5ZKKT8vFS+tmYARw2aPoBX9xn9cGD6pSIkeyOr577t9tv2omemPhjoZNzoBkaaPPc7u934Qja7KUS1QsaMb76v6/XEo=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH0PR11MB7636.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(4143699003)(56012099006)(11063799006)(6133799003)(22082099003)(18002099003)(3023799007)(10067099003);
+ SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(4143699003)(56012099006)(11063799006)(22082099003)(18002099003)(10067099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VWFWS0lkZGk4dmFwOEZaZW52K1M0UkU0Zjl6ZUN3RlJ4NFdiaGszK0RoTGcz?=
- =?utf-8?B?MEpXZXY2OTZzM2FCN0R3T3ZhY21jRSt6MHRaUzBPN3MwVk5DbEtjM0JLS1NS?=
- =?utf-8?B?ZXY3M0ZvMWxDK0pkRWNDYU5MY2R6R29vbXRTME9CbnlmMTIvaDQ3cDRyZXpR?=
- =?utf-8?B?SVlpYkNUK0x4Nlg5SHNLak95djFROHpHenppOWh5Zk9hcWRjU09zS1cvN2cr?=
- =?utf-8?B?SmxHOWd4MkdyMStKODlTN1JUbkc4Mk9xd1gydlRZbGN1L1Mvano2TzlCRUhM?=
- =?utf-8?B?dnNCYlplZWQxNWFsdTIrcVZ6bkZVYmY1ejFmaXZ2TDNxb3czTkNKczlqYXl3?=
- =?utf-8?B?Q3pmRm5MZXlhWUV6d003cmZQa3RGVXorcERQUUdLYUxYWFFOd2NvN1V0UFdh?=
- =?utf-8?B?bWVqNytHSnVEL3RlZnpqSEhDV1ZQTndNL0g4RmZxbFhGY0hiOUR2aEdEL3Iw?=
- =?utf-8?B?YVRXdlBpZVJmeXZJN1hYbFg0N3pJWUFFU0NJWUQ3ZGpsc1JScUl4Z09YU0Zs?=
- =?utf-8?B?YVN6ZUJLQzFtalNYMEkwUHlhWFFwbEFxNXQ2aUJkM3lsVG9PRVFvZ2RvRk1T?=
- =?utf-8?B?VE5rMllNTndrNW1PdTcxWVlJNFBNSFIrdXlsWklrc2o1QldVcTl4S2VlR2FP?=
- =?utf-8?B?Y1hEYVpCbUtJcDBuR0lhdmVCTTJBcG9FYjhjdUpudTJrd2tXQVVEbW80VStC?=
- =?utf-8?B?V1Z1ZENWNllkWkdJU1JkTk5ONlZEb3c3SkIzZkQ3aGtuWEhxQ2FrK3RaZTYw?=
- =?utf-8?B?Yzk5K3VrTUJoRUhsTUNGZE54Mzh2R0lVUkJwSVNWb3FsUEZhb2c0WHFGTDNM?=
- =?utf-8?B?bnA1bVphVVRINXUyYnVVUWNKZ25XSlE2TmUzbVNiaFFidWZKbm8xNGV1b2hi?=
- =?utf-8?B?bHcyMHpPK1AyN2JHKzFwVnIvbk1kaXJoRUhkeENWR0NkSEdxN0pzK3lyUyti?=
- =?utf-8?B?T1RleFdERkhtQmphcFBJcmlQSXowazdRMGphMFUrZFd2NmtSQ09OQzJNbTdN?=
- =?utf-8?B?SHJKeWM5dnZCYWRsZlczZi9ET2F5RXI4M1BRbE04elhYQWtQNGZuTVRpNng0?=
- =?utf-8?B?U3Z1OFRYNFFaMmdyN0JUaVhRbjZja0lUcVZwWURLaGJaM042UENwSzFvV0ls?=
- =?utf-8?B?dzlqSEhmeXJFM3hDcE9MaWJBWU9rMzNraDZoUldTY2Q3cVppYnowVFpwbXFB?=
- =?utf-8?B?YXhPV1B4TkcwaHplZUpBMHBxSDhRV3lWa2pVdGU4c1pMaS91WGM5ZnVSbE9S?=
- =?utf-8?B?am1Yb0dwOTZnYU9jdjh2RFV5cVBuOTdWemNUWHNxZUpiV2dRS0M4L3grOUlS?=
- =?utf-8?B?VXlDZG95cXZjWnlPOFZjL0tMQzU2NTN0bUUzaDUvd1c5ZC9yZ1lIZ09Nb2Uw?=
- =?utf-8?B?SzRHeFY3MmNIcTdXemtwN0podWRSNFdqd3NrUjNrMktteW96N2VYSXVpdFJS?=
- =?utf-8?B?dEp2VU1OSWlkVFJFUHBoWml5REdVRExGdGs5UGVpNlN6ZTE1cktwK3VPRDBu?=
- =?utf-8?B?R2JtRldsb3pZcmVWbGk5aHBtakVhMndiVkkvaTZRSVZIMmM5cHVGcGtDblk4?=
- =?utf-8?B?REJHaDR6QklKMlo0WWVGWmpWRm9mOVF6WVVzMDkwQW1SSS96LzZhWDB3TTh2?=
- =?utf-8?B?MGdFTHJ3UExlK2tUUjlSNjlGMjVDNkhXM285OFZ4VzVHVG83ZDBQT0RoZTVk?=
- =?utf-8?B?bWVNUGdBVTJtKzFOdU5ZckdjdjVrY2pHZUNiWExHeC9ubytUdlhJQkJaYWZw?=
- =?utf-8?B?aVNXajdobEZkOEFFR0Yya0tVd3RUbXlpbTVJMk1FN3NPWVBYaVFuT0gxaFR0?=
- =?utf-8?B?bE9Yc1A4clBxR2FNQ0RMZHRMb0RyV0wyb3FIRjRJYXVqMHZDTmlERVVFRVJK?=
- =?utf-8?B?Z25PMWJZNHR3TTAwQ0tYQmxJN3AvN1ZORXhmY216VlJqckRub0ZoWXlLQzRy?=
- =?utf-8?B?Q2JtTFZyNy8rellyWjB2RDZqakpqbXhRS0t6aTkrNUpRYXhuZ1dkN3NrYUFH?=
- =?utf-8?B?dGk1UVgvQXRsVGdLckdEcENGNmFQTmw0UGFTYUlSUVJicnlFUFh6dEJuK0My?=
- =?utf-8?B?ekFFVHpnemlOSnBnYStheXhIclRDL1czMDVQckREajdkUHVqNTJDUDEzeUxY?=
- =?utf-8?B?UWFWUmQyMG5WdUovKzZxMlE2MzA2Z0wyUVJDQmpKQnBFWUF1cU9MNTNaRmpL?=
- =?utf-8?B?c1Z2OWVZTnFhNHdIaTBxUHJkVjNQVGN1WUF6dU5yZFZYa0E5RTRkTi9YcTVr?=
- =?utf-8?B?clNHYWFNNTNXeEtWOTA2ZWZMY2FWVGFpOUlFYTdHNzRQRVRaM2oxaHE5REgx?=
- =?utf-8?B?K3ZtMGZhNUhxR2dSMEtXSkI1RS85bThpYzZhbzlYakhRZWk3MS93NkRROGFz?=
- =?utf-8?Q?1mzdT/eDFOnoeCmq50hBt2z2KUsetiQ6MSD/8?=
-X-Exchange-RoutingPolicyChecked: KdYmeKGQozxSx4XhqV1Qw1deUiv4cw4zHYj2Gme8MfleVPhko5824guuy/JzV+qdkWvcPFm3QpKnGpTRCam1KxAtjH4EUffShOdYlrEKA7qRIk89tac5BZktmXZRwdyCiBOQdrrDEG/yyCOHitZio2gzPMoR18rmBiEzL8KL1pARlE7NV/6et2EckwLyWb42aWhLbozcRauRBDNrK0VuzmeCPo7E6yndqwTWIl6fo3Ara9gcCIxCmCeqRqApIvkJ6IuI7t4l6RbwrMWaXJ0OAmDdq8rMRVUYcwe99yThMsaA6NXJOSLLnxHAGRlCvEOsAyW2nhByImAGTV6LpEugzg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1d8b2be1-e175-4e99-6d42-08dee272d15f
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?d2F4N3BCb3FkM0Q1bVJ4Y2JzNE5vWnp6bnZLVWxjZjZqVWVWUDhFTWFGOStM?=
+ =?utf-8?B?dWVibnZQOTZMSXhFSmloUUtNZnZRVVdDQm9vSi9nejg5M0RvbDl5d3VmcU1m?=
+ =?utf-8?B?T0dkRDAzdDJzMWpSV2RSMlB4RTR6MkVZdlZudENBQkZGdWc2T1paZFFUZUt1?=
+ =?utf-8?B?RUdaK3YwdDg1ZXhobzJKYWcrUW80L0V6Z0w3Q0o1MkZvckJqaS9DN0h1aWJk?=
+ =?utf-8?B?SSt6SGlzdDZROHlsZHNqWlZCa0w1cnhTTkNEVlVkTUZuMDhlNlBzTzlJcFI0?=
+ =?utf-8?B?TVo3NkpXWHR5a1FiL09WNHFWWHZaLzF2UUhnRXZ1d2NnblhtM2NRdzJRaFBr?=
+ =?utf-8?B?T3E4VzN5RWgxM3lJSWtpWGZldi9XN0FyUDNoTXZmUmh5aVBQQTllQ3JXanZE?=
+ =?utf-8?B?cFZGcjFEVEFSZ1hpZnZ6L2MxYnBpbWx4cDI2bnZDdG10U1VGUjBmSUVLRXNX?=
+ =?utf-8?B?MC9EUjhTWVNXUnF1U2phaWlZMm5Mck9DTUVhVlVwMDRpSnExMjY4NTdZaWhr?=
+ =?utf-8?B?SjMvU1NMcDZmTnluUmNudlBXNzZEMUxWVmRic1AwWU9nUlRjVHduK3pOclgx?=
+ =?utf-8?B?OVg1M2luVy90eXhGaWtTdVNpcXFJcTBRc3puYTJkWFQxaHMwajh1Nlpja2sx?=
+ =?utf-8?B?SnVvMU5HeU1OL3ZrWWdaclk5UnpYTGZXdXRsSHhKMnRqWkV4a0ZCcmZBUWs1?=
+ =?utf-8?B?ZGhFRE93YnJUOU1kcGtZSlFha2h3ZWVSVFhiQk8yS1Q2RmRxdStzNnJqN1VD?=
+ =?utf-8?B?S3k2MXBWSFZ3OHFPTENCbHJaYU8xbHlramYwdCtRMzEvQVd5RUVubHlwZlJ0?=
+ =?utf-8?B?T1dOOFI4R3I4NlBkT1NQZU1Ld1BMV2ZpbVN2Q0lSYmVvTmJVcWRKWkF6aVQr?=
+ =?utf-8?B?RERGc0NvMDZpQzY4YUd1dEdnNzFLazhOcWRUQjRNSFEzV1NOTWlveWhoK045?=
+ =?utf-8?B?dmpiOWJKa1A0dWxYN3ZNT05wUGpaTXlmR0V0Lys3Y0lUUFVwYU1BOVlZRmRp?=
+ =?utf-8?B?cHpTTVd4S0szMGhjTHNlcmU5WWgwV0drcnQ2QURxTFdDeE5kWVJEdUtXL202?=
+ =?utf-8?B?UUphYm02NURyRW5JWEROT3YwaGhpUUhjRGVVNDFPSC9DdXdJZ04wUk0wSEV3?=
+ =?utf-8?B?N0dZZnZ1VGhRNncwU08rN2cvM3F1dG5sazBYcGR1UUIzZ3FpYUpOdnMwUUhi?=
+ =?utf-8?B?SXJiWUpSZmlSMUpTMzdLTlRSM2hZWnJwN2tuSmZ2NGJvYnNiNG1KUkM5TXBq?=
+ =?utf-8?B?QzBtd0tZQTA4SjN1Z3poTytubDg5MWlqbW9oWHZyODM1aXpoNVB6ZGcvVFpm?=
+ =?utf-8?B?S2pMdFd4Y05wQ0xieUd1UnlBQ2NpZFdEcjlHbkJUYTNDd2RMNzNkRDBTVnN1?=
+ =?utf-8?B?RVR6QkpscncvZFd3dysvd0xrQWx2ZGUwYUpZakkvZmdqYmpkb0dRcU84LzBM?=
+ =?utf-8?B?bEN2UXJSUmx6NUczS05BN0k0bEYzTkNrYmdwdm1oU1pZc3JDWlQ3MS91T21V?=
+ =?utf-8?B?UjhIeWJ0VHM5bFk4cCtWb01XYVpCd2RCaHlJUm03azRxcE1URGtoQVRCdFZz?=
+ =?utf-8?B?cGkzQ1dTc2podk5WOWFjdXEvbUJic05BbXpTR1UwWFFubVVsRmYrYlhzaUJt?=
+ =?utf-8?B?WElRQnRUTWlyMzRXalFYczIzOXpqTXpIY3FHUUV3WUsxQ21tY3FFUW9ySllr?=
+ =?utf-8?B?UlFJdldaSFdpMWpCaElZUEkrMzZXRTFhZXFVR1Z0VmtlSmszdDVxaVFYdUR1?=
+ =?utf-8?B?L01Ea0gvd2pSb2daTVgwSEtwZGV2RlllSnFwOEFlbE1hVjVoQzdST0tnZWpC?=
+ =?utf-8?B?Tnk0aEE3SWppQWwxTXlubWx0UzREc3pMYi9qM1ROUUpYanpJSjd6U0Fid3Rq?=
+ =?utf-8?B?VDBEb3JrNDFQb3lXYjZDR2VLSUNSZUIxVVdFdU5PVE5hZXBzVmVHNTh2R1Bw?=
+ =?utf-8?B?UXRCUUxISjZOT0Vocy9qa0RrTjB0ZlNQZE5OMkdpaWY0VDhjT1JCejF0VTJW?=
+ =?utf-8?B?V29pWmtlUlBtZ3Y1Z1ZISnVITWt2UHpOejNEWWxnWm5CSndwRTJpMVNVT0hF?=
+ =?utf-8?B?aTJYQjlCRUF2VmZuREVzeS9SQnFvRHZwblQ3SjVaQi81NjFNdkF4NVJ6L3ds?=
+ =?utf-8?B?VjgrN1NuMWw2czUxQTVIV2NpaE1xVHVPQ1hIZ2FKLytnNFhROWdzVHZwZk5y?=
+ =?utf-8?B?SFNoZ04wSnlvTFQwQ3lLeG53eUFaTjh1L0drMnhWQ29wRDYwc2pEQ0t3UVdB?=
+ =?utf-8?B?ekZvS3NJdVV5Mi85YTBMdSt0TjBlN2ZkSGVPSndOUDNCdFBFVmtSOXBFYnpY?=
+ =?utf-8?B?OUh1dUNhdFd4Q2hva1NicmhsS2FxU2piSnNmUXRIKzU4TlEvbG84RWFQZVQ5?=
+ =?utf-8?Q?s+/kIFm2EksHPvyfKBQoqPrVOIiqtW1K5oP9j?=
+X-Exchange-RoutingPolicyChecked: sIzz/bGEtN6UoawyhGYxeuMzkEZz83+6bdAf+LoG/SENLsElfHwLTjWMeuKrbx9mFd3Z1fDqYfUDjA4q4l6jxgJb6mC1vXy4FsRQ5NghQkIDbjF1kuq63WMbCtE9wwbPzqFPeqATZdaIHPeJWQzLH8rYYGBddbfnbHh6AzAQKfA+dk2U8yGbgAaTG9MHTfC7JlzG9KRCloNrNpa8+VOQGvQra6pr7GWaLj1AeaMF6KOMLifa8GBJ7UeTe8+v3pnc4H/2cceznwP/Zfw/c3KXRWVvNpeXaaBjdfIjxAxNH6GI10x+/V4Ucl6EQIPpToQcz+4mRL5oqVpQa92yNk77hA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: b92c39a8-9e67-40d4-e4ba-08dee272ee26
 X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB7636.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:13:10.2400 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:13:58.4066 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2Au+Xatkg42p7tUyW5DBH1w4YWVyLKQE9tWhbVjVK8f75uT8l5d/WYq+tMOAJbRCRKrDVsxOrsw2stkZJ1ETNVLoeQwdDU37fzzFuj4z7eY=
+X-MS-Exchange-CrossTenant-UserPrincipalName: TS3GL10+wtdPr3IM1D3/eQ63y1u7TmdhI6Ii+2XU1hYJKzknugzpaey0TZSSRn5KyDtjd6pUiQ5YHezqO7H2bKlSJU7GBt3uv+QoHTBasYQ=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6558
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -201,218 +202,189 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BCFF975E87A
+X-Rspamd-Queue-Id: 14CCC75E887
 X-Rspamd-Action: no action
 
 
 
 On 7/14/2026 4:09 PM, Mitul Golani wrote:
-> Add a per-CRTC debugfs file 'intel_vrr_cmrr' that lets the user force a
-> CMRR target refresh rate and video-mode requirement.
+> Move CMRR crtc state members under VRR infrastructure as
+> it is enabled during fix refresh rate  VRR timing generator
+> is enabled.
 > 
-> The file uses a "numerator/denominator" format:
->    - numerator:   requested refresh rate in milli-Hz
->                   (refresh rate in Hz * 1000, e.g. 60000 for 60 Hz)
->    - denominator: 1000 for a 1:1 ratio (no video timing) or
->                   1001 for the 1000/1001 video timing
-> 
-> Reading the file reports the currently stored values; writing updates
-> them. The file is created only on platforms with VRR and CMRR support.
-> 
-> --v2:
-> - Drop the "vrr" debugfs subdirectory and expose a single flat,
->    intel_-prefixed "intel_vrr_cmrr" file (Jani, Nikula)
-> - Rename struct intel_crtc.cmrr to force_cmrr to make its purpose
->    explicit (Chaitanya)
-> - Fix parse comment: numerator unit is milli-Hz, not KHz (Chaitanya)
-> - Add debugfs/intel_ prefixes to the debugfs handler functions (Chaitanya)
-> - Expand commit message with debugfs entry semantics (Chaitanya)
-> 
-> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-> ---
->   .../drm/i915/display/intel_display_debugfs.c  |   2 +
->   .../drm/i915/display/intel_display_types.h    |   5 +
->   drivers/gpu/drm/i915/display/intel_vrr.c      | 103 ++++++++++++++++++
->   drivers/gpu/drm/i915/display/intel_vrr.h      |   2 +
->   4 files changed, 112 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index 3f02868ef105..2bbf4760dc30 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -49,6 +49,7 @@
->   #include "intel_psr.h"
->   #include "intel_psr_regs.h"
->   #include "intel_vdsc.h"
-> +#include "intel_vrr.h"
->   #include "intel_wm.h"
->   #include "intel_tc.h"
->   
-> @@ -1395,6 +1396,7 @@ void intel_crtc_debugfs_add(struct intel_crtc *crtc)
->   	intel_drrs_crtc_debugfs_add(crtc);
->   	intel_fbc_crtc_debugfs_add(crtc);
->   	hsw_ips_crtc_debugfs_add(crtc);
-> +	intel_vrr_crtc_debugfs_add(crtc);
->   
->   	debugfs_create_file("i915_current_bpc", 0444, root, crtc,
->   			    &i915_current_bpc_fops);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index c048da7d6fea..84a6d016e226 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1546,6 +1546,11 @@ struct intel_crtc {
->   		u64 flip_count;
->   	} dc_balance;
->   
-> +	struct {
-> +		u32 numerator;
-> +		u32 denominator;
-> +	} force_cmrr;
-> +
->   	int scanline_offset;
->   
->   	struct {
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 51e4f3309b8b..8b6e36ee9f55 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -4,6 +4,10 @@
->    *
->    */
->   
-> +#include <linux/debugfs.h>
-> +#include <linux/seq_file.h>
-> +#include <linux/string.h>
-> +
->   #include <drm/drm_print.h>
->   #include <drm/intel/step.h>
->   
-> @@ -1231,3 +1235,102 @@ int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_st
->   
->   	return intel_vrr_vblank_start(crtc_state, VRR_DCB_VMAX(tmp) + 1);
->   }
-> +
-> +static
-> +int intel_vrr_cmrr_parse_ratio(char *str, u32 *numerator, u32 *denominator)
-> +{
-> +	char *sep;
-> +	int ret;
-> +
-> +	/*
-> +	 * Parse a "numerator/denominator" CMRR ratio string. The numerator
-> +	 * is the requested refresh rate in milli-Hz (refresh rate in Hz * 1000)
-> +	 * and the denominator selects the timing: 1000 for a 1:1 ratio
-> +	 * (no video timing) or 1001 for the 1000/1001 video timing.
-> +	 */
-> +
-> +	sep = strchr(str, '/');
-> +	if (!sep)
-> +		return -EINVAL;
-> +
-> +	*sep = '\0';
-> +
-> +	ret = kstrtou32(strim(str), 10, numerator);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = kstrtou32(strim(sep + 1), 10, denominator);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (*numerator == 0)
-> +		return -EINVAL;
-> +
-> +	if (*denominator != 1000 && *denominator != 1001)
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
-> +static int intel_vrr_debugfs_cmrr_show(struct seq_file *m, void *data)
-> +{
-> +	struct intel_crtc *crtc = m->private;
-> +
-> +	seq_printf(m, "%u/%u\n", crtc->force_cmrr.numerator, crtc->force_cmrr.denominator);
-> +
-> +	return 0;
-> +}
-> +
-> +static int intel_vrr_debugfs_cmrr_open(struct inode *inode, struct file *file)
-> +{
-> +	return single_open(file, intel_vrr_debugfs_cmrr_show, inode->i_private);
-> +}
-> +
-> +static ssize_t intel_vrr_debugfs_cmrr_write(struct file *file, const char __user *ubuf,
-> +					    size_t len, loff_t *offp)
-> +{
-> +	struct seq_file *m = file->private_data;
-> +	struct intel_crtc *crtc = m->private;
-> +	u32 numerator, denominator;
-> +	char kbuf[32];
-> +	int ret;
-> +
-> +	if (len >= sizeof(kbuf))
-> +		return -EINVAL;
-> +
-> +	if (copy_from_user(kbuf, ubuf, len))
-> +		return -EFAULT;
-> +
-> +	kbuf[len] = '\0';
-> +
-> +	ret = intel_vrr_cmrr_parse_ratio(kbuf, &numerator, &denominator);
-> +	if (ret)
-> +		return ret;
-> +
-> +	crtc->force_cmrr.numerator = numerator;
-> +	crtc->force_cmrr.denominator = denominator;
-> +
-> +	return len;
-> +}
-> +
-> +static const struct file_operations intel_vrr_debugfs_cmrr_fops = {
-> +	.owner = THIS_MODULE,
-> +	.open = intel_vrr_debugfs_cmrr_open,
-> +	.read = seq_read,
-> +	.llseek = seq_lseek,
-> +	.release = single_release,
-> +	.write = intel_vrr_debugfs_cmrr_write,
-> +};
-> +
-> +void intel_vrr_crtc_debugfs_add(struct intel_crtc *crtc)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc);
-> +
-> +	if (!HAS_VRR(display))
-> +		return;
-> +
-> +	if (HAS_CMRR(display))
-> +		debugfs_create_file("intel_vrr_cmrr", 0600, crtc->base.debugfs_entry,
 
-As discussed, please rename it to target_refresh_rate to cater to future 
-use of the debugfs for other features.
+it is enabled when the fixed-refresh-rate VRR timing generator is enabled
 
-Ideally rest of the function names should be changed accordingly but 
-that can be handled later.
-
-> +				    crtc, &intel_vrr_debugfs_cmrr_fops);
-> +}
-> +
-
-trailing new line in EOF
-
-With these fixed.
+with that,
 
 Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-> index 55e9c429f579..19c7990be1b2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-> @@ -56,4 +56,6 @@ int intel_vrr_dcb_vmax_vblank_start_next(const struct intel_crtc_state *crtc_sta
->   int intel_vrr_dcb_vmin_vblank_start_final(const struct intel_crtc_state *crtc_state);
->   int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_state);
+> --v2:
+> - Move cmrr structure under vrr umbrella.
+> - Remove dups. (Jani)
+> 
+> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_cmtg.c     |  2 +-
+>   drivers/gpu/drm/i915/display/intel_display.c  | 10 +++----
+>   .../drm/i915/display/intel_display_types.h    | 12 ++++----
+>   drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
+>   drivers/gpu/drm/i915/display/intel_vrr.c      | 30 +++++++++----------
+>   5 files changed, 28 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c b/drivers/gpu/drm/i915/display/intel_cmtg.c
+> index c8e0f90af910..3c0f5b2fb2e7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
+> @@ -326,7 +326,7 @@ void intel_cmtg_set_vrr_ctl(const struct intel_crtc_state *crtc_state)
+>   		  XELPD_VRR_CTL_VRR_GUARDBAND(crtc_state->vrr.guardband);
 >   
-> +void intel_vrr_crtc_debugfs_add(struct intel_crtc *crtc);
-> +
->   #endif /* __INTEL_VRR_H__ */
+>   	/* TODO: The code below may need to be revisited once CMRR is enabled */
+> -	if (crtc_state->cmrr.enable)
+> +	if (crtc_state->vrr.cmrr.enable)
+>   		vrr_ctl |= VRR_CTL_CMRR_ENABLE;
+>   
+>   	intel_de_write(display, TRANS_VRR_CTL(display, cmtg_transcoder), vrr_ctl);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 214454f419e9..96e77e6a8725 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -950,8 +950,8 @@ static bool vrr_params_changed(const struct intel_crtc_state *old_crtc_state,
+>   static bool cmrr_params_changed(const struct intel_crtc_state *old_crtc_state,
+>   				const struct intel_crtc_state *new_crtc_state)
+>   {
+> -	return old_crtc_state->cmrr.cmrr_m != new_crtc_state->cmrr.cmrr_m ||
+> -		old_crtc_state->cmrr.cmrr_n != new_crtc_state->cmrr.cmrr_n;
+> +	return old_crtc_state->vrr.cmrr.cmrr_m != new_crtc_state->vrr.cmrr.cmrr_m ||
+> +		old_crtc_state->vrr.cmrr.cmrr_n != new_crtc_state->vrr.cmrr.cmrr_n;
+>   }
+>   
+>   static bool intel_crtc_vrr_enabling(struct intel_atomic_state *state,
+> @@ -5495,9 +5495,9 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>   		PIPE_CONF_CHECK_I(vrr.flipline);
+>   		PIPE_CONF_CHECK_I(vrr.vsync_start);
+>   		PIPE_CONF_CHECK_I(vrr.vsync_end);
+> -		PIPE_CONF_CHECK_LLI(cmrr.cmrr_m);
+> -		PIPE_CONF_CHECK_LLI(cmrr.cmrr_n);
+> -		PIPE_CONF_CHECK_BOOL(cmrr.enable);
+> +		PIPE_CONF_CHECK_LLI(vrr.cmrr.cmrr_m);
+> +		PIPE_CONF_CHECK_LLI(vrr.cmrr.cmrr_n);
+> +		PIPE_CONF_CHECK_BOOL(vrr.cmrr.enable);
+>   		PIPE_CONF_CHECK_I(vrr.dc_balance.vmin);
+>   		PIPE_CONF_CHECK_I(vrr.dc_balance.vmax);
+>   		PIPE_CONF_CHECK_I(vrr.dc_balance.guardband);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 84a6d016e226..644a3f32fb5f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1401,13 +1401,13 @@ struct intel_crtc_state {
+>   			u16 max_increase, max_decrease;
+>   			u16 vblank_target;
+>   		} dc_balance;
+> -	} vrr;
+>   
+> -	/* Content Match Refresh Rate state */
+> -	struct {
+> -		bool enable;
+> -		u64 cmrr_n, cmrr_m;
+> -	} cmrr;
+> +		/* Content Match Refresh Rate state */
+> +		struct {
+> +			bool enable;
+> +			u64 cmrr_n, cmrr_m;
+> +		} cmrr;
+> +	} vrr;
+>   
+>   	/* Stream Splitter for eDP MSO */
+>   	struct {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 0922d23b284c..01ef34d9d358 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -3090,7 +3090,7 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+>   	as_sdp->revision = 0x2;
+>   	as_sdp->vtotal = intel_vrr_vmin_vtotal(crtc_state);
+>   
+> -	if (crtc_state->cmrr.enable) {
+> +	if (crtc_state->vrr.cmrr.enable) {
+>   		as_sdp->mode = DP_AS_SDP_FAVT_TRR_REACHED;
+>   		as_sdp->target_rr = drm_mode_vrefresh(adjusted_mode);
+>   		as_sdp->target_rr_divider = true;
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 8b6e36ee9f55..b36026183399 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -229,12 +229,12 @@ cmrr_get_vtotal(struct intel_crtc_state *crtc_state, bool video_mode_required)
+>   		multiplier_n = 1000;
+>   	}
+>   
+> -	crtc_state->cmrr.cmrr_n = mul_u32_u32(desired_refresh_rate * adjusted_mode->crtc_htotal,
+> -					      multiplier_n);
+> +	crtc_state->vrr.cmrr.cmrr_n = mul_u32_u32(desired_refresh_rate * adjusted_mode->crtc_htotal,
+> +						  multiplier_n);
+>   	vtotal = DIV_ROUND_UP_ULL(mul_u32_u32(adjusted_mode->crtc_clock * 1000, multiplier_n),
+> -				  crtc_state->cmrr.cmrr_n);
+> +				  crtc_state->vrr.cmrr.cmrr_n);
+>   	adjusted_pixel_rate = mul_u32_u32(adjusted_mode->crtc_clock * 1000, multiplier_m);
+> -	crtc_state->cmrr.cmrr_m = do_div(adjusted_pixel_rate, crtc_state->cmrr.cmrr_n);
+> +	crtc_state->vrr.cmrr.cmrr_m = do_div(adjusted_pixel_rate, crtc_state->vrr.cmrr.cmrr_n);
+>   
+>   	return vtotal;
+>   }
+> @@ -252,7 +252,7 @@ void intel_vrr_compute_cmrr_timings(struct intel_crtc_state *crtc_state)
+>   	crtc_state->vrr.vmin = crtc_state->vrr.vmax;
+>   	crtc_state->vrr.flipline = crtc_state->vrr.vmin;
+>   
+> -	crtc_state->cmrr.enable = true;
+> +	crtc_state->vrr.cmrr.enable = true;
+>   	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+>   }
+>   
+> @@ -645,15 +645,15 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
+>   		return;
+>   	}
+>   
+> -	if (crtc_state->cmrr.enable) {
+> +	if (crtc_state->vrr.cmrr.enable) {
+>   		intel_de_write(display, TRANS_CMRR_M_HI(display, cpu_transcoder),
+> -			       upper_32_bits(crtc_state->cmrr.cmrr_m));
+> +			       upper_32_bits(crtc_state->vrr.cmrr.cmrr_m));
+>   		intel_de_write(display, TRANS_CMRR_M_LO(display, cpu_transcoder),
+> -			       lower_32_bits(crtc_state->cmrr.cmrr_m));
+> +			       lower_32_bits(crtc_state->vrr.cmrr.cmrr_m));
+>   		intel_de_write(display, TRANS_CMRR_N_HI(display, cpu_transcoder),
+> -			       upper_32_bits(crtc_state->cmrr.cmrr_n));
+> +			       upper_32_bits(crtc_state->vrr.cmrr.cmrr_n));
+>   		intel_de_write(display, TRANS_CMRR_N_LO(display, cpu_transcoder),
+> -			       lower_32_bits(crtc_state->cmrr.cmrr_n));
+> +			       lower_32_bits(crtc_state->vrr.cmrr.cmrr_n));
+>   	}
+>   
+>   	intel_vrr_set_fixed_rr_timings(crtc_state, cpu_transcoder);
+> @@ -974,7 +974,7 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+>   	intel_vrr_enable_dc_balancing(crtc_state);
+>   
+>   	if (!intel_vrr_always_use_vrr_tg(display))
+> -		intel_vrr_tg_enable(crtc_state, crtc_state->cmrr.enable);
+> +		intel_vrr_tg_enable(crtc_state, crtc_state->vrr.cmrr.enable);
+>   }
+>   
+>   void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
+> @@ -1071,12 +1071,12 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+>   				      TRANS_VRR_CTL(display, cpu_transcoder));
+>   
+>   	if (HAS_CMRR(display))
+> -		crtc_state->cmrr.enable = (trans_vrr_ctl & VRR_CTL_CMRR_ENABLE);
+> +		crtc_state->vrr.cmrr.enable = (trans_vrr_ctl & VRR_CTL_CMRR_ENABLE);
+>   
+> -	if (crtc_state->cmrr.enable) {
+> -		crtc_state->cmrr.cmrr_n =
+> +	if (crtc_state->vrr.cmrr.enable) {
+> +		crtc_state->vrr.cmrr.cmrr_n =
+>   			intel_de_read64_2x32(display, TRANS_CMRR_N_LO(display, cpu_transcoder));
+> -		crtc_state->cmrr.cmrr_m =
+> +		crtc_state->vrr.cmrr.cmrr_m =
+>   			intel_de_read64_2x32(display, TRANS_CMRR_M_LO(display, cpu_transcoder));
+>   	}
+>   
 
