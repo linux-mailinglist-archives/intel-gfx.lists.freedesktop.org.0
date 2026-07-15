@@ -2,38 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id UFj0EeBmV2q+LQEAu9opvQ
+	id ZDBEM2hpV2qZMwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 12:54:24 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 13:05:12 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9E8475D220
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 12:54:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FF1475D472
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 13:05:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
+	dkim=pass header.d=lankhorst.se header.s=default header.b=HfkH6af7;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=none
+	dmarc=pass (policy=none) header.from=lankhorst.se
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C3B510E18C;
-	Wed, 15 Jul 2026 10:54:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF92610EFC1;
+	Wed, 15 Jul 2026 11:05:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D1DC10EFA9;
- Wed, 15 Jul 2026 10:54:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7701982848062734480=="
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79D1610E19B;
+ Wed, 15 Jul 2026 11:05:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1784113507;
+ bh=0XmykIoDlGO0cilyqQjbKGE1v3oCBauZ9OEONLr2KUA=;
+ h=From:To:Cc:Subject:Date:From;
+ b=HfkH6af7/9SXa783pbp4mEKfxHqgLbyBRvcXoNx6AVYBOu1LUb3u6WPoIsuVbYVun
+ VMhKpsW0v5DWSLBxti5tVpQokXIYD5NJBDSR4O+kuLpnKerFF/kIhi4YQAzdOtJiNp
+ vxSfWmKhwDZehmDDi9wP5Aj9BDgowRO8uJPw4zza16Jw7q61JiSFSN2v2D1tzivhSC
+ VlJ8mJ3GwQpk+xm/s2fV1RD83TYDg4crPLIvrI0iKxsRqvYac8+XRTWtJhFZOuoO27
+ WAWcjP2PjrCADrLRomLmAu/EXrv2OSrgyCYiu0cW7OSYNsQELmC1SkHT20oSAyr1Ld
+ XB1bDmTDCGPjQ==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v2 0/6] drm/xe: More BIOS FB takeover fixes
+Date: Wed, 15 Jul 2026 13:05:51 +0200
+Message-ID: <20260715110557.2172095-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EFull=3A_success_for_drm/i915/selftests=3A_Fi?=
- =?utf-8?q?x_GT_PM_sort_comparators_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Emre Cecanpunar" <emreleno@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Jul 2026 10:54:21 -0000
-Message-ID: <178411286117.190771.5298112543421602300@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260714220430.238433-1-emreleno@gmail.com>
-In-Reply-To: <20260714220430.238433-1-emreleno@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,141 +54,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
 	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,lists.freedesktop.org:replyto,emeril.freedesktop.org:from_mime,6beec6c84f66:mid]
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lankhorst.se:from_mime,lankhorst.se:dkim,lankhorst.se:mid];
+	RCVD_COUNT_TWO(0.00)[2];
+	RCPT_COUNT_THREE(0.00)[3];
+	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[lankhorst.se:+]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B9E8475D220
+X-Rspamd-Queue-Id: 4FF1475D472
 
---===============7701982848062734480==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Small change since previous version, marking the entire GGTT as allocated
+was causing regressions. So instead truncate to the allowed GGTT range.
 
-== Series Details ==
+This series separates the GGTT offset with the physical offset, and allows
+us to fix a bug with MTL, where those are different.
 
-Series: drm/i915/selftests: Fix GT PM sort comparators (rev2)
-URL   : https://patchwork.freedesktop.org/series/170443/
-State : success
+Maarten Lankhorst (6):
+  drm/xe/ggtt: Add xe_ggtt_insert_node_at
+  drm/xe/ggtt: Add xe_ggtt_node_remove_noclear
+  drm/xe/display: Reserve the original GGTT space before creating a bo
+  drm/xe/display: Use the correct calculation for phys_base on
+    integrated
+  drm/xe/display: Remove duplicated code
+  drm/xe/ggtt: Remove xe_ggtt_insert_bo_at
 
-== Summary ==
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 62 ++++++++------
+ drivers/gpu/drm/xe/xe_bo.c                    |  8 +-
+ drivers/gpu/drm/xe/xe_ggtt.c                  | 81 ++++++++++++-------
+ drivers/gpu/drm/xe/xe_ggtt.h                  |  5 +-
+ 4 files changed, 96 insertions(+), 60 deletions(-)
 
-CI Bug Log - changes from CI_DRM_18827_full -> Patchwork_170443v2_full
-====================================================
+-- 
+2.53.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18827 -> Patchwork_170443v2
-
-  CI-20190529: 20190529
-  CI_DRM_18827: 6dd678fdc2f39062bed466d7e3c851736e376531 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_170443v2: 6dd678fdc2f39062bed466d7e3c851736e376531 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170443v2/index.html
-
---===============7701982848062734480==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/selftests: Fix GT PM sort comparators (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170443/">https://patchwork.freedesktop.org/series/170443/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170443v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170443v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18827_full -&gt; Patchwork_170443v2_full</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 10)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18827 -&gt; Patchwork_170443v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18827: 6dd678fdc2f39062bed466d7e3c851736e376531 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_170443v2: 6dd678fdc2f39062bed466d7e3c851736e376531 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
-
-</body>
-</html>
-
---===============7701982848062734480==--
