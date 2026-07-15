@@ -2,64 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id WLmSOJqVV2rtXQAAu9opvQ
+	id XoAVItSbV2poXwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 16:13:46 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 16:40:20 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA71C75F387
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 16:13:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6C0275F7C2
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 16:40:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=DyJfNkpE;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAF4510F0D4;
-	Wed, 15 Jul 2026 14:13:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C30410E107;
+	Wed, 15 Jul 2026 14:40:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCAFC10F0D4;
- Wed, 15 Jul 2026 14:13:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784124824; x=1815660824;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=vIGKMt0FVnblZLljLmC0u3HBZcTQXjIZStmvz8fbfso=;
- b=DyJfNkpEUhCjbVhIzWEMhFWASAUsbne+h3b4MI4ichwdhlpS2VKnyFle
- g8lWtLgm/L5mM21/zOicDuexBSZP1YQ9K+Pdd6pM+39QoXFElYamwB0i9
- jHw02ehN2XjoJhR7KwjIWROBGno/LPm2o0IPLi4lVT53IYzN+Y0QW4lvU
- 9FlNAzLGIaRqLLV3l9HgUJua2oFshVsjhQqi18MeoMpUW/XZHU+KYZ6J0
- ca4Ko1JQ55bE3m1HcST4ouxCbLpBRxGQ9GrTo3ErqYn/FZN6AVTPmPV99
- E0+xWvpgoxhk5EWgAVtVItNRm2rc6ZZwB36aypdjifEJeDMONxJ693ixj w==;
-X-CSE-ConnectionGUID: RvkAm7gQRPO7u5qHyOyiBw==
-X-CSE-MsgGUID: cIaE1s4vRGa8bd0/RdvzkQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="110310300"
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="110310300"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2026 07:13:44 -0700
-X-CSE-ConnectionGUID: 5jcM97dRQzOal3x0mh9OKQ==
-X-CSE-MsgGUID: 81QxOCwDSZWMwabBbU/MLA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="260008539"
-Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by orviesa004.jf.intel.com with ESMTP; 15 Jul 2026 07:13:42 -0700
-From: Uma Shankar <uma.shankar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, suraj.kandpal@intel.com,
- Uma Shankar <uma.shankar@intel.com>
-Subject: [v3 2/2] drm/i915/xe3p/bw: Update bw calculation to account for 16
- channels
-Date: Wed, 15 Jul 2026 20:02:43 +0530
-Message-ID: <20260715143243.4141208-3-uma.shankar@intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260715143243.4141208-1-uma.shankar@intel.com>
-References: <20260715143243.4141208-1-uma.shankar@intel.com>
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CB0A10E07F;
+ Wed, 15 Jul 2026 14:40:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3010659203807685559=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/cdclk=3A_Workaro?=
+ =?utf-8?q?und_some_kind_of_scaler_2PPC_issue?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 15 Jul 2026 14:40:17 -0000
+Message-ID: <178412641717.193149.2535657201703390853@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260715120926.10786-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260715120926.10786-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,98 +46,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
+	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[uma.shankar@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,patchwork.freedesktop.org:url,01.org:url,6beec6c84f66:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AA71C75F387
+X-Rspamd-Queue-Id: E6C0275F7C2
 X-Rspamd-Action: no action
 
-Wa_16030862157:
-Update Bandwidth Calculation to account for 16channel memory
-config.
+--===============3010659203807685559==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Logical separation of changes (Suraj, Vinod)
+== Series Details ==
 
-WA: 16030862157, 16030875223
-Bspec: 69131, 68859
-Assisted-by: Claude:claude-opus-4-8
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c | 20 +++++++++++++++++---
- 1 file changed, 17 insertions(+), 3 deletions(-)
+Series: drm/i915/cdclk: Workaround some kind of scaler 2PPC issue
+URL   : https://patchwork.freedesktop.org/series/170483/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 41539fdfeac5..aaa0350dca78 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -14,6 +14,7 @@
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_display_utils.h"
-+#include "intel_display_wa.h"
- #include "intel_dram.h"
- #include "intel_mchbar.h"
- #include "intel_parent.h"
-@@ -272,7 +273,14 @@ static int icl_get_qgv_points(struct intel_display *display,
- 		case INTEL_DRAM_LPDDR4:
- 		case INTEL_DRAM_LPDDR5:
- 			qi->t_bl = 16;
--			qi->max_numchannels = 8;
-+			/*
-+			 * Wa_16030862157
-+			 * Xe3p supports a fully-populated 16-channel LPDDR
-+			 * config (4 memory controllers x 4 channels); earlier
-+			 * D14+ platforms top out at 8.
-+			 */
-+			qi->max_numchannels =
-+				intel_display_wa(display, INTEL_DISPLAY_WA_16030862157) ? 16 : 8;
- 			qi->channel_width = 16;
- 			qi->deinterleave = 4;
- 			break;
-@@ -624,10 +632,16 @@ static int tgl_get_bw_info(struct intel_display *display,
- 
- 	ipqdepth = min(ipqdepthpch, display_bw_params->displayrtids / num_channels);
- 	/*
-+	 * Wa_16030862157
- 	 * clperchgroup = 4kpagespermempage * clperchperblock,
--	 * clperchperblock = 8 / num_channels * interleave
-+	 * clperchperblock = max(8 / num_channels, 1) * interleave
-+	 *
-+	 * The 8 / num_channels truncating divide collapses to 0 for
-+	 * >8-channel configs (16-channel: 8 / 16 = 0); the max(..., 1) floor
-+	 * keeps clperchperblock >= 1 there while preserving the literal
-+	 * truncating divide for <=8-channel configs.
- 	 */
--	clperchgroup = 4 * (8 / num_channels) * qi.deinterleave;
-+	clperchgroup = 4 * max(8 / num_channels, 1) * qi.deinterleave;
- 
- 	display->bw.num_qgv_points = qi.num_qgv_points;
- 	display->bw.num_psf_gv_points = qi.num_psf_points;
--- 
-2.50.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_18830 -> Patchwork_170483v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170483v1/index.html
+
+Participating hosts (41 -> 39)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18830 -> Patchwork_170483v1
+
+  CI-20190529: 20190529
+  CI_DRM_18830: 116ce94f4e028e50e3523c46a8ce1e665ce47cb9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_170483v1: 116ce94f4e028e50e3523c46a8ce1e665ce47cb9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170483v1/index.html
+
+--===============3010659203807685559==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/cdclk: Workaround some kind of scaler 2PPC issue</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170483/">https://patchwork.freedesktop.org/series/170483/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170483v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170483v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18830 -&gt; Patchwork_170483v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_170483v1/index.html</p>
+<h2>Participating hosts (41 -&gt; 39)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18830 -&gt; Patchwork_170483v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18830: 116ce94f4e028e50e3523c46a8ce1e665ce47cb9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_9006: 6380a8af26359dd222e22679442272ded836c463 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_170483v1: 116ce94f4e028e50e3523c46a8ce1e665ce47cb9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============3010659203807685559==--
