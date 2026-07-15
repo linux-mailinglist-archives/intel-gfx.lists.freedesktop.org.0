@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VCXwBYp4V2oiOwEAu9opvQ
+	id Zxh4GI54V2ojOwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 14:09:46 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 14:09:50 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8090D75DF03
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 14:09:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B58C75DF08
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jul 2026 14:09:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=Cn1Cko56;
+	dkim=pass header.d=intel.com header.s=Intel header.b=hTOuIoLq;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F7DF10F018;
-	Wed, 15 Jul 2026 12:09:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B28310F01A;
+	Wed, 15 Jul 2026 12:09:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE90B10F01A;
- Wed, 15 Jul 2026 12:09:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 219AE10F01A;
+ Wed, 15 Jul 2026 12:09:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1784117382; x=1815653382;
+ t=1784117387; x=1815653387;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tmy03vmuJwsoLw8JSemay/97I1Xw9grC8d3+ySGpdeE=;
- b=Cn1Cko56Y1o7bttnbMAEF6ulF8l/zGhxd9SQZxEwEyFwe6eYu7hP3Kaj
- 94lHxd49jyMsPaTK7ciXRcqqpdgmD29kVQYURiZmnElSkbxlrfjRbKdNR
- vDms8/D+wJT5WjPSPq39D+Zsv71gnZBjIFysY9IoHBmV8RUznq/gBosFD
- sfmO4OU9w1cUJk6CHtkVAvDGXWHcxsq25tul5Jm8Lny+JJggBEXI3eimv
- ieXar+xl+3zh+51joEZnP7vHewwYfd/DPK5ogE3zbnkU075PGDZjzUnWk
- v8bY20/B66sD3a3UtIVd3PkQqnMJj0fUMTbxAwbEpmg6vmKZ1sljx1iAP g==;
-X-CSE-ConnectionGUID: ntU54DBYQ6ChfoS2IWcDSQ==
-X-CSE-MsgGUID: gQ0W8uOKRty59Kl8+J0baw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="84778047"
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="84778047"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2026 05:09:42 -0700
-X-CSE-ConnectionGUID: RCZ1q/HUQD+eurd0orcdCA==
-X-CSE-MsgGUID: nYPImAEXQXOQvO+bJwzwvA==
+ bh=XEyEKmlx1bQCrQ8MorGMvVeBsahbClYXoysaL3ZEuAs=;
+ b=hTOuIoLqFqjhnbVfUg4hgff8Xgo3WdXAjaIstHYGa3zwPLTsvqBmKjTw
+ bLTroV9JqLr3wtLd+eAqKRInkRWBSFf8JlbhEc6nh5NTyqA5MfYnPp1ma
+ po+iKd9pnMbnfiZ/41hxuiiKHtQ1yoitdy3gXUMKTbfAfWey9pLAM4uHQ
+ PbNP7WGOygJ+oxK0B521bkVVH1aSWbxeTKEHAeA5XSKOP8jHPRQpzk3rn
+ NFMDP5L3P3IsYdLcI0XgmIunp9h7nZmkMCwkGpDHcdQSXl17rY+9OidbJ
+ fMSOB4mdw2kv4I7QEj6JwdeAzUtvw0AvZrigk1r0SOWYnlgD84NG2dqiO w==;
+X-CSE-ConnectionGUID: gKzHzJGoRsWPbDDGkW5DMA==
+X-CSE-MsgGUID: 2TWfTO13Qu2JWja/pPZBUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="96120989"
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="96120989"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2026 05:09:46 -0700
+X-CSE-ConnectionGUID: dvsyOqaqTWKOZ+knLcGDOQ==
+X-CSE-MsgGUID: FngEwYyATCKnOKV6GtaebQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="260461855"
+X-IronPort-AV: E=Sophos;i="6.25,165,1779174000"; d="scan'208";a="254420581"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.168])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2026 05:09:41 -0700
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2026 05:09:45 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/4] drm/i915/cdclk: Introduce crtc_state->pixel_rate_cdclk
-Date: Wed, 15 Jul 2026 15:09:25 +0300
-Message-ID: <20260715120926.10786-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH 4/4] drm/i915/cdclk: Deal with 2 PPC hscale issues when
+ calculating min CDCLK
+Date: Wed, 15 Jul 2026 15:09:26 +0300
+Message-ID: <20260715120926.10786-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260715120926.10786-1-ville.syrjala@linux.intel.com>
 References: <20260715120926.10786-1-ville.syrjala@linux.intel.com>
@@ -101,228 +102,206 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,linux.intel.com:from_mime,linux.intel.com:mid,intel.com:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,intel.com:email,intel.com:dkim,linux.intel.com:from_mime,linux.intel.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8090D75DF03
+X-Rspamd-Queue-Id: 0B58C75DF08
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We'll need to do additional adjustments to the pipe pixel rate
-for the purposes of min CDCLK calculations. Add a new
-crtc_state->pixel_rate_cdclk for that purpose. We'll leave the
-original crtc_state->pixel_rate for data rate related calculations
-since we presumably don't need those extra adjustments there.
+Double the fractional part of the horizontal scale factor
+for the purposes of min_cdck calculation. This bumps the min
+CDCLK sufficiently to overcome some kind of 2 PPC granularity
+issue. Without this CDCLK may end up being too low and we get
+underruns with certail horizontal downscale factors.
+
+The current Bspec formula calls for doubling only the
+fractional part below 0.5, and rounding it to down to
+a unit fraction. But that formula does not result in a
+sufficient CDCLK bump in a lot of cases. Empirical evidence
+supports doubling the entire fractional part, so let's just
+do that while we wait for further analysis from the hardware
+team.
+
+Also note that the position of the scaler output window also
+seems to matter. If the output is near the left edge of the
+screen then lower CDCLK is sufficient, but moving the output
+window further to the right causes underruns unless CDCLK is
+also bumped. Some prefill happening during hblank already?
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/hsw_ips.c         |  2 +-
- drivers/gpu/drm/i915/display/i9xx_plane.c      |  4 ++--
- drivers/gpu/drm/i915/display/intel_cdclk.c     |  2 +-
- drivers/gpu/drm/i915/display/intel_display.c   |  8 ++++++--
- .../gpu/drm/i915/display/intel_display_types.h |  7 +++++++
- drivers/gpu/drm/i915/display/intel_fbc.c       |  2 +-
- .../gpu/drm/i915/display/intel_modeset_setup.c |  2 +-
- drivers/gpu/drm/i915/display/intel_sprite.c    | 18 +++++++++---------
- 8 files changed, 28 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  | 26 ++++++++-
+ drivers/gpu/drm/i915/display/intel_plane.c    | 55 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_plane.h    |  5 ++
+ .../drm/i915/display/skl_universal_plane.c    |  6 +-
+ 4 files changed, 88 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/hsw_ips.c b/drivers/gpu/drm/i915/display/hsw_ips.c
-index cbaef3f13f00..f828ec962164 100644
---- a/drivers/gpu/drm/i915/display/hsw_ips.c
-+++ b/drivers/gpu/drm/i915/display/hsw_ips.c
-@@ -207,7 +207,7 @@ static int _hsw_ips_min_cdclk(const struct intel_crtc_state *crtc_state)
- 	struct intel_display *display = to_intel_display(crtc_state);
- 
- 	if (display->platform.broadwell)
--		return DIV_ROUND_UP(crtc_state->pixel_rate * 100, 95);
-+		return DIV_ROUND_UP(crtc_state->pixel_rate_cdclk * 100, 95);
- 
- 	/* no IPS specific limits to worry about */
- 	return 0;
-diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-index 70734d32a409..b3dbcd53999a 100644
---- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-@@ -418,13 +418,13 @@ static int i9xx_plane_min_cdclk(const struct intel_crtc_state *crtc_state,
- 	unsigned int num, den;
- 
- 	/*
--	 * Note that crtc_state->pixel_rate accounts for both
-+	 * Note that crtc_state->pixel_rate_cdclk accounts for both
- 	 * horizontal and vertical panel fitter downscaling factors.
- 	 * Pre-HSW bspec tells us to only consider the horizontal
- 	 * downscaling factor here. We ignore that and just consider
- 	 * both for simplicity.
- 	 */
--	pixel_rate = crtc_state->pixel_rate;
-+	pixel_rate = crtc_state->pixel_rate_cdclk;
- 
- 	i9xx_plane_ratio(crtc_state, plane_state, &num, &den);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 12bb6c414683..a53d88727177 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2936,7 +2936,7 @@ static int _intel_pixel_rate_to_cdclk(const struct intel_crtc_state *crtc_state,
- 
- static int intel_pixel_rate_to_cdclk(const struct intel_crtc_state *crtc_state)
- {
--	return _intel_pixel_rate_to_cdclk(crtc_state, crtc_state->pixel_rate);
-+	return _intel_pixel_rate_to_cdclk(crtc_state, crtc_state->pixel_rate_cdclk);
- }
- 
- static int intel_planes_min_cdclk(const struct intel_crtc_state *crtc_state)
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 38763a6802c5..df43be51b3ba 100644
+index df43be51b3ba..2c55a4818ad7 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2259,13 +2259,16 @@ static void intel_crtc_compute_pixel_rate(struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 
--	if (HAS_GMCH(display))
-+	if (HAS_GMCH(display)) {
- 		/* FIXME calculate proper pipe pixel rate for GMCH pfit */
- 		crtc_state->pixel_rate =
- 			crtc_state->hw.pipe_mode.crtc_clock;
--	else
-+		crtc_state->pixel_rate_cdclk = crtc_state->pixel_rate;
-+	} else {
- 		crtc_state->pixel_rate =
- 			ilk_pipe_pixel_rate(crtc_state);
-+		crtc_state->pixel_rate_cdclk = crtc_state->pixel_rate;
-+	}
+@@ -2234,6 +2234,29 @@ static u32 ilk_pipe_pixel_rate(const struct intel_crtc_state *crtc_state)
+ 				   pixel_rate);
  }
  
- static void intel_joiner_adjust_timings(const struct intel_crtc_state *crtc_state,
-@@ -5382,6 +5385,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 		PIPE_CONF_CHECK_I(pch_pfit.casf.strength);
- 
- 		PIPE_CONF_CHECK_I(scaler_state.scaler_id);
-+		PIPE_CONF_CHECK_I(pixel_rate_cdclk);
- 		PIPE_CONF_CHECK_I(pixel_rate);
- 
- 		PIPE_CONF_CHECK_X(gamma_mode);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 8bd213db5e7a..17336ad6d5e9 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1083,6 +1083,13 @@ struct intel_crtc_state {
- 	 */
- 	unsigned int pixel_rate;
- 
-+	/*
-+	 * Pipe pixel rate for CDCLK, adjusted for
-+	 * panel fitter/pipe scaler downscaling.
-+	 * CDCLK use cases need further adjustment.
-+	 */
-+	unsigned int pixel_rate_cdclk;
++static u32 ilk_pipe_pixel_rate_cdclk(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	u32 pixel_rate = crtc_state->hw.pipe_mode.crtc_clock;
++	unsigned int ppc = HAS_2PPC(display) ? 2 : 1;
++	struct drm_rect src;
 +
- 	/* Whether to set up the PCH/FDI. Note that we never allow sharing
- 	 * between pch encoders and cpu encoders. */
- 	bool has_pch_encoder;
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index a7d02dd6ca96..cd889f7429bb 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1567,7 +1567,7 @@ static int _intel_fbc_min_cdclk(const struct intel_crtc_state *crtc_state)
- 
- 	/* WaFbcExceedCdClockThreshold:hsw,bdw */
- 	if (display->platform.haswell || display->platform.broadwell)
--		return DIV_ROUND_UP(crtc_state->pixel_rate * 100, 95);
-+		return DIV_ROUND_UP(crtc_state->pixel_rate_cdclk * 100, 95);
- 
- 	/* no FBC specific limits to worry about */
- 	return 0;
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index 14d829171c7d..6aed88173770 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -856,7 +856,7 @@ static void intel_modeset_readout_hw_state(struct intel_display *display)
- 			 */
- 			if (plane_state->uapi.visible && plane->min_cdclk)
- 				crtc_state->plane_min_cdclk[plane->id] =
--					DIV_ROUND_UP(crtc_state->pixel_rate,
-+					DIV_ROUND_UP(crtc_state->pixel_rate_cdclk,
- 						     intel_cdclk_ppc(display, crtc_state->double_wide));
- 			drm_dbg_kms(display->drm,
- 				    "[PLANE:%d:%s] min_cdclk %d kHz\n",
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index 6a65f92e8a03..9fe9d2644958 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -241,13 +241,13 @@ int vlv_plane_min_cdclk(const struct intel_crtc_state *crtc_state,
- 	unsigned int num, den;
- 
- 	/*
--	 * Note that crtc_state->pixel_rate accounts for both
-+	 * Note that crtc_state->pixel_rate_cdclk accounts for both
- 	 * horizontal and vertical panel fitter downscaling factors.
- 	 * Pre-HSW bspec tells us to only consider the horizontal
- 	 * downscaling factor here. We ignore that and just consider
- 	 * both for simplicity.
- 	 */
--	pixel_rate = crtc_state->pixel_rate;
-+	pixel_rate = crtc_state->pixel_rate_cdclk;
- 
- 	vlv_plane_ratio(crtc_state, plane_state, &num, &den);
- 
-@@ -550,13 +550,13 @@ int ivb_plane_min_cdclk(const struct intel_crtc_state *crtc_state,
- 	unsigned int num, den;
- 
- 	/*
--	 * Note that crtc_state->pixel_rate accounts for both
-+	 * Note that crtc_state->pixel_rate_cdclk accounts for both
- 	 * horizontal and vertical panel fitter downscaling factors.
- 	 * Pre-HSW bspec tells us to only consider the horizontal
- 	 * downscaling factor here. We ignore that and just consider
- 	 * both for simplicity.
- 	 */
--	pixel_rate = crtc_state->pixel_rate;
-+	pixel_rate = crtc_state->pixel_rate_cdclk;
- 
- 	ivb_plane_ratio(crtc_state, plane_state, &num, &den);
- 
-@@ -570,13 +570,13 @@ static int ivb_sprite_min_cdclk(const struct intel_crtc_state *crtc_state,
- 	unsigned int num, den;
- 
- 	/*
--	 * Note that crtc_state->pixel_rate accounts for both
-+	 * Note that crtc_state->pixel_rate_cdclk accounts for both
- 	 * horizontal and vertical panel fitter downscaling factors.
- 	 * Pre-HSW bspec tells us to only consider the horizontal
- 	 * downscaling factor here. We ignore that and just consider
- 	 * both for simplicity.
- 	 */
--	pixel_rate = crtc_state->pixel_rate;
-+	pixel_rate = crtc_state->pixel_rate_cdclk;
- 
- 	src_w = drm_rect_width(&plane_state->uapi.src) >> 16;
- 	dst_w = drm_rect_width(&plane_state->uapi.dst);
-@@ -629,7 +629,7 @@ static void hsw_plane_ratio(const struct intel_crtc_state *crtc_state,
- int hsw_plane_min_cdclk(const struct intel_crtc_state *crtc_state,
- 			const struct intel_plane_state *plane_state)
++	/*
++	 * We only use IF-ID interlacing. If we ever use
++	 * PF-ID we'll need to adjust the pixel_rate here.
++	 */
++
++	if (!crtc_state->pch_pfit.enabled)
++		return pixel_rate;
++
++	drm_rect_init(&src, 0, 0,
++		      drm_rect_width(&crtc_state->pipe_src) << 16,
++		      drm_rect_height(&crtc_state->pipe_src) << 16);
++
++	return intel_adjusted_rate_cdclk(&src, &crtc_state->pch_pfit.dst,
++					 pixel_rate, ppc);
++}
++
+ static void intel_mode_from_crtc_timings(struct drm_display_mode *mode,
+ 					 const struct drm_display_mode *timings)
  {
--	unsigned int pixel_rate = crtc_state->pixel_rate;
-+	unsigned int pixel_rate = crtc_state->pixel_rate_cdclk;
+@@ -2267,7 +2290,8 @@ static void intel_crtc_compute_pixel_rate(struct intel_crtc_state *crtc_state)
+ 	} else {
+ 		crtc_state->pixel_rate =
+ 			ilk_pipe_pixel_rate(crtc_state);
+-		crtc_state->pixel_rate_cdclk = crtc_state->pixel_rate;
++		crtc_state->pixel_rate_cdclk =
++			ilk_pipe_pixel_rate_cdclk(crtc_state);
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
+index a440f92ff00c..47c3e0c157b6 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_plane.c
+@@ -264,6 +264,50 @@ unsigned int intel_adjusted_rate(const struct drm_rect *src,
+ 				dst_w * dst_h);
+ }
+ 
++static unsigned int hscale_cdclk(const struct drm_rect *src,
++				 const struct drm_rect *dst,
++				 unsigned int ppc)
++{
++	unsigned int hscale;
++
++	hscale = drm_rect_calc_hscale(src, dst, 0, INT_MAX);
++	hscale = max(hscale, 0x10000);
++
++	/*
++	 * Double the fractional part due to some 2 PPC granularity issue
++	 *
++	 * FIXME: BSpec calls for doubling only the <0.5 fractional part,
++	 * and rounding it down to a unit fraction. In practice that is
++	 * not sufficient, and we need a more aggressive CDCLK bump in
++	 * many cases. The updated formula was derived empirically.
++	 * This may need to be updated once we have better undestading
++	 * of what's happening in the hardware...
++	 */
++	return (hscale & ~0xffff) + ppc * (hscale & 0xffff);
++}
++
++static unsigned int vscale_cdclk(const struct drm_rect *src,
++				 const struct drm_rect *dst)
++{
++	unsigned int vscale;
++
++	vscale = drm_rect_calc_vscale(src, dst,0, INT_MAX);
++	vscale = max(vscale, 0x10000);
++
++	return vscale;
++}
++
++unsigned int intel_adjusted_rate_cdclk(const struct drm_rect *src,
++				       const struct drm_rect *dst,
++				       unsigned int rate,
++				       unsigned int ppc)
++{
++	unsigned int hscale = hscale_cdclk(src, dst, ppc);
++	unsigned int vscale = vscale_cdclk(src, dst);
++
++	return DIV64_U64_ROUND_UP((u64) rate * hscale * vscale, 1ull << 32);
++}
++
+ unsigned int intel_plane_pixel_rate(const struct intel_crtc_state *crtc_state,
+ 				    const struct intel_plane_state *plane_state)
+ {
+@@ -284,6 +328,17 @@ unsigned int intel_plane_pixel_rate(const struct intel_crtc_state *crtc_state,
+ 				   crtc_state->pixel_rate);
+ }
+ 
++unsigned int intel_plane_pixel_rate_cdclk(const struct intel_crtc_state *crtc_state,
++					  const struct intel_plane_state *plane_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	unsigned int ppc = HAS_2PPC(display) ? 2 : 1;
++
++	return intel_adjusted_rate_cdclk(&plane_state->uapi.src,
++					 &plane_state->uapi.dst,
++					 crtc_state->pixel_rate_cdclk, ppc);
++}
++
+ unsigned int intel_plane_data_rate(const struct intel_crtc_state *crtc_state,
+ 				   const struct intel_plane_state *plane_state,
+ 				   int color_plane)
+diff --git a/drivers/gpu/drm/i915/display/intel_plane.h b/drivers/gpu/drm/i915/display/intel_plane.h
+index 31a6229aea73..dba2be24aae2 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane.h
++++ b/drivers/gpu/drm/i915/display/intel_plane.h
+@@ -29,8 +29,13 @@ bool intel_plane_can_async_flip(struct intel_plane *plane,
+ unsigned int intel_adjusted_rate(const struct drm_rect *src,
+ 				 const struct drm_rect *dst,
+ 				 unsigned int rate);
++unsigned int intel_adjusted_rate_cdclk(const struct drm_rect *src,
++				       const struct drm_rect *dst,
++				       unsigned int rate, unsigned int ppc);
+ unsigned int intel_plane_pixel_rate(const struct intel_crtc_state *crtc_state,
+ 				    const struct intel_plane_state *plane_state);
++unsigned int intel_plane_pixel_rate_cdclk(const struct intel_crtc_state *crtc_state,
++					  const struct intel_plane_state *plane_state);
+ 
+ unsigned int intel_plane_data_rate(const struct intel_crtc_state *crtc_state,
+ 				   const struct intel_plane_state *plane_state,
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 164b7d61c9a3..b246fc48558b 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -266,7 +266,7 @@ bool icl_is_hdr_plane(struct intel_display *display, enum plane_id plane_id)
+ static int icl_plane_min_cdclk(const struct intel_crtc_state *crtc_state,
+ 			       const struct intel_plane_state *plane_state)
+ {
+-	unsigned int pixel_rate = intel_plane_pixel_rate(crtc_state, plane_state);
++	unsigned int pixel_rate = intel_plane_pixel_rate_cdclk(crtc_state, plane_state);
+ 
+ 	/* two pixels per clock */
+ 	return DIV_ROUND_UP(pixel_rate, 2);
+@@ -290,7 +290,7 @@ glk_plane_ratio(const struct intel_plane_state *plane_state,
+ static int glk_plane_min_cdclk(const struct intel_crtc_state *crtc_state,
+ 			       const struct intel_plane_state *plane_state)
+ {
+-	unsigned int pixel_rate = intel_plane_pixel_rate(crtc_state, plane_state);
++	unsigned int pixel_rate = intel_plane_pixel_rate_cdclk(crtc_state, plane_state);
  	unsigned int num, den;
  
- 	hsw_plane_ratio(crtc_state, plane_state, &num, &den);
-@@ -918,13 +918,13 @@ static int g4x_sprite_min_cdclk(const struct intel_crtc_state *crtc_state,
- 	unsigned int limit, decimate;
+ 	glk_plane_ratio(plane_state, &num, &den);
+@@ -317,7 +317,7 @@ skl_plane_ratio(const struct intel_plane_state *plane_state,
+ static int skl_plane_min_cdclk(const struct intel_crtc_state *crtc_state,
+ 			       const struct intel_plane_state *plane_state)
+ {
+-	unsigned int pixel_rate = intel_plane_pixel_rate(crtc_state, plane_state);
++	unsigned int pixel_rate = intel_plane_pixel_rate_cdclk(crtc_state, plane_state);
+ 	unsigned int num, den;
  
- 	/*
--	 * Note that crtc_state->pixel_rate accounts for both
-+	 * Note that crtc_state->pixel_rate_cdclk accounts for both
- 	 * horizontal and vertical panel fitter downscaling factors.
- 	 * Pre-HSW bspec tells us to only consider the horizontal
- 	 * downscaling factor here. We ignore that and just consider
- 	 * both for simplicity.
- 	 */
--	pixel_rate = crtc_state->pixel_rate;
-+	pixel_rate = crtc_state->pixel_rate_cdclk;
- 
- 	/* Horizontal downscaling limits the maximum pixel rate */
- 	hscale = drm_rect_calc_hscale(&plane_state->uapi.src,
+ 	skl_plane_ratio(plane_state, &num, &den);
 -- 
 2.54.0
 
